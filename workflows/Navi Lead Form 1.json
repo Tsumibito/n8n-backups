@@ -1,0 +1,263 @@
+{
+  "active": true,
+  "connections": {
+    "Code Prepare Letters": {
+      "main": [
+        [
+          {
+            "node": "Gmail confirmation for Client",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Add to Bigin": {
+      "main": [
+        [
+          {
+            "node": "Code Prepare Letters",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Slack to Navi lead Cannel",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Execute Add to Bigin",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Gmail to Manager",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-08-16T13:40:45.330Z",
+  "id": "UkchLaDLFPu4qIyT",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Navi Lead Form 1",
+  "nodes": [
+    {
+      "parameters": {
+        "sendTo": "alex@navi.training",
+        "subject": "=Новый лид Navi ШКОЛА {{ $json[\"body\"][\"clientnamefirst\"] }} {{ $json[\"body\"][\"clientnamelast\"] }} язык {{ $json[\"body\"][\"customorder_lead_form_lang\"] }} из {{ $json[\"body\"][\"customorder_lead_city\"] }} {{ $json[\"body\"][\"customorder_lead_country\"] }}",
+        "message": "=<!DOCTYPE html>\n<html lang=\"ru\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Новый Лид</title>\n</head>\n<body>\n    <p>Поступил новый лид Navi ШКОЛА {{ $json.body.ordercode }}, дата {{ $json[\"body\"][\"customorder_lead_form_date\"] }}</p>\n    <p>Язык страницы: {{ $json[\"body\"][\"customorder_lead_form_lang\"] }}</p>\n    <p>Со страницы: <a href=\"{{ $json[\"body\"][\"customorder_source_url\"] }}\">{{ $json[\"body\"][\"customorder_source_url\"] }}</a></p>\n    <p>Инфо перехода: {{ $json[\"body\"][\"customorder_brand_interest\"] }}, {{ $json[\"body\"][\"customorder_product_interest\"] }}, {{ $json[\"body\"][\"customorder_source_add_info\"] }}</p>\n\n    <h3>Клиент заполнил данные:</h3>\n    <p>ФИО: {{ $json[\"body\"][\"customorder_form_name\"] }} {{ $json[\"body\"][\"customorder_form_lastname\"] }}</p>\n    <p>WhatsApp: <a href=\"https://wa.me/{{ $json[\"body\"][\"clientphone\"] }}\">https://wa.me/{{ $json[\"body\"][\"clientphone\"] }}</a></p>\n    <p>Telegram: <a href=\"https://t.me/{{ $json[\"body\"][\"clientphone\"] }}\">https://t.me/{{ $json[\"body\"][\"clientphone\"] }}</a></p>\n    <p>Phone: <a href=\"tel:{{ $json[\"body\"][\"clientphone\"] }}\">{{ $json[\"body\"][\"clientphone\"] }}</a></p>\n    <p>Email: <a href=\"mailto:{{ $json[\"body\"][\"clientemail\"] }}\">{{ $json[\"body\"][\"clientemail\"] }}</a></p>\n    <p>Сообщение: {{ $json[\"body\"][\"customorder_form_message\"] }}</p>\n\n    <h3>Данные перехода</h3>\n    <p>IP: {{ $json[\"body\"][\"customorder_lead_IP\"] }}</p>\n    <p>Страна: {{ $json[\"body\"][\"customorder_lead_country\"] }}</p>\n    <p>Регион: {{ $json[\"body\"][\"customorder_lead_region\"] }}</p>\n    <p>Город: {{ $json[\"body\"][\"customorder_lead_city\"] }}</p>\n    <p>Координаты: {{ $json[\"body\"][\"customorder_lead_location\"] }}</p>\n    <p>Часовой пояс: {{ $json[\"body\"][\"customorder_lead_timezone\"] }}</p>\n    <p>Провайдер: {{ $json[\"body\"][\"customorder_lead_provider\"] }}</p>\n    <p>Хост: {{ $json[\"body\"][\"customorder_lead_hostname\"] }}</p>\n\n    <h3>UTM-метки</h3>\n    <p>{{ $json[\"body\"][\"customorder_utm_source\"] }}, {{ $json[\"body\"][\"customorder_utm_medium\"] }}, {{ $json[\"body\"][\"customorder_utm_campaign\"] }}, {{ $json[\"body\"][\"customorder_utm_content\"] }}, {{ $json[\"body\"][\"customorder_utm_term\"] }}</p>\n\n    <p>Лид передан в ваш Bigin</p>\n    <p>С любовью,<br>ваш Navi n8n</p>\n</body>\n</html>\n",
+        "options": {}
+      },
+      "id": "5ebac806-76a2-4e42-b735-1d963a218393",
+      "name": "Gmail to Manager",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1200,
+        760
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "qkdDun6kFLlujP1i",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C07H25HAK4N",
+          "mode": "list",
+          "cachedResultName": "navi-sailing-school"
+        },
+        "text": "=Поступил новый лид ШКОЛА {{ $json.body.ordercode }}, дата {{ $json[\"body\"][\"customorder_lead_form_date\"] }}\nЯзык страницы: {{ $json[\"body\"][\"customorder_lead_form_lang\"] }}\nСо страницы: {{ $json[\"body\"][\"customorder_source_url\"] }} \nИнфо перехода: {{ $json[\"body\"][\"customorder_brand_interest\"] }}, {{ $json[\"body\"][\"customorder_product_interest\"] }}, {{ $json[\"body\"][\"customorder_source_add_info\"] }}\n\n\nКлиент заполнил данные: \nФИО: {{ $json[\"body\"][\"customorder_form_name\"] }} {{ $json[\"body\"][\"customorder_form_lastname\"] }}\nWhatsApp link: https://wa.me/{{ $json[\"body\"][\"clientphone\"] }} \nTelegram link: https://t.me/{{ $json[\"body\"][\"clientphone\"] }} \nPhone: {{ $json[\"body\"][\"clientphone\"] }} \nE-mail: {{ $json[\"body\"][\"clientemail\"] }}\nСообщение: {{ $json[\"body\"][\"customorder_form_message\"] }}\n\nДанные перехода \nIP: {{ $json[\"body\"][\"customorder_lead_IP\"] }}\nСтрана: {{ $json[\"body\"][\"customorder_lead_country\"] }} \nРегион: {{ $json[\"body\"][\"customorder_lead_region\"] }}\nГород: {{ $json[\"body\"][\"customorder_lead_city\"] }}\nКоординаты: {{ $json[\"body\"][\"customorder_lead_location\"] }}\nЧасовой пояс: {{ $json[\"body\"][\"customorder_lead_timezone\"] }}\nПровайдер: {{ $json[\"body\"][\"customorder_lead_provider\"] }}\nХост: {{ $json[\"body\"][\"customorder_lead_hostname\"] }}\n\nUTM: {{ $json[\"body\"][\"customorder_utm_source\"] }}, {{ $json[\"body\"][\"customorder_utm_medium\"] }},  {{ $json[\"body\"][\"customorder_utm_campaign\"] }}, {{ $json[\"body\"][\"customorder_utm_content\"] }}, {{ $json[\"body\"][\"customorder_utm_term\"] }}\n\nЛид передан в ваш Bigin \n\nС любовью, ваш Navi n8n     {{ $json.body.customorder_lead_form_lang }}",
+        "otherOptions": {}
+      },
+      "id": "3bf13ac1-2d3f-4cd3-83b9-4f5c9215c100",
+      "name": "Slack to Navi lead Cannel",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.2,
+      "position": [
+        1200,
+        240
+      ],
+      "credentials": {
+        "slackApi": {
+          "id": "FrLH5fYXH48xDmpN",
+          "name": "Slack account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Получаем данные из Webhook\nconst lang = $('Code').item.json[\"body\"][\"customorder_lead_form_lang\"];\nconst clientNameFirst = $('Code').item.json[\"body\"][\"clientnamefirst\"];\nconst orderCode = $('Code').item.json[\"body\"][\"ordercode\"];\nconst sourceUrl = $('Code').item.json[\"body\"][\"customorder_source_url\"];\n\n// Определяем шаблоны писем для разных языков\nconst letter_UA = `\n<h1 style='line-height:1.2; padding-bottom: 25px; margin:0 0 10px 0; font-weight:normal; font-size:36px; color:#444; font-family:Arial, \"Helvetica Neue\", Helvetica, sans-serif'>\n    <span style=\"font-size: 24px;\"><strong>Вітаємо, ${clientNameFirst}!</strong></span><br />\n</h1>\n<p style=\"font-size:15px; line-height:1.2;\"><b>Ми отримали вашу заявку #${orderCode} зі сторінки ${sourceUrl}.</b><br /></p>\n<p style=\"font-size:18px; line-height:1.5; padding-bottom: 15px;\"><strong>Дякуємо за довіру до Navi.training!</strong></p>\n<p style=\"font-size:15px; line-height:1.2;\">Наша яхтова школа спеціалізується на підготовці шкиперів та власників вітрильних і моторних яхт, починаючи з рівня Inshore Skipper і до океанського Master of Yacht.<br /></p>\n<p style=\"font-size:15px; line-height:1.2; padding-bottom: 25px;\"><b>Будемо раді бачити вас серед наших курсантів.</b></p>\n<p style=\"font-size:15px; line-height:1.2;\">У нашій команді немає окремих менеджерів, тільки шкипери-інструктори.</p>\n<p style=\"font-size:15px; line-height:1.2; padding-bottom: 15px;\">Відповідальним за вашу заявку призначено:</p>\n<img src=\"https://uploads-ssl.webflow.com/65a2a1f2ff6a3d038795ee22/65f9be4d323596f21349a6a2_instr_alex.jpg\" alt=\"Олексій Бурлаков\" style=\"border-radius: 50%; width: 90px; height: 90px;\"><br /> \n<p style=\"font-size:15px; line-height:1.5; padding-top: 15px;\"><b>Олексій Бурлаков - старший інструктор школи Navi.training.</b></p> \n<p style=\"font-size:15px; line-height:1.5;\">Його контактні дані:</p> \n<p style=\"font-size:15px; line-height:1.5;\"><a href='https://wa.me/33769958299'>+33769958299 (WhatsApp)</a></p> \n<p style=\"font-size:15px; line-height:1.5;\"><a href='https://t.me/33769958299'>+33769958299 (Telegram)</a></p>\n<p style=\"font-size:15px; line-height:1.5; padding-bottom: 25px;\"><a href='mailto:alex@navi.training'>alex@navi.training</a></p>\n<p style=\"font-size:15px; line-height:1.5; padding-bottom: 15px;\"><b>Олексій зв'яжеться з вами через WhatsApp протягом 2-3 робочих днів.</b></p>  \n<p style=\"font-size:15px; line-height:1.5; padding-bottom: 25px;\">Але якщо вам потрібна більш термінова консультація, або якщо він не зможе зв'язатися з вами вчасно — що іноді трапляється, оскільки наші інструктори часто перебувають у морі кілька тижнів — <b>не соромтеся самостійно звернутися до нього у WhatsApp чи Telegram. Він обов'язково буде радий відповісти на всі ваші запитання.</b></p>  \n<p style=\"font-size:15px; line-height:1.5; padding-bottom: 15px;\"><b>Наступна група теоретичних занять стартує найближчими днями, тож ви цілком можете встигнути записатися.</b></p>  \n<p style=\"font-size:11px; line-height:1.2;\"><i>Якщо ви не залишали заявку на сайті Navi.training, просто ігноруйте це повідомлення.</i></p><br />\n<p style=\"font-size:15px; padding-bottom: 25px;\"><b>З повагою,</b></p>\n<p style=\"font-size:12px; line-height:1.1;\">Команда Navi.training</p>\n<p style=\"font-size:12px; line-height:1.1;\"><a href='mailto:alex@navi.training'>alex@navi.training</a></p>\n<p style=\"font-size:12px; line-height:1.1; padding-bottom: 10px;\"><a href='navi.training'>navi.training</a></p>\n<img border=\"0\" width=\"60\" height=\"auto\" class=\" sp-img small_img smallImg \" align=\"left\" alt=\"Navi\" src=\"https://uploads-ssl.webflow.com/659830fbff569aa34b8be776/65b3c6b26e1992fa84a5cfba_Navi_logo_256.png\" iout_block_24_element_0 style=\"border:0; height:auto; line-height:100%; outline:none; text-decoration:none; margin:0; display:block; -ms-interpolation-mode:bicubic\"><br /><br /><br />`;\n\nconst letter_RU = `\n<h1 style='line-height:1.2; padding-bottom: 25px; margin:0 0 10px 0; font-weight:normal; font-size:36px; color:#444; font-family:Arial, \"Helvetica Neue\", Helvetica, sans-serif'>\n    <span style=\"font-size: 24px;\"><strong>Приветствую, ${clientNameFirst}!</strong></span><br />\n</h1>\n<p style=\"font-size:15px; line-height:1.2;\"><b>Мы получили вашу заявку #${orderCode} со страницы ${sourceUrl}.</b><br /></p>\n<p style=\"font-size:18px; line-height:1.5; padding-bottom: 15px;\"><strong>Спасибо за оказанное Navi.training доверие!</strong></p>\n<p style=\"font-size:15px; line-height:1.2;\">Наша яхтенная школа занимается подготовкой шкиперов и владельцев парусных и моторных яхт, начиная с уровня Inshore Skipper, и вплоть до океанского Master of Yacht.<br /></p>\n<p style=\"font-size:15px; line-height:1.2; padding-bottom: 25px;\"><b>Будем рады видеть вас в числе наших курсантов.</b></p>\n<p style=\"font-size:15px; line-height:1.2;\">В нашей команде нет отдельных менджеров, только шкиперы-инструкторы.</p>\n<p style=\"font-size:15px; line-height:1.2; padding-bottom: 15px;\">Ответственным за вашу заявку назначен:</p>\n<img src=\"https://uploads-ssl.webflow.com/65a2a1f2ff6a3d038795ee22/65f9be4d323596f21349a6a2_instr_alex.jpg\" alt=\"Алексей Бурлаков\" style=\"border-radius: 50%; width: 90px; height: 90px;\"><br /> \n<p style=\"font-size:15px; line-height:1.5; padding-top: 15px;\"><b>Алексей Бурлаков - старший инструктор школы Navi.training.</b></p> \n<p style=\"font-size:15px; line-height:1.5;\">Его контактные данные:</p> \n<p style=\"font-size:15px; line-height:1.5;\"><a href='https://wa.me/33769958299'>+33769958299 (WhatsApp)</a></p> \n<p style=\"font-size:15px; line-height:1.5;\"><a href='https://t.me/33769958299'>+33769958299 (Telegram)</a></p>\n<p style=\"font-size:15px; line-height:1.5; padding-bottom: 25px;\"><a href='mailto:alex@navi.training'>alex@navi.training</a></p>\n<p style=\"font-size:15px; line-height:1.5; padding-bottom: 15px;\"><b>Алексей выйдет с вами на связь по WhatsApp в течение 2-3 рабочих дней.</b></p>  \n<p style=\"font-size:15px; line-height:1.5; padding-bottom: 25px;\">Но если вам нужна более срочная консультация, или если он вдруг не смог связаться с вами вовремя — что иногда случается, так как наши инструкторы часто по несколько недель в море, <b>не стесняйтесь постучаться ему в WhatsApp или Telegram самостоятельно. Он наверняка будет рад ответить на все ваши вопросы.</b></p>  \n<p style=\"font-size:15px; line-height:1.5; padding-bottom: 15px;\"><b>Следующая группа теории стартует в ближайшие дни, так что вы вполне можете успеть записаться.</b></p>  \n<p style=\"font-size:11px; line-height:1.2;\"><i>Если вы не оставляли заявку на сайте Navi.training, просто проигнорируйте это сообщение.</i></p><br />\n<p style=\"font-size:15px; padding-bottom: 25px;\"><b>С уважением,</b></p>\n<p style=\"font-size:12px; line-height:1.1;\">Команда Navi.training</p>\n<p style=\"font-size:12px; line-height:1.1;\"><a href='mailto:alex@navi.training'>alex@navi.training</a></p>\n<p style=\"font-size:12px; line-height:1.1; padding-bottom: 10px;\"><a href='navi.training'>navi.training</a></p>\n<img border=\"0\" width=\"60\" height=\"auto\" class=\" sp-img small_img smallImg \" align=\"left\" alt=\"Navi\" src=\"https://uploads-ssl.webflow.com/659830fbff569aa34b8be776/65b3c6b26e1992fa84a5cfba_Navi_logo_256.png\" iout_block_24_element_0 style=\"border:0; height:auto; line-height:100%; outline:none; text-decoration:none; margin:0; display:block; -ms-interpolation-mode:bicubic\"><br /><br /><br />`;\n\nconst letter_EN = `\n<h1 style='line-height:1.2; padding-bottom: 25px; margin:0 0 10px 0; font-weight:normal; font-size:36px; color:#444; font-family:Arial, \"Helvetica Neue\", Helvetica, sans-serif'>\n    <span style=\"font-size: 24px;\"><strong>Welcome, ${clientNameFirst}!</strong></span><br />\n</h1>\n<p style=\"font-size:15px; line-height:1.2;\"><b>We have received your application #${orderCode} from the page ${sourceUrl}.</b><br /></p>\n<p style=\"font-size:18px; line-height:1.5; padding-bottom: 15px;\"><strong>Thank you for your trust in Navi.training!</strong></p>\n<p style=\"font-size:15px; line-height:1.2;\">Our yachting school specializes in training skippers and owners of sail and power yachts, starting from the Inshore Skipper level up to the ocean-going Master of Yacht.<br /></p>\n<p style=\"font-size:15px; line-height:1.2; padding-bottom: 25px;\"><b>We will be glad to see you among our students.</b></p>\n<p style=\"font-size:15px; line-height:1.2;\">In our team, there are no separate managers, only skipper instructors.</p>\n<p style=\"font-size:15px; line-height:1.2; padding-bottom: 15px;\">The person responsible for your application is:</p>\n<img src=\"https://uploads-ssl.webflow.com/65a2a1f2ff6a3d038795ee22/65f9be4d323596f21349a6a2_instr_alex.jpg\" alt=\"Alexey Burlakov\" style=\"border-radius: 50%; width: 90px; height: 90px;\"><br /> \n<p style=\"font-size:15px; line-height:1.5; padding-top: 15px;\"><b>Alexey Burlakov - Senior Instructor at Navi.training.</b></p> \n<p style=\"font-size:15px; line-height:1.5;\">His contact details:</p> \n<p style=\"font-size:15px; line-height:1.5;\"><a href='https://wa.me/33769958299'>+33769958299 (WhatsApp)</a></p> \n<p style=\"font-size:15px; line-height:1.5;\"><a href='https://t.me/33769958299'>+33769958299 (Telegram)</a></p>\n<p style=\"font-size:15px; line-height:1.5; padding-bottom: 25px;\"><a href='mailto:alex@navi.training'>alex@navi.training</a></p>\n<p style=\"font-size:15px; line-height:1.5; padding-bottom: 15px;\"><b>Alexey will contact you via WhatsApp within 2-3 business days.</b></p>  \n<p style=\"font-size:15px; line-height:1.5; padding-bottom: 25px;\">However, if you need a more urgent consultation, or if he fails to reach out in time—which sometimes happens as our instructors are often at sea for several weeks—<b>do not hesitate to reach out to him on WhatsApp or Telegram yourself. He will surely be happy to answer all your questions.</b></p>  \n<p style=\"font-size:15px; line-height:1.5; padding-bottom: 15px;\"><b>The next group for theory classes starts in the coming days, so you can still sign up.</b></p>  \n<p style=\"font-size:11px; line-height:1.2;\"><i>If you did not submit an application on the Navi.training website, please ignore this message.</i></p><br />\n<p style=\"font-size:15px; padding-bottom: 25px;\"><b>Best regards,</b></p>\n<p style=\"font-size:12px; line-height:1.1;\">The Navi.training Team</p>\n<p style=\"font-size:12px; line-height:1.1;\"><a href='mailto:alex@navi.training'>alex@navi.training</a></p>\n<p style=\"font-size:12px; line-height:1.1; padding-bottom: 10px;\"><a href='navi.training'>navi.training</a></p>\n<img border=\"0\" width=\"60\" height=\"auto\" class=\" sp-img small_img smallImg \" align=\"left\" alt=\"Navi\" src=\"https://uploads-ssl.webflow.com/659830fbff569aa34b8be776/65b3c6b26e1992fa84a5cfba_Navi_logo_256.png\" iout_block_24_element_0 style=\"border:0; height:auto; line-height:100%; outline:none; text-decoration:none; margin:0; display:block; -ms-interpolation-mode:bicubic\"><br /><br /><br />`;\n\n// Генерация содержания письма на основе языка\nlet content, subject;\n\nif (lang === 'UA') { \n    content = letter_UA;   \n    subject = 'Стосовно вашої заявки на сайті вітрильної школи Navi.training';  \n} else if (lang === 'RU') { \n    content = letter_RU;\n    subject = 'Касательно вашей заявки на сайте яхтенной школы Navi.training';  \n} else {\n    content = letter_EN;\n    subject = 'Navi.training Application Confirmation';         \n}                   \n\n// Выходные данные\nreturn [\n  {\n    json: {\n      letter: content,\n      subject: subject\n    }\n  }\n];\n"
+      },
+      "id": "ae380212-01db-44af-b5f9-cdc6af006593",
+      "name": "Code Prepare Letters",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1660,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "=4kjAFYs071KZ2aXp",
+        "options": {}
+      },
+      "id": "1fd0d9a8-42a4-4b64-b608-8f6430fb8192",
+      "name": "Execute Add to Bigin",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1360,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Code').item.json.body.clientemail }}",
+        "subject": "={{ $json.subject }}",
+        "message": "={{ $json.letter }}",
+        "options": {}
+      },
+      "id": "93e5e02a-d434-4235-8bb6-e492ce755f12",
+      "name": "Gmail confirmation for Client",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1900,
+        500
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "qkdDun6kFLlujP1i",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://ipapi.co/{{ $json[\"body\"][\"ip\"] }}/json/",
+        "options": {}
+      },
+      "id": "99503b1e-50c2-420e-817f-03f765d74ac1",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        720,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Получаем данные из узла Webhook1\nconst webhookData = $node[\"Webhook1\"].json;\n\n// Получаем данные из узла HTTP Request\nconst httpRequestData = $node[\"HTTP Request\"].json;\n\n// Функция для безопасного получения значения или установки 'None'\nconst getValue = (value) => (typeof value === 'string' ? value.trim() : (value !== undefined && value !== null ? value : \"None\"));\n\n// Функция для генерации уникального ordercode\nconst generateOrderCode = () => `OC-${Date.now()}-${Math.floor(Math.random() * 1000).toString().padStart(3, '0')}`;\n\n// Функция для определения языка формы на основе URL\nconst determineFormLang = (url) => {\n  // Проверяем, начинается ли URL с нужного домена\n  if (!url.startsWith(\"https://launey-a378t.wstd.io\")) {\n    return \"None\";\n  }\n\n  // Проверяем, является ли URL корневым\n  if (/^https:\\/\\/launey-a378t\\.wstd\\.io\\/?$/.test(url)) {\n    return \"RU\";\n  }\n\n  try {\n    const parsedUrl = new URL(url);\n    const path = parsedUrl.pathname.toLowerCase();\n\n    // Извлекаем первую часть пути после домена\n    const firstSegment = path.split('/').filter(segment => segment.length > 0)[0] || \"\";\n\n    switch (firstSegment) {\n      case 'ru':\n        return \"RU\";\n      case 'ua':\n        return \"UA\";\n      case 'en':\n        return \"EN\";\n      default:\n        return \"None\";\n    }\n  } catch (error) {\n    return \"None\";\n  }\n};\n\n// Получение URL из данных формы\nconst sourceUrl = getValue(webhookData.body[\"url\"]);\n\n// Определение customorder_lead_form_lang\nconst formLang = determineFormLang(sourceUrl);\n\n// Определение customorder_source_add_info\nconst sourceAddInfo = (/^https:\\/\\/launey-a378t\\.wstd\\.io\\/?$/.test(sourceUrl)) ? \"None\" : sourceUrl;\n\n// Формируем итоговый JSON\nconst formattedData = {\n  headers: getValue(webhookData.headers),\n  params: getValue(webhookData.params),\n  query: getValue(webhookData.query),\n  body: {\n    ordercode: generateOrderCode(),\n    clientnamefirst: getValue(webhookData.body[\"First-Name\"]),\n    clientnamelast: getValue(webhookData.body[\"Last-Name\"]),\n    clientemail: getValue(webhookData.body[\"Email\"]),\n    clientphone: getValue(webhookData.body[\"Phone\"]),\n    customorder_source_url: sourceUrl,\n    customorder_ga_code: \"None\",\n    customorder_lead_IP: getValue(webhookData.body[\"ip\"]),\n    customorder_source_add_info: sourceAddInfo,\n    customorder_lead_country: getValue(httpRequestData.country_code),\n    customorder_lead_form_date: new Date().toISOString().split(\"T\")[0], // Формат YYYY-MM-DD\n    customorder_lead_region: getValue(httpRequestData.region),\n    customorder_lead_city: getValue(httpRequestData.city),\n    customorder_lead_location: `Latitude: ${getValue(httpRequestData.latitude)}, Longitude: ${getValue(httpRequestData.longitude)}`,\n    customorder_lead_timezone: getValue(httpRequestData.timezone),\n    customorder_lead_provider: getValue(httpRequestData.org),\n    customorder_lead_hostname: getValue(httpRequestData.country_calling_code),\n    customorder_utm_source: getValue(webhookData.body[\"utm_source\"]),\n    customorder_utm_medium: getValue(webhookData.body[\"utm_medium\"]),\n    customorder_utm_campaign: getValue(webhookData.body[\"utm_campaign\"]),\n    customorder_utm_content: getValue(webhookData.body[\"utm_content\"]),\n    customorder_utm_term: getValue(webhookData.body[\"utm_term\"]),\n    customorder_form_name: getValue(webhookData.body[\"First-Name\"]),\n    customorder_form_lastname: getValue(webhookData.body[\"Last-Name\"]),\n    customorder_lead_form_lang: formLang,\n    customorder_form_message: getValue(webhookData.body[\"Message\"]),\n    customorder_brand_interest: \"Navi.training\",\n    customorder_product_interest: getValue(webhookData.body[\"product\"])\n  },\n  webhookUrl: getValue(webhookData.webhookUrl),\n  executionMode: getValue(webhookData.executionMode)\n};\n\n// Возвращаем сформированный объект\nreturn [\n  {\n    json: formattedData\n  }\n];\n"
+      },
+      "id": "1109fa2a-eb12-4fc5-8ac1-75bc5638ecf5",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1000,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "799035af-fc66-48bb-bd5c-66dad4df3219",
+        "options": {}
+      },
+      "id": "fcb4d555-bec3-4f2f-9242-f77ad6a7e87a",
+      "name": "Webhook1",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        540,
+        500
+      ],
+      "webhookId": "799035af-fc66-48bb-bd5c-66dad4df3219"
+    }
+  ],
+  "pinData": {
+    "HTTP Request": [
+      {
+        "json": {
+          "ip": "88.169.43.45",
+          "network": "88.169.43.0/26",
+          "version": "IPv4",
+          "city": "Andilly",
+          "region": "Nouvelle-Aquitaine",
+          "region_code": "NAQ",
+          "country": "FR",
+          "country_name": "France",
+          "country_code": "FR",
+          "country_code_iso3": "FRA",
+          "country_capital": "Paris",
+          "country_tld": ".fr",
+          "continent_code": "EU",
+          "in_eu": true,
+          "postal": "17230",
+          "latitude": 46.2542,
+          "longitude": -1.0218,
+          "timezone": "Europe/Paris",
+          "utc_offset": "+0200",
+          "country_calling_code": "+33",
+          "currency": "EUR",
+          "currency_name": "Euro",
+          "languages": "fr-FR,frp,br,co,ca,eu,oc",
+          "country_area": 547030,
+          "country_population": 66987244,
+          "asn": "AS12322",
+          "org": "Free SAS"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-09-29T12:11:03.000Z",
+  "versionId": "8e61b82a-c0a3-4288-a3c4-f16310a8153b"
+}

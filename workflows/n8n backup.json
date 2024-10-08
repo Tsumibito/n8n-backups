@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "n8n": {
       "main": [
@@ -177,7 +177,9 @@
   },
   "createdAt": "2024-10-08T07:34:50.046Z",
   "id": "uuXUC42zK5QBoPUL",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "n8n backup",
   "nodes": [
     {
@@ -349,7 +351,7 @@
           "string": [
             {
               "name": "repo.owner",
-              "value": "n8n-io"
+              "value": "Tsumibito"
             },
             {
               "name": "repo.name",
@@ -378,7 +380,7 @@
           "item": [
             {
               "mode": "everyX",
-              "value": 12
+              "value": 24
             }
           ]
         }
@@ -387,8 +389,8 @@
       "name": "Every 12 hours",
       "type": "n8n-nodes-base.cron",
       "position": [
-        -985,
-        935
+        -980,
+        940
       ],
       "typeVersion": 1
     },
@@ -449,7 +451,13 @@
         -600,
         800
       ],
-      "typeVersion": 1
+      "typeVersion": 1,
+      "credentials": {
+        "n8nApi": {
+          "id": "ZIyJ6Ia14wc6yJfG",
+          "name": "n8n account"
+        }
+      }
     },
     {
       "parameters": {
@@ -482,7 +490,7 @@
   },
   "staticData": null,
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2024-10-08T07:42:39.000Z",
-  "versionId": "d39577ac-685f-431a-b16b-663b3acef749"
+  "triggerCount": 1,
+  "updatedAt": "2024-10-08T07:54:05.000Z",
+  "versionId": "5781054e-7939-4911-97e9-52fc1a112938"
 }

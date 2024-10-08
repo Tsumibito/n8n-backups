@@ -1,0 +1,548 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Is Email in Contacts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Email in Contacts": {
+      "main": [
+        [
+          {
+            "node": "If we have contact id",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Phone in Contacts": {
+      "main": [
+        [
+          {
+            "node": "If we have contact id by phone",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stop and Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Deal in Pipeline": {
+      "main": [
+        [
+          {
+            "node": "Finish",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create new contact": {
+      "main": [
+        [
+          {
+            "node": "Create Deal in Pipeline1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If we have contact id": {
+      "main": [
+        [
+          {
+            "node": "Create Deal in Pipeline",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Is Phone in Contacts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If we have contact id by phone": {
+      "main": [
+        [
+          {
+            "node": "Create Deal in Pipeline",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create new contact",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Deal in Pipeline1": {
+      "main": [
+        [
+          {
+            "node": "Finish",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-08-19T15:45:48.998Z",
+  "id": "4kjAFYs071KZ2aXp",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Add Bigin Lead",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "f5bdc8a7-fb58-4708-9fda-3e9039c916bc",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        920,
+        1000
+      ]
+    },
+    {
+      "parameters": {
+        "errorMessage": "Not Found"
+      },
+      "id": "747b292d-dc75-4b79-b1d2-2c3f444147d9",
+      "name": "Stop and Error",
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        1500,
+        1480
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://www.zohoapis.eu/bigin/v2/Contacts/search",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "criteria",
+              "value": "=(Email:equals:\"{{ $json[\"body\"][\"clientemail\"] }}\")"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      },
+      "id": "3a8565b4-88c6-468c-9752-618f708b8e48",
+      "name": "Is Email in Contacts",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1220,
+        1020
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "Rj5QXIyXaRCoR5ct",
+          "name": "Bigin credential"
+        },
+        "zohoOAuth2Api": {
+          "id": "Jg4ijJtRU52QIQHd",
+          "name": "Zoho account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "url": "https://www.zohoapis.eu/bigin/v2/Contacts/search",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "criteria",
+              "value": "=(Phone:equals:\"{{ $json[\"body\"][\"clientphone\"] }}\")"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      },
+      "id": "0a8f9c93-b5c0-450b-9e3a-4d948b1ae7a2",
+      "name": "Is Phone in Contacts",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1620,
+        1140
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "Rj5QXIyXaRCoR5ct",
+          "name": "Bigin credential"
+        },
+        "zohoOAuth2Api": {
+          "id": "Jg4ijJtRU52QIQHd",
+          "name": "Zoho account"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://www.zohoapis.eu/bigin/v2/Pipelines",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"data\": [\n        {\n            \"Deal_Name\": \"Navi - {{ $('Execute Workflow Trigger').item.json['body']['clientnamefirst'] }} {{ $('Execute Workflow Trigger').item.json['body']['clientnamelast'] }} from {{ $('Execute Workflow Trigger').item.json['body']['customorder_lead_city'] }} {{ $('Execute Workflow Trigger').item.json['body']['customorder_lead_country'] }}\",\n            \"Contact_Name\": {\n                \"id\": \"{{ $json[\"data\"][0][\"id\"] }}\"\n            },\n            \"Owner\": {\n                \"id\": \"680477000000387001\"\n            },\n            \"Amount\": 290,\n            \"Currency\": \"EUR\",\n            \"Description\": \"Поступил новый лид NAVI ШКОЛА №{{ $('Execute Workflow Trigger').item.json['body']['ordercode'] }} от {{ $('Execute Workflow Trigger').item.json[\"body\"][\"customorder_lead_form_date\"] }}.\\n\\nСо страницы: {{ $('Execute Workflow Trigger').item.json['body']['customorder_source_url'] }}\\nЯзык страницы: {{ $('Execute Workflow Trigger').item.json['body']['customorder_lead_form_lang'] }}\\n\\nКлиент заполнил данные:\\nФИО: {{ $('Execute Workflow Trigger').item.json['body']['clientnamefirst'] }} {{ $('Execute Workflow Trigger').item.json['body']['clientnamelast'] }}\\nWhatsApp: https://wa.me/{{ $('Execute Workflow Trigger').item.json['body']['clientphone'] }}\\nTelegram: https://t.me/{{ $('Execute Workflow Trigger').item.json['body']['clientphone'] }}\\nPhone: {{ $('Execute Workflow Trigger').item.json['body']['clientphone'] }}\\nE-mail: {{ $('Execute Workflow Trigger').item.json['body']['clientemail'] }}\\n\\nСообщение: {{ $('Execute Workflow Trigger').item.json['body']['customorder_form_message'] }}\\n\\n\\nДанные перехода:\\nIP: {{ $('Execute Workflow Trigger').item.json['body']['customorder_lead_IP'] }}\\nСтрана: {{ $('Execute Workflow Trigger').item.json['body']['customorder_lead_country'] }}\\nРегион: {{ $('Execute Workflow Trigger').item.json['body']['customorder_lead_region'] }}\\nГород: {{ $('Execute Workflow Trigger').item.json['body']['customorder_lead_city'] }}\\nКоординаты: {{ $('Execute Workflow Trigger').item.json['body']['customorder_lead_location'] }}\\nЧасовой пояс: {{ $('Execute Workflow Trigger').item.json['body']['customorder_lead_timezone'] }}\\nПровайдер: {{ $('Execute Workflow Trigger').item.json['body']['customorder_lead_provider'] }}\\nХост: +{{ $('Execute Workflow Trigger').item.json['body']['customorder_lead_hostname'] }}\\n\\nUTM: {{ $('Execute Workflow Trigger').item.json[\"body\"][\"customorder_utm_source\"] }}, {{ $('Execute Workflow Trigger').item.json['body']['customorder_utm_medium'] }}, {{ $('Execute Workflow Trigger').item.json['body']['customorder_utm_campaign'] }}, {{ $('Execute Workflow Trigger').item.json['body']['customorder_utm_content'] }}, {{ $('Execute Workflow Trigger').item.json['body']['customorder_utm_term'] }}\\n\\n\\nС любовью,\\nваш Bigin\",\n            \"Pipeline\": {\n                \"id\": \"680477000000396023\"\n            },\n            \"Sub_Pipeline\": \"IP Leads Standard\",\n            \"Stage\": \"New Lead\",\n            \"Source\": \"{{ $('Execute Workflow Trigger').item.json['body']['customorder_source_url'] }}\",\n            \"Lang\": \"{{ $('Execute Workflow Trigger').item.json['body']['customorder_lead_form_lang'] }}\"\n        }\n    ]\n}\n",
+        "options": {
+          "response": {
+            "response": {}
+          }
+        }
+      },
+      "id": "bb31dcc3-20d2-421c-a1e0-184141815fc9",
+      "name": "Create Deal in Pipeline",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2300,
+        900
+      ],
+      "alwaysOutputData": false,
+      "credentials": {
+        "oAuth2Api": {
+          "id": "Rj5QXIyXaRCoR5ct",
+          "name": "Bigin credential"
+        },
+        "zohoOAuth2Api": {
+          "id": "Jg4ijJtRU52QIQHd",
+          "name": "Zoho account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.zohoapis.eu/bigin/v2/Contacts",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"data\": [\n        {\n            \"Last_Name\": \"{{ $('Execute Workflow Trigger').item.json[\"body\"][\"clientnamelast\"] }}\",\n            \"First_Name\": \"{{ $('Execute Workflow Trigger').item.json[\"body\"][\"clientnamefirst\"] }}\",\n            \"Full_Name\": \"{{ $('Execute Workflow Trigger').item.json[\"body\"][\"clientnamefirst\"] }} {{ $('Execute Workflow Trigger').item.json[\"body\"][\"clientnamelast\"] }}\",\n            \"Email\": \"{{ $('Execute Workflow Trigger').item.json[\"body\"][\"clientemail\"] }}\",\n            \"Phone\": \"{{ $('Execute Workflow Trigger').item.json[\"body\"][\"clientphone\"] }}\",\n            \"$currency_symbol\": \"EUR\",\n            \"Description\": \"{{ $('Execute Workflow Trigger').item.json[\"body\"][\"customorder_form_message\"] }}\",\n            \"Lang\": \"{{ $('Execute Workflow Trigger').item.json[\"body\"][\"customorder_lead_form_lang\"] }}\",\n            \"Owner\": { \"id\": \"680477000000387001\" },\n            \"Created_By\": { \"id\": \"680477000000387001\" }\n        }\n    ]\n}\n\n",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true
+            }
+          }
+        }
+      },
+      "id": "c91e5de1-41ae-4bf9-88f1-a96cdbe4f8f5",
+      "name": "Create new contact",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2060,
+        1300
+      ],
+      "alwaysOutputData": false,
+      "credentials": {
+        "oAuth2Api": {
+          "id": "Rj5QXIyXaRCoR5ct",
+          "name": "Bigin credential"
+        },
+        "zohoOAuth2Api": {
+          "id": "Jg4ijJtRU52QIQHd",
+          "name": "Zoho account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "97675841-4d33-4437-86bb-de2efe7e3227",
+              "leftValue": "={{ $json.data[0].id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "id": "c0ed3221-5617-4bf5-8543-c87f4e722729",
+      "name": "If we have contact id",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1440,
+        1020
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "97675841-4d33-4437-86bb-de2efe7e3227",
+              "leftValue": "={{ $json.data[0].id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "id": "eef35afc-177a-4fdf-85be-5b2064a9e652",
+      "name": "If we have contact id by phone",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1820,
+        1120
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "8c8e1740-fc69-4f21-bf46-8d57fd4e47bf",
+      "name": "Finish",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        2720,
+        1020
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://www.zohoapis.eu/bigin/v2/Pipelines",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"data\": [\n        {\n            \"Deal_Name\": \"Navi - {{ $('Execute Workflow Trigger').item.json['body']['clientnamefirst'] }} {{ $('Execute Workflow Trigger').item.json['body']['clientnamelast'] }} from {{ $('Execute Workflow Trigger').item.json['body']['customorder_lead_city'] }} {{ $('Execute Workflow Trigger').item.json['body']['customorder_lead_country'] }}\",\n            \"Contact_Name\": {\n                \"id\": \"{{ $('Create new contact').item.json[\"body\"][\"data\"][0][\"details\"][\"id\"] }}\"\n            },\n            \"Owner\": {\n                \"id\": \"680477000000387001\"\n            },\n            \"Amount\": 290,\n            \"Currency\": \"EUR\",\n            \"Description\": \"Поступил новый лид NAVI ШКОЛА №{{ $('Execute Workflow Trigger').item.json['body']['ordercode'] }} от {{ $('Execute Workflow Trigger').item.json[\"body\"][\"customorder_lead_form_date\"] }}.\\n\\nСо страницы: {{ $('Execute Workflow Trigger').item.json['body']['customorder_source_url'] }}\\nЯзык страницы: {{ $('Execute Workflow Trigger').item.json['body']['customorder_lead_form_lang'] }}\\n\\nКлиент заполнил данные:\\nФИО: {{ $('Execute Workflow Trigger').item.json['body']['clientnamefirst'] }} {{ $('Execute Workflow Trigger').item.json['body']['clientnamelast'] }}\\nWhatsApp: https://wa.me/{{ $('Execute Workflow Trigger').item.json['body']['clientphone'] }}\\nTelegram: https://t.me/{{ $('Execute Workflow Trigger').item.json['body']['clientphone'] }}\\nPhone: {{ $('Execute Workflow Trigger').item.json['body']['clientphone'] }}\\nE-mail: {{ $('Execute Workflow Trigger').item.json['body']['clientemail'] }}\\n\\nСообщение: {{ $('Execute Workflow Trigger').item.json['body']['customorder_form_message'] }}\\n\\n\\nДанные перехода:\\nIP: {{ $('Execute Workflow Trigger').item.json['body']['customorder_lead_IP'] }}\\nСтрана: {{ $('Execute Workflow Trigger').item.json['body']['customorder_lead_country'] }}\\nРегион: {{ $('Execute Workflow Trigger').item.json['body']['customorder_lead_region'] }}\\nГород: {{ $('Execute Workflow Trigger').item.json['body']['customorder_lead_city'] }}\\nКоординаты: {{ $('Execute Workflow Trigger').item.json['body']['customorder_lead_location'] }}\\nЧасовой пояс: {{ $('Execute Workflow Trigger').item.json['body']['customorder_lead_timezone'] }}\\nПровайдер: {{ $('Execute Workflow Trigger').item.json['body']['customorder_lead_provider'] }}\\nХост: +{{ $('Execute Workflow Trigger').item.json['body']['customorder_lead_hostname'] }}\\n\\nUTM: {{ $('Execute Workflow Trigger').item.json[\"body\"][\"customorder_utm_source\"] }}, {{ $('Execute Workflow Trigger').item.json['body']['customorder_utm_medium'] }}, {{ $('Execute Workflow Trigger').item.json['body']['customorder_utm_campaign'] }}, {{ $('Execute Workflow Trigger').item.json['body']['customorder_utm_content'] }}, {{ $('Execute Workflow Trigger').item.json['body']['customorder_utm_term'] }}\\n\\n\\nС любовью,\\nваш Bigin\",\n            \"Pipeline\": {\n                \"id\": \"680477000000396023\"\n            },\n            \"Sub_Pipeline\": \"IP Leads Standard\",\n            \"Stage\": \"New Lead\",\n            \"Source\": \"{{ $('Execute Workflow Trigger').item.json['body']['customorder_source_url'] }}\",\n            \"Lang\": \"{{ $('Execute Workflow Trigger').item.json['body']['customorder_lead_form_lang'] }}\"\n        }\n    ]\n}\n",
+        "options": {
+          "response": {
+            "response": {}
+          }
+        }
+      },
+      "id": "dd89706b-0e05-44f2-9b19-73526bb8d965",
+      "name": "Create Deal in Pipeline1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2320,
+        1100
+      ],
+      "alwaysOutputData": false,
+      "credentials": {
+        "oAuth2Api": {
+          "id": "Rj5QXIyXaRCoR5ct",
+          "name": "Bigin credential"
+        },
+        "zohoOAuth2Api": {
+          "id": "Jg4ijJtRU52QIQHd",
+          "name": "Zoho account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.navi.training",
+            "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36",
+            "content-length": "1026",
+            "accept": "*/*",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7",
+            "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+            "origin": "https://www.navi.training",
+            "priority": "u=1, i",
+            "referer": "https://www.navi.training/",
+            "sec-ch-ua": "\"Not)A;Brand\";v=\"99\", \"Google Chrome\";v=\"127\", \"Chromium\";v=\"127\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"macOS\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "same-site",
+            "x-forwarded-for": "88.169.43.45",
+            "x-forwarded-host": "n8n.navi.training",
+            "x-forwarded-proto": "https"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "ordercode": "1724180454170",
+            "clientnamefirst": "Testzzz",
+            "clientnamelast": "Test Surzzz2",
+            "clientemail": "ssalexey.interparus@gmail.com",
+            "clientphone": "+337555393111",
+            "customorder_source_url": "https://www.navi.training/ru",
+            "customorder_ga_code": "None",
+            "customorder_lead_IP": "2a01:e0a:a4a:cb50:2ce7:d2d:d0d3:b35",
+            "customorder_source_add_info": "www.navi.training",
+            "customorder_lead_country": "FR",
+            "customorder_lead_form_date": "2024-8-20",
+            "customorder_lead_region": "Occitanie",
+            "customorder_lead_city": "Arthès",
+            "customorder_lead_location": "Latitude: 43.954, Longitude: 2.2142",
+            "customorder_lead_timezone": "Europe/Paris",
+            "customorder_lead_provider": "Free SAS",
+            "customorder_lead_hostname": "+33",
+            "customorder_utm_source": "None",
+            "customorder_utm_medium": "None",
+            "customorder_utm_campaign": "None",
+            "customorder_utm_content": "None",
+            "customorder_utm_term": "None",
+            "customorder_form_name": "Testzzz",
+            "customorder_form_lastname": "Test Surzzz",
+            "customorder_lead_form_lang": "RU",
+            "customorder_form_message": "Test msg",
+            "customorder_brand_interest": "Navi.training",
+            "customorder_product_interest": "School Main"
+          },
+          "webhookUrl": "https://n8n.navi.training/webhook/3faeb9da-f0c7-496f-90de-30788bf4f7a1",
+          "executionMode": "production"
+        }
+      }
+    ],
+    "Create new contact": [
+      {
+        "json": {
+          "body": {
+            "data": [
+              {
+                "code": "SUCCESS",
+                "details": {
+                  "Modified_Time": "2024-08-20T21:15:26+02:00",
+                  "Modified_By": {
+                    "name": "Oleksii",
+                    "id": "680477000000387001"
+                  },
+                  "Created_Time": "2024-08-20T21:15:26+02:00",
+                  "id": "680477000000739017",
+                  "Created_By": {
+                    "name": "Oleksii",
+                    "id": "680477000000387001"
+                  },
+                  "$approval_state": "approved"
+                },
+                "message": "record added",
+                "status": "success"
+              }
+            ]
+          },
+          "headers": {
+            "server": "ZGS",
+            "date": "Tue, 20 Aug 2024 19:15:26 GMT",
+            "content-type": "application/json;charset=UTF-8",
+            "content-length": "344",
+            "connection": "close",
+            "set-cookie": [
+              "zalb_40c0b66dfe=1ef5d384a54bdacabc4cdfba29021622; Path=/",
+              "crmcsr=44bcde4c-6a12-44ef-a2b5-ede8eed0810f;path=/;SameSite=None;Secure;priority=high",
+              "_zcsr_tmp=44bcde4c-6a12-44ef-a2b5-ede8eed0810f;path=/;SameSite=Strict;Secure;priority=high",
+              "BIGINCROSSCDNID =a6d836fe6dd8677f711b98b9c4b82943904f7e51ceb0e58a41ce23e4e59ac70af5f9a390e9a216234775b9fb0c06737f;Path=/; Expires=Wed Aug 21 21:15:26 CEST 2024",
+              "BIGINCROSSCDNCOUNTRY =NL;Path=/; Expires=Wed Aug 21 21:15:26 CEST 2024"
+            ],
+            "x-content-type-options": "nosniff",
+            "cache-control": "no-store, no-cache, must-revalidate, private",
+            "pragma": "no-cache",
+            "expires": "Thu, 01 Jan 1970 00:00:00 GMT",
+            "x-frame-options": "SAMEORIGIN",
+            "x-accesstoken-reset": "2024-08-20T21:38:26+02:00",
+            "clientversion": "8898766",
+            "clientsubversion": "309e15b9d567d07f2ec549d6bf2e7881",
+            "content-disposition": "attachment; filename=response.json",
+            "content-language": "en-US",
+            "strict-transport-security": "max-age=63072000"
+          },
+          "statusCode": 201,
+          "statusMessage": ""
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-09-12T07:53:14.000Z",
+  "versionId": "20f44ca0-191b-4382-9e5a-f5138d71711a"
+}

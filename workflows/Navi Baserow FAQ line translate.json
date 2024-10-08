@@ -1,0 +1,353 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Baserow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow": {
+      "main": [
+        [
+          {
+            "node": "Answer_EN",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Quession_EN",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Quession_UA",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Answer_UA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Answer_UA": {
+      "main": [
+        [
+          {
+            "node": "Baserow4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Quession_UA": {
+      "main": [
+        [
+          {
+            "node": "Baserow3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Quession_EN": {
+      "main": [
+        [
+          {
+            "node": "Baserow2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Answer_EN": {
+      "main": [
+        [
+          {
+            "node": "Baserow1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-10-06T14:50:02.884Z",
+  "id": "JYoNlhULZPQlXDx7",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Navi Baserow FAQ line translate",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "541bdad3-3b0e-4401-a999-922996b90535",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        1040,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "databaseId": 139118,
+        "tableId": 356552,
+        "rowId": "44"
+      },
+      "id": "1b136e67-a7bd-46c4-b091-50ab9f65e29b",
+      "name": "Baserow",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        1220,
+        560
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 139118,
+        "tableId": 356552,
+        "rowId": "={{ $('Baserow').item.json.id }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 2660147,
+              "fieldValue": "={{ $('Answer_EN').item.json[\"text\"] }}"
+            }
+          ]
+        }
+      },
+      "id": "79ec3597-c97b-4e1d-a25e-3d2bbb6fac93",
+      "name": "Baserow1",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        260
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ $json[\"Answer_RU\"] }}",
+        "translateTo": "UK",
+        "additionalFields": {}
+      },
+      "id": "d0b21b91-b43d-4233-9545-263dddd780f2",
+      "name": "Answer_UA",
+      "type": "n8n-nodes-base.deepL",
+      "typeVersion": 1,
+      "position": [
+        1500,
+        880
+      ],
+      "credentials": {
+        "deepLApi": {
+          "id": "Fa3gRfaikTneP7NW",
+          "name": "DeepL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ $json[\"Question_RU\"] }}",
+        "translateTo": "UK",
+        "additionalFields": {}
+      },
+      "id": "92488335-2b65-45bc-9c60-2d03426aa2fc",
+      "name": "Quession_UA",
+      "type": "n8n-nodes-base.deepL",
+      "typeVersion": 1,
+      "position": [
+        1500,
+        680
+      ],
+      "credentials": {
+        "deepLApi": {
+          "id": "Fa3gRfaikTneP7NW",
+          "name": "DeepL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ $json[\"Question_RU\"] }}",
+        "translateTo": "EN-GB",
+        "additionalFields": {}
+      },
+      "id": "46892580-bd4b-43b7-9cf6-4faf1d7551f5",
+      "name": "Quession_EN",
+      "type": "n8n-nodes-base.deepL",
+      "typeVersion": 1,
+      "position": [
+        1500,
+        460
+      ],
+      "credentials": {
+        "deepLApi": {
+          "id": "Fa3gRfaikTneP7NW",
+          "name": "DeepL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ $json[\"Answer_RU\"] }}",
+        "translateTo": "EN-GB",
+        "additionalFields": {}
+      },
+      "id": "e8ab68e6-8bc3-42ac-b14b-a467c6e570a0",
+      "name": "Answer_EN",
+      "type": "n8n-nodes-base.deepL",
+      "typeVersion": 1,
+      "position": [
+        1500,
+        260
+      ],
+      "credentials": {
+        "deepLApi": {
+          "id": "Fa3gRfaikTneP7NW",
+          "name": "DeepL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 139118,
+        "tableId": 356552,
+        "rowId": "={{ $('Baserow').item.json.id }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 2660144,
+              "fieldValue": "={{ $('Quession_EN').item.json[\"text\"] }}"
+            }
+          ]
+        }
+      },
+      "id": "de614f23-8f56-4247-a96d-c7a372f6dc9e",
+      "name": "Baserow2",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        460
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 139118,
+        "tableId": 356552,
+        "rowId": "={{ $('Baserow').item.json.id }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 2660143,
+              "fieldValue": "={{ $('Quession_UA').item.json[\"text\"] }}"
+            }
+          ]
+        }
+      },
+      "id": "ea945bcf-429b-4a93-b015-2834d42fb191",
+      "name": "Baserow3",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        680
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 139118,
+        "tableId": 356552,
+        "rowId": "={{ $('Baserow').item.json.id }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 2660145,
+              "fieldValue": "={{ $('Answer_UA').item.json[\"text\"] }}"
+            }
+          ]
+        }
+      },
+      "id": "9dcbffbb-48fc-4984-a2c4-176a2aca31f1",
+      "name": "Baserow4",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        880
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "Укажи строку FAQ которую нужно перевести "
+      },
+      "id": "79e72283-f09c-4eea-80e1-c75fc3388236",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1020,
+        240
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-10-07T11:46:53.000Z",
+  "versionId": "0c2588e7-0da8-4f6f-af57-67cb48a5ae8f"
+}

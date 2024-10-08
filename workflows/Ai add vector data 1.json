@@ -1,0 +1,62 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2024-09-13T18:01:39.381Z",
+  "id": "PiBceeCrX6HxK9Ih",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Ai add vector data 1",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "16cab97a-5381-4dc9-912b-b38110fff44e",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        1020,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "19a0e234-f31a-478e-a2cd-2142be9a490b",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1240,
+        500
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-09-14T08:49:40.000Z",
+  "versionId": "e9c42153-7d52-48e4-a5be-3b72f5dc42ad"
+}

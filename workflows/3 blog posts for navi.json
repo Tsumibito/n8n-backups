@@ -1,0 +1,292 @@
+{
+  "active": true,
+  "connections": {
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-09-28T12:14:31.110Z",
+  "id": "SAaIQMyYqWoZleo8",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "3 blog posts for navi",
+  "nodes": [
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "id": "f119014b-5d05-4a0c-86fc-7d16ede29606",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        2340,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.baserow.io/api/database/rows/table/356544/?include=field_2660067,field_2660068,field_2660074,field_2660078,field_2660081,field_2660085&field_2660081__join=field_2659839",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "d01489e5-0e92-4984-bfe6-9578415197c9",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1420,
+        380
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "KTqpJZp22S2V89mJ",
+          "name": "Baserow Navi auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://api.baserow.io/api/database/rows/table/356544/?include=field_2660093,field_2660068,field_2660074,field_2660078,field_2660081,field_2660085&field_2660081__join=field_2659860",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "bf677244-149c-4e7e-9575-9bfd5155de72",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1420,
+        580
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "KTqpJZp22S2V89mJ",
+          "name": "Baserow Navi auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Access the input JSON data\nconst data = items[0].json;\n\n// Ensure 'results' array exists\nif (!Array.isArray(data.results)) {\n  throw new Error(\"The 'results' property is not an array.\");\n}\n\n// Shuffle the 'results' array\nfunction shuffle(array) {\n  for (let i = array.length - 1; i > 0; i--) {\n    const j = Math.floor(Math.random() * (i + 1));\n    [array[i], array[j]] = [array[j], array[i]];\n  }\n}\n\n// Shuffle the results\nshuffle(data.results);\n\n// Take the first 3 items from the shuffled array\ndata.results = data.results.slice(0, 3);\n\n// Update the 'count' to reflect the new number of results\ndata.count = data.results.length;\n\n// Return the modified data\nreturn [{ json: data }];\n"
+      },
+      "id": "7568acff-1474-4394-ad31-6f55f2c418be",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1940,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.baserow.io/api/database/rows/table/356544/?include=field_2660094,field_2660068,field_2660074,field_2660078,field_2660081,field_2660085&field_2660081__join=field_2659861",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "3088a6be-91eb-4ef4-a55f-4325e63bbe06",
+      "name": "HTTP Request2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1420,
+        780
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "KTqpJZp22S2V89mJ",
+          "name": "Baserow Navi auth"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "path": "f0cfa6d4-d59e-4825-b9ef-3ae2e4add2a1",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "e49a79a2-38c3-46e0-b60d-938c27285437",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        800,
+        580
+      ],
+      "webhookId": "f0cfa6d4-d59e-4825-b9ef-3ae2e4add2a1"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.query.lang }}",
+                    "rightValue": "ru",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "b8b04d05-01ce-416c-8beb-adad42e559e0",
+                    "leftValue": "={{ $json.query.lang }}",
+                    "rightValue": "ua",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "id": "d2b222e2-551f-42bf-be8c-22d67d572500",
+                    "leftValue": "={{ $json.query.lang }}",
+                    "rightValue": "en",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "963f7db2-221a-4d97-9f70-71a8723033b6",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        1160,
+        580
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-10-05T14:33:31.000Z",
+  "versionId": "885e6efd-27bf-4713-8ab3-c51f364c4326"
+}

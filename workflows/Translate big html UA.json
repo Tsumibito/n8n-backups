@@ -51,6 +51,17 @@
           }
         ]
       ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Finish",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-10-07T20:11:48.334Z",
@@ -144,6 +155,17 @@
           "name": "OpenAi account"
         }
       }
+    },
+    {
+      "parameters": {},
+      "id": "3b4e323f-1387-480f-acef-ff5e2b8be22a",
+      "name": "Finish",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1660,
+        100
+      ]
     }
   ],
   "pinData": {},
@@ -153,6 +175,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2024-10-08T18:12:36.000Z",
-  "versionId": "5c5c3d49-a219-43cd-8766-e73f3463311d"
+  "updatedAt": "2024-10-09T09:08:03.000Z",
+  "versionId": "6409c648-a1ee-46e0-be1e-89a9a80e041e"
 }

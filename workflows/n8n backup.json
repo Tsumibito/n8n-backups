@@ -152,7 +152,7 @@
         ]
       ]
     },
-    "Every 12 hours": {
+    "On clicking 'execute'": {
       "main": [
         [
           {
@@ -163,7 +163,7 @@
         ]
       ]
     },
-    "On clicking 'execute'": {
+    "Every 72 hours": {
       "main": [
         [
           {
@@ -376,26 +376,6 @@
     },
     {
       "parameters": {
-        "triggerTimes": {
-          "item": [
-            {
-              "mode": "everyX",
-              "value": 24
-            }
-          ]
-        }
-      },
-      "id": "02820aab-0178-4d76-aaba-246812cff103",
-      "name": "Every 12 hours",
-      "type": "n8n-nodes-base.cron",
-      "position": [
-        -980,
-        940
-      ],
-      "typeVersion": 1
-    },
-    {
-      "parameters": {
         "content": "## Workflow Backups\nThis workflow will automatically backup your workflows to your Github account every 12 hours.\n\n### Setup\nOpen Globals and update the values below\n**repo.owner:** This is your Github username\n**repo.name:** This is the name of your repository\n**repo.path:** This is the folder to use within the repository, If it doesn't exist it will be created.\n\nIf your username was `n8n-io` and your repository was called `n8n-backups` and you wanted the workflows to go into a `workflows` folder you would set:\n\nrepo.owner - n8n-io\nrepo.name - n8n-backups\nrepo.path - workflows",
         "height": 464.79920462713443,
         "width": 389.78906250000017
@@ -482,6 +462,26 @@
         780
       ],
       "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "triggerTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "value": 72
+            }
+          ]
+        }
+      },
+      "id": "02820aab-0178-4d76-aaba-246812cff103",
+      "name": "Every 72 hours",
+      "type": "n8n-nodes-base.cron",
+      "position": [
+        -980,
+        940
+      ],
+      "typeVersion": 1
     }
   ],
   "pinData": {},
@@ -491,6 +491,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2024-10-08T07:54:05.000Z",
-  "versionId": "5781054e-7939-4911-97e9-52fc1a112938"
+  "updatedAt": "2024-10-09T09:07:09.000Z",
+  "versionId": "c827eaa7-180b-4311-90de-4b6d90a0ecdd"
 }

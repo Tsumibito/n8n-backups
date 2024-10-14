@@ -1,0 +1,58 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-10-14T09:53:40.156Z",
+  "id": "IbBmXfGOFIXnh2dm",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Kate Yoga_form_email",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "88e3c043-bb7f-40c2-930d-b70e9da5d561",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        1020,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "options": {}
+      },
+      "id": "616a23d9-40ff-4673-9065-25f0b4a8573e",
+      "name": "Extract from File",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        1240,
+        520
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-10-14T20:26:46.000Z",
+  "versionId": "bc3053c9-f925-4cab-b5df-509c5a191448"
+}

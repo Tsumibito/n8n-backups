@@ -41,22 +41,22 @@
         ]
       ]
     },
-    "OpenAI": {
+    "Code1": {
       "main": [
         [
           {
-            "node": "Loop Over Items",
+            "node": "Finish",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Code1": {
+    "OpenAI": {
       "main": [
         [
           {
-            "node": "Finish",
+            "node": "Loop Over Items",
             "type": "main",
             "index": 0
           }
@@ -125,6 +125,17 @@
       ]
     },
     {
+      "parameters": {},
+      "id": "3b4e323f-1387-480f-acef-ff5e2b8be22a",
+      "name": "Finish",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1660,
+        100
+      ]
+    },
+    {
       "parameters": {
         "modelId": {
           "__rl": true,
@@ -135,7 +146,7 @@
         "messages": {
           "values": [
             {
-              "content": "=translate the obtained HTML code fragment into Ukrainian, but do not change, add or correct HTML tags. Return only html that you get, without your comments and aditional tegs. \n\n{{ $json.data }}"
+              "content": "=translate the obtained HTML code fragment into Russian, but do not change, add or correct HTML tags. Return only html that you get, without your comments and aditional tegs. \n\n{{ $json.data }}"
             }
           ]
         },
@@ -155,17 +166,6 @@
           "name": "OpenAi account"
         }
       }
-    },
-    {
-      "parameters": {},
-      "id": "3b4e323f-1387-480f-acef-ff5e2b8be22a",
-      "name": "Finish",
-      "type": "n8n-nodes-base.noOp",
-      "typeVersion": 1,
-      "position": [
-        1660,
-        100
-      ]
     }
   ],
   "pinData": {},
@@ -175,6 +175,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2024-10-09T09:08:03.000Z",
-  "versionId": "6409c648-a1ee-46e0-be1e-89a9a80e041e"
+  "updatedAt": "2024-10-15T08:24:49.000Z",
+  "versionId": "225a34b1-a472-472b-b3df-18d6aa6a0f90"
 }

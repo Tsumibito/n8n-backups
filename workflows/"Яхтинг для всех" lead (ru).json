@@ -1,0 +1,62 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-10-17T08:54:41.917Z",
+  "id": "BdDsBKEdebdAqVBr",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "\"Яхтинг для всех\" lead (ru)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "463e0e02-f6b9-4141-a46f-7e0b8daefedd",
+        "options": {}
+      },
+      "id": "f8904115-aca2-49e7-9d0b-18b7b73bb0df",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        1020,
+        520
+      ],
+      "webhookId": "463e0e02-f6b9-4141-a46f-7e0b8daefedd"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "4bed3a1a-4dc1-4bc0-a9ca-9656c8657bc3",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1240,
+        520
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-10-17T09:01:57.000Z",
+  "versionId": "2675b951-e40e-428c-b144-7e905765b2a9"
+}

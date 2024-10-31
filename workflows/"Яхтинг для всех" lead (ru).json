@@ -8,8 +8,18 @@
             "node": "Baserow",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Slack to Navi lead Cannel",
+            "type": "main",
+            "index": 0
           }
         ]
+      ]
+    },
+    "Baserow": {
+      "main": [
+        []
       ]
     }
   },
@@ -96,6 +106,33 @@
         520
       ],
       "webhookId": "463e0e02-f6b9-4141-a46f-7e0b8daefedd"
+    },
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C07H25HAK4N",
+          "mode": "list",
+          "cachedResultName": "navi-sailing-school"
+        },
+        "text": "=Новая оплата курса \"Яхтинг для всех\" ({{ $json.body.Lang }}) \nName: {{ $json.body.first_name }}\nEmail: {{ $json.body.email }} \nUTM: {{ $json.body.utm_source }}\n{{ $json.body.utm_campaign }}\n{{ $json.body.utm_medium }}\n{{ $json.body.utm_term }}\n{{ $json.body.utm_content }}",
+        "otherOptions": {}
+      },
+      "id": "cca7616a-1da8-4fea-bbb1-581d30345ca0",
+      "name": "Slack to Navi lead Cannel",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.2,
+      "position": [
+        1240,
+        320
+      ],
+      "credentials": {
+        "slackApi": {
+          "id": "FrLH5fYXH48xDmpN",
+          "name": "Slack account"
+        }
+      }
     }
   ],
   "pinData": {
@@ -136,6 +173,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2024-10-30T11:03:10.000Z",
-  "versionId": "aefe362f-ce44-41a2-b95b-3b6328177618"
+  "updatedAt": "2024-10-31T15:01:06.000Z",
+  "versionId": "3f007960-abb2-41b6-808e-ae1933ac19fb"
 }

@@ -17,7 +17,7 @@
         ]
       ]
     },
-    "Baserow": {
+    "Slack to Navi lead Cannel": {
       "main": [
         []
       ]
@@ -173,6 +173,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2024-10-31T15:01:06.000Z",
-  "versionId": "3f007960-abb2-41b6-808e-ae1933ac19fb"
+  "updatedAt": "2024-11-03T16:22:47.000Z",
+  "versionId": "4925e036-056f-4647-9183-d95c3791408f"
 }

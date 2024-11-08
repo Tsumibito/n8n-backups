@@ -1,0 +1,175 @@
+{
+  "active": false,
+  "connections": {
+    "n8n Form Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Baserow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-11-08T16:07:54.976Z",
+  "id": "xqcBSEUsPARJTrlc",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Basrow file test",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "7898544f-e214-47eb-bb1d-e9d40edf14e7",
+        "formTitle": "basrow add file",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Image URL"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "53859818-bc49-46be-ba0f-84b2dba1ea47",
+      "name": "n8n Form Trigger",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.1,
+      "position": [
+        680,
+        460
+      ],
+      "webhookId": "7898544f-e214-47eb-bb1d-e9d40edf14e7"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.baserow.io/api/user-files/upload-via-url/",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Token cAkghBkNcvaZnJ0HJBBZAz5X8b7pxdBW"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "url",
+              "value": "={{ $json['Image URL'] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f667fa09-de0d-4bbf-bc71-bf2fd165212f",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        900,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "databaseId": 139118,
+        "tableId": 356544,
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 2660068,
+              "fieldValue": "={{ $json.size }}"
+            },
+            {
+              "fieldId": 2660077,
+              "fieldValue": "={{ $json.name }}"
+            }
+          ]
+        }
+      },
+      "id": "22c920e6-2212-4c1d-8025-93cac3fcf52d",
+      "name": "Baserow",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        460
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "n8n Form Trigger": [
+      {
+        "json": {
+          "Image URL": "https://contenu.nyc3.digitaloceanspaces.com/journalist/d398071c-d802-4eea-b576-297324014dd5/thumbnail.jpeg",
+          "submittedAt": "2024-11-08T17:10:15.731+01:00",
+          "formMode": "test"
+        }
+      }
+    ],
+    "HTTP Request": [
+      {
+        "json": {
+          "size": 44656,
+          "mime_type": "image/jpeg",
+          "is_image": true,
+          "image_width": 1024,
+          "image_height": 512,
+          "uploaded_at": "2024-11-08T13:16:03.706216Z",
+          "url": "https://baserow-backend-production20240528124524339000000001.s3.amazonaws.com/user_files/vsRZVR55vdR2Y1e2RE60tBdUZnHkgiaE_df40e009e88615b50ecd706eeb7ec712679c97c0bfad4f3156b5b79087f21828.jpeg",
+          "thumbnails": {
+            "tiny": {
+              "url": "https://baserow-backend-production20240528124524339000000001.s3.amazonaws.com/thumbnails/tiny/vsRZVR55vdR2Y1e2RE60tBdUZnHkgiaE_df40e009e88615b50ecd706eeb7ec712679c97c0bfad4f3156b5b79087f21828.jpeg",
+              "width": null,
+              "height": 21
+            },
+            "small": {
+              "url": "https://baserow-backend-production20240528124524339000000001.s3.amazonaws.com/thumbnails/small/vsRZVR55vdR2Y1e2RE60tBdUZnHkgiaE_df40e009e88615b50ecd706eeb7ec712679c97c0bfad4f3156b5b79087f21828.jpeg",
+              "width": 48,
+              "height": 48
+            },
+            "card_cover": {
+              "url": "https://baserow-backend-production20240528124524339000000001.s3.amazonaws.com/thumbnails/card_cover/vsRZVR55vdR2Y1e2RE60tBdUZnHkgiaE_df40e009e88615b50ecd706eeb7ec712679c97c0bfad4f3156b5b79087f21828.jpeg",
+              "width": 300,
+              "height": 160
+            }
+          },
+          "name": "vsRZVR55vdR2Y1e2RE60tBdUZnHkgiaE_df40e009e88615b50ecd706eeb7ec712679c97c0bfad4f3156b5b79087f21828.jpeg",
+          "original_name": "thumbnail.jpeg"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-11-08T16:20:29.000Z",
+  "versionId": "4d3e6b0b-a9f2-44cd-864f-8ae1bb5c05fa"
+}

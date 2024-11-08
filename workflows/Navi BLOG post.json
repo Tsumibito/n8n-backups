@@ -1,0 +1,1354 @@
+{
+  "active": true,
+  "connections": {
+    "n8n Form Trigger": {
+      "main": [
+        [
+          {
+            "node": "Generate slug",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "DeepL Post Name translate UA",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "DeepL Translate Post name EN",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "DeepL Translate Title EN",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "DeepL translate title UA",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "DeepL Translate Description EN",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "DeepL translate Description UA",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "DeepL translate keywords UA",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "DeepL Translate keywords EN",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Translate post to UA",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Translate post to EN",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate slug": {
+      "main": [
+        [
+          {
+            "node": "Baserow create blog row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepL translate keywords UA": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "DeepL Translate keywords EN": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepL translate Description UA": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "DeepL Translate Description EN": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "DeepL translate title UA": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "DeepL Translate Title EN": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "DeepL Translate Post name EN": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 6
+          }
+        ]
+      ]
+    },
+    "DeepL Post Name translate UA": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 7
+          }
+        ]
+      ]
+    },
+    "Baserow create blog row": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 8
+          },
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Baserow add translations",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Translate post to UA": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Translate post to EN": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Baserow add Post translations and summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepL Post Summary translate UA": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 5
+          }
+        ]
+      ]
+    },
+    "DeepL Post Summary translate EN": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 6
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 4
+          },
+          {
+            "node": "DeepL Post Summary translate UA",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "DeepL Post Summary translate EN",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow Upload 1": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Baserow upload 2": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge2": {
+      "main": [
+        [
+          {
+            "node": "Baserow files",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow upload ": {
+      "main": [
+        [
+          {
+            "node": "Baserow files1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Baserow upload ",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow files1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Merge3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge3": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [],
+        []
+      ]
+    }
+  },
+  "createdAt": "2024-11-08T09:25:05.152Z",
+  "id": "Hoypp0GMRnPzwTXo",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Navi BLOG post",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "79d3dee2-ee2b-4070-8428-947ee2cc25de",
+        "formTitle": "Navi blog post",
+        "formDescription": "Create blog post at navi",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Заголовок RU",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Текст поста RU html",
+              "fieldType": "textarea",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Title",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Description",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "keywords",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Main Image (1400х655)",
+              "fieldType": "file",
+              "multipleFiles": false
+            },
+            {
+              "fieldLabel": "Thumbnail image (400x400)",
+              "fieldType": "file",
+              "multipleFiles": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "eef15e72-97b0-419a-a870-d7332b8f4b40",
+      "name": "n8n Form Trigger",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.1,
+      "position": [
+        1080,
+        520
+      ],
+      "webhookId": "79d3dee2-ee2b-4070-8428-947ee2cc25de"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Функция транслитерации\nfunction transliterate(text) {\n  const transliterationTable = {\n    'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd',\n    'е': 'e', 'ё': 'yo', 'ж': 'zh', 'з': 'z',\n    'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l',\n    'м': 'm', 'н': 'n', 'о': 'o', 'п': 'p',\n    'р': 'r', 'с': 's', 'т': 't', 'у': 'u',\n    'ф': 'f', 'х': 'h', 'ц': 'ts', 'ч': 'ch',\n    'ш': 'sh', 'щ': 'sch', 'ъ': '', 'ы': 'y', 'ь': '',\n    'э': 'e', 'ю': 'yu', 'я': 'ya',\n    'А': 'A', 'Б': 'B', 'В': 'V', 'Г': 'G', 'Д': 'D',\n    'Е': 'E', 'Ё': 'Yo', 'Ж': 'Zh', 'З': 'Z',\n    'И': 'I', 'Й': 'Y', 'К': 'K', 'Л': 'L',\n    'М': 'M', 'Н': 'N', 'О': 'O', 'П': 'P',\n    'Р': 'R', 'С': 'S', 'Т': 'T', 'У': 'U',\n    'Ф': 'F', 'Х': 'H', 'Ц': 'Ts', 'Ч': 'Ch',\n    'Ш': 'Sh', 'Щ': 'Sch', 'Ъ': '', 'Ы': 'Y', 'Ь': '',\n    'Э': 'E', 'Ю': 'Yu', 'Я': 'Ya',\n  };\n\n  return text.split('').map(function (char) {\n    return transliterationTable[char] || char;\n  }).join('');\n}\n\n// Функция создания слага\nfunction slugify(text) {\n  // Транслитерация\n  text = transliterate(text);\n\n  // Приводим к нижнему регистру\n  text = text.toLowerCase();\n\n  // Заменяем все символы, кроме букв и цифр, на дефисы\n  text = text.replace(/[^a-z0-9]+/g, '-');\n\n  // Удаляем начальные и конечные дефисы\n  text = text.replace(/^-+|-+$/g, '');\n\n  return text;\n}\n\n// Перебираем каждый элемент в массиве items\nreturn items.map(item => {\n  // Получаем значение из поля \"Заголовок RU\"\n  const title = item.json['Заголовок RU'];\n\n  // Генерируем слаг\n  const slug = slugify(title);\n\n  // Добавляем поле \"Slug\" в текущий элемент\n  return {\n    json: {\n      ...item.json,\n      'Slug': slug\n    }\n  };\n});\n"
+      },
+      "id": "efccfd56-c90a-49ec-a19e-1b5888415b79",
+      "name": "Generate slug",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1300,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "text": "={{ $json[\"Заголовок RU\"] }}",
+        "translateTo": "UK",
+        "additionalFields": {}
+      },
+      "id": "31044e47-4f63-400e-94ad-6bf23e641183",
+      "name": "DeepL Post Name translate UA",
+      "type": "n8n-nodes-base.deepL",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        320
+      ],
+      "credentials": {
+        "deepLApi": {
+          "id": "Fa3gRfaikTneP7NW",
+          "name": "DeepL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ $json[\"Заголовок RU\"] }}",
+        "translateTo": "EN-US",
+        "additionalFields": {}
+      },
+      "id": "0711f8da-7c88-4a92-93d3-32a58434c530",
+      "name": "DeepL Translate Post name EN",
+      "type": "n8n-nodes-base.deepL",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        140
+      ],
+      "credentials": {
+        "deepLApi": {
+          "id": "Fa3gRfaikTneP7NW",
+          "name": "DeepL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.Title }}",
+        "translateTo": "EN-US",
+        "additionalFields": {}
+      },
+      "id": "037bb705-fb49-4dbc-8869-84ea3db9e8e4",
+      "name": "DeepL Translate Title EN",
+      "type": "n8n-nodes-base.deepL",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        -40
+      ],
+      "credentials": {
+        "deepLApi": {
+          "id": "Fa3gRfaikTneP7NW",
+          "name": "DeepL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.Title }}",
+        "translateTo": "UK",
+        "additionalFields": {}
+      },
+      "id": "496fa835-d9c3-428f-9b37-a752aa1d20a0",
+      "name": "DeepL translate title UA",
+      "type": "n8n-nodes-base.deepL",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        -220
+      ],
+      "credentials": {
+        "deepLApi": {
+          "id": "Fa3gRfaikTneP7NW",
+          "name": "DeepL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.Description }}",
+        "translateTo": "EN-US",
+        "additionalFields": {}
+      },
+      "id": "9c24a572-0076-4145-8ea5-036c81806440",
+      "name": "DeepL Translate Description EN",
+      "type": "n8n-nodes-base.deepL",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        -400
+      ],
+      "credentials": {
+        "deepLApi": {
+          "id": "Fa3gRfaikTneP7NW",
+          "name": "DeepL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.Description }}",
+        "translateTo": "UK",
+        "additionalFields": {}
+      },
+      "id": "b8ec4db9-bf30-46ac-91d2-be7124e2efeb",
+      "name": "DeepL translate Description UA",
+      "type": "n8n-nodes-base.deepL",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        -580
+      ],
+      "credentials": {
+        "deepLApi": {
+          "id": "Fa3gRfaikTneP7NW",
+          "name": "DeepL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.keywords }}",
+        "translateTo": "UK",
+        "additionalFields": {}
+      },
+      "id": "ace53939-50c3-4a27-8cc6-46716da8123f",
+      "name": "DeepL translate keywords UA",
+      "type": "n8n-nodes-base.deepL",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        -760
+      ],
+      "credentials": {
+        "deepLApi": {
+          "id": "Fa3gRfaikTneP7NW",
+          "name": "DeepL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.keywords }}",
+        "translateTo": "EN-US",
+        "additionalFields": {}
+      },
+      "id": "62f63552-5bbd-4038-9b40-8298380e5f28",
+      "name": "DeepL Translate keywords EN",
+      "type": "n8n-nodes-base.deepL",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        -940
+      ],
+      "credentials": {
+        "deepLApi": {
+          "id": "Fa3gRfaikTneP7NW",
+          "name": "DeepL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "=A50VsfUdjPaO0gkR"
+        },
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "id": "1c6eb96e-5881-4ec7-ba0b-accaa0257bda",
+      "name": "Translate post to UA",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.1,
+      "position": [
+        1420,
+        1020
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4cd09f8b-a9f0-43e0-a1a8-d4d26ff53a00",
+              "name": "data",
+              "value": "={{ $('Merge3').item.json['Текст поста RU html'] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "23b0bc5b-c41b-43f5-9638-8104bf4c9b14",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1120,
+        1040
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "mxjz49LdU7xLPaBS",
+          "mode": "list",
+          "cachedResultName": "Translate big html from RU to EN"
+        },
+        "options": {}
+      },
+      "id": "b1939705-d072-416d-904c-ec4ba2ab95f2",
+      "name": "Translate post to EN",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.1,
+      "position": [
+        1420,
+        1200
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "databaseId": 139118,
+        "tableId": 356544,
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 2660068,
+              "fieldValue": "={{ $json.Slug }}"
+            },
+            {
+              "fieldId": 2660067,
+              "fieldValue": "={{ $('n8n Form Trigger').item.json['Заголовок RU'] }}"
+            },
+            {
+              "fieldId": 2660083,
+              "fieldValue": "={{ $('n8n Form Trigger').item.json.Title }}"
+            },
+            {
+              "fieldId": 2660084,
+              "fieldValue": "={{ $('n8n Form Trigger').item.json.Description }}"
+            },
+            {
+              "fieldId": 2896460,
+              "fieldValue": "={{ $('n8n Form Trigger').item.json.keywords }}"
+            }
+          ]
+        }
+      },
+      "id": "e86320d7-f3fb-437d-9bb9-047e9e6a9ba0",
+      "name": "Baserow create blog row",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        520
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "numberInputs": 9,
+        "useDataOfInput": 9
+      },
+      "id": "e48fdc2b-d937-48dd-b605-722c1f6232a3",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        1860,
+        -220
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 139118,
+        "tableId": 356544,
+        "rowId": "={{ $node[\"Merge\"].json.id }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 2660093,
+              "fieldValue": "={{ $node[\"DeepL Post Name translate UA\"].json.text }}"
+            },
+            {
+              "fieldId": 2660094,
+              "fieldValue": "={{ $node[\"DeepL Translate Post name EN\"].json.text }}"
+            },
+            {
+              "fieldId": 2664555,
+              "fieldValue": "={{ $node[\"DeepL translate Description UA\"].json.text }}"
+            },
+            {
+              "fieldId": 2664606,
+              "fieldValue": "={{ $node[\"DeepL Translate Description EN\"].json.text }}"
+            },
+            {
+              "fieldId": 2664718,
+              "fieldValue": "={{ $node[\"DeepL translate title UA\"].json.text }}"
+            },
+            {
+              "fieldId": 2664719,
+              "fieldValue": "={{ $node[\"DeepL Translate Title EN\"].json.text }}"
+            }
+          ]
+        }
+      },
+      "id": "499eff75-ceb4-4b98-848c-2d2a1c7c1b3b",
+      "name": "Baserow add translations",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        2160,
+        -140
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "numberInputs": 7
+      },
+      "id": "25f72ad9-b285-40ae-b5cc-9bfe4640aa9c",
+      "name": "Merge1",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        1940,
+        1020
+      ]
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.message.content }}",
+        "translateTo": "UK",
+        "additionalFields": {}
+      },
+      "id": "ca790bd6-3187-44e6-8038-b551a81b7a0a",
+      "name": "DeepL Post Summary translate UA",
+      "type": "n8n-nodes-base.deepL",
+      "typeVersion": 1,
+      "position": [
+        1700,
+        1460
+      ],
+      "credentials": {
+        "deepLApi": {
+          "id": "Fa3gRfaikTneP7NW",
+          "name": "DeepL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.message.content }}",
+        "translateTo": "EN-US",
+        "additionalFields": {}
+      },
+      "id": "5f62bd84-3185-4509-b8ba-2b373d3b82a8",
+      "name": "DeepL Post Summary translate EN",
+      "type": "n8n-nodes-base.deepL",
+      "typeVersion": 1,
+      "position": [
+        1700,
+        1700
+      ],
+      "credentials": {
+        "deepLApi": {
+          "id": "Fa3gRfaikTneP7NW",
+          "name": "DeepL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 139118,
+        "tableId": 356544,
+        "rowId": "={{ $node[\"Merge1\"].json.id }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 2660075,
+              "fieldValue": "={{ $node[\"Edit Fields\"].json.data }}"
+            },
+            {
+              "fieldId": 2660175,
+              "fieldValue": "={{ $node[\"Translate post to UA\"].json.Data }}"
+            },
+            {
+              "fieldId": 2660174,
+              "fieldValue": "={{ $node[\"Translate post to EN\"].json.Data }}"
+            },
+            {
+              "fieldId": 2660076,
+              "fieldValue": "={{ $node[\"OpenAI\"].json.message.content }}"
+            },
+            {
+              "fieldId": 2660164,
+              "fieldValue": "={{ $node['DeepL Post Summary translate UA'].json.text }}"
+            },
+            {
+              "fieldId": 2660165,
+              "fieldValue": "={{ $node['DeepL Post Summary translate EN'].json.text }}"
+            }
+          ]
+        }
+      },
+      "id": "700dc82f-7860-4a09-a42b-2771adc7a052",
+      "name": "Baserow add Post translations and summary",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        2400,
+        1080
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Сгенерируй привлекательное и интересное резюме для статьи на русском языке, так чтобы ее захотелось прочитать, не менее чем на 400 символов с пробелами, но не более чем на 550 символов с пробелами в текстовом формате без разметки. В качестве ответа верни только готовое резюме поста, без каких либо комментариев и дополнений. \n\nВот текст поста в HTML:\n{{ $json.data }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5fb8310c-c8a2-4ce1-884f-bb1a9cc8ab82",
+      "name": "OpenAI",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.5,
+      "position": [
+        1240,
+        1460
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "LWqwOoyrWqYHIcaW",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "numberInputs": 3
+      },
+      "id": "f0647cd4-20f9-4b65-a265-fa7bb3d0193e",
+      "name": "Merge2",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        3260,
+        40
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.baserow.io/api/user-files/upload-file/",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Token cAkghBkNcvaZnJ0HJBBZAz5X8b7pxdBW"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "id": "bb10c4b5-bfcb-4fec-8707-423b0ec899be",
+      "name": "Baserow Upload 1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2960,
+        -260
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.baserow.io/api/user-files/upload-file/",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Token cAkghBkNcvaZnJ0HJBBZAz5X8b7pxdBW"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "url",
+              "value": "={{ $json['Image URL'] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6087a85f-ecd7-47ca-aa8b-a8715759ee3c",
+      "name": "Baserow upload 2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2960,
+        -80
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 139118,
+        "tableId": 356544,
+        "rowId": "={{ $node[\"Merge\"].json.id }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 2660093,
+              "fieldValue": "={{ $node[\"DeepL Post Name translate UA\"].json.text }}"
+            },
+            {
+              "fieldId": 2660094,
+              "fieldValue": "={{ $node[\"DeepL Translate Post name EN\"].json.text }}"
+            },
+            {
+              "fieldId": 2664555,
+              "fieldValue": "={{ $node[\"DeepL translate Description UA\"].json.text }}"
+            },
+            {
+              "fieldId": 2664606,
+              "fieldValue": "={{ $node[\"DeepL Translate Description EN\"].json.text }}"
+            },
+            {
+              "fieldId": 2664718,
+              "fieldValue": "={{ $node[\"DeepL translate title UA\"].json.text }}"
+            },
+            {
+              "fieldId": 2664719,
+              "fieldValue": "={{ $node[\"DeepL Translate Title EN\"].json.text }}"
+            }
+          ]
+        }
+      },
+      "id": "d8bbf622-23f3-448c-a92d-3d7e32b565fe",
+      "name": "Baserow files",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        3560,
+        40
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "=https://api.baserow.io/api/user-files/upload-file/",
+        "jsonParameters": true,
+        "options": {
+          "bodyContentType": "multipart-form-data"
+        },
+        "sendBinaryData": true,
+        "binaryPropertyName": "={{ $('n8n Form Trigger').item.binary.Main_Image__1400_655_.data }}",
+        "headerParametersJson": "=Authorization: \"Token cAkghBkNcvaZnJ0HJBBZAz5X8b7pxdBW\"",
+        "queryParametersJson": "={{ $('n8n Form Trigger').item.binary.Main_Image__1400_655_ }}"
+      },
+      "name": "Upload BinaryFile Baserow",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        2940,
+        340
+      ],
+      "id": "26936c0d-58cd-438b-951b-e4b8245214c4"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "%3Chttps://api.baserow.io/api/user-files/upload-via-url/%3E",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Token cAkghBkNcvaZnJ0HJBBZAz5X8b7pxdBW"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "url",
+              "value": "={{ $json.url }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "855c7c2c-e7c2-49b3-8b5a-15f6ce96666e",
+      "name": "Baserow upload ",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        180,
+        1500
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Функция для извлечения URL изображений из HTML, исключая URL с \"baserow-backend-\"\nconst extractImageUrls = (html) => {\n  const urls = [];\n  const regex = /<img[^>]+src=[\"']([^\"']+)[\"']/g;\n  let match;\n\n  while ((match = regex.exec(html)) !== null) {\n    const url = match[1];\n    if (!url.includes(\"baserow-backend-\")) { // Исключаем URL с \"baserow-backend-\"\n      urls.push(url);\n    }\n  }\n\n  return urls;\n};\n\n// Инициализация массива для выходных пар [url, id]\nlet imageUrlPairs = [];\n\n// Переменная для хранения текущего HTML контента\nlet currentHtml = null;\n\n// Итерация по всем входным элементам\nfor (let i = 0; i < items.length; i++) {\n  const currentItem = items[i].json;\n\n  // Если текущий элемент содержит HTML, сохраняем его\n  if (currentItem[\"Текст поста RU html\"]) {\n    currentHtml = currentItem[\"Текст поста RU html\"];\n  }\n\n  // Если текущий элемент содержит ID, создаем пары\n  if (currentItem[\"id\"] || currentItem[\"Item ID\"]) {\n    const id = currentItem[\"id\"] || currentItem[\"Item ID\"];\n    \n    if (currentHtml && id) {\n      const imageUrls = extractImageUrls(currentHtml);\n      \n      // Создаем пары [url, id]\n      imageUrls.forEach(url => {\n        imageUrlPairs.push([url, id]);\n      });\n      \n      // Сбрасываем текущий HTML после создания пар\n      currentHtml = null;\n    }\n  }\n}\n\n// Возвращаем массив пар внутри одного объекта\nreturn [\n  {\n    json: {\n      imageUrlPairs: imageUrlPairs\n    }\n  }\n];\n"
+      },
+      "id": "6f5f054c-59d0-4a5a-ad02-a1566d2f6181",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        80,
+        1020
+      ]
+    },
+    {
+      "parameters": {
+        "options": {
+          "reset": false
+        }
+      },
+      "id": "a08cd66a-01d2-4a1a-b852-332800ee7b97",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -40,
+        1500
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 139118,
+        "tableId": 356544,
+        "rowId": "={{ $('Loop Over Items').item.json.id }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 2660471,
+              "fieldValue": "={{ $('Baserow upload ').item.json.name }}"
+            }
+          ]
+        }
+      },
+      "id": "be218584-4aa1-4db2-b867-13e44ad454db",
+      "name": "Baserow files1",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        440,
+        1500
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ee767ee8-ea5f-498d-a0b6-3816f185f175",
+              "name": "Текст поста RU html",
+              "value": "={{ $json['Текст поста RU html'] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d63e384e-3c10-4f95-ab60-825b1a816227",
+      "name": "Edit Fields1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        100,
+        440
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "4472e7ba-a68e-47cc-8a63-33e4ed805cd6",
+      "name": "Merge3",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        80,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "f3f9ff3e-8cbc-4036-9b4e-181acba54408",
+              "leftValue": "={{ $json.imageUrlPairs }}",
+              "rightValue": "",
+              "operator": {
+                "type": "array",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "150bb2a7-d690-42e0-a70d-10b39ed4130b",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        380,
+        1080
+      ]
+    },
+    {
+      "parameters": {
+        "content": "Do not work",
+        "height": 1199.2599923334703,
+        "width": 1046.3627643218024
+      },
+      "id": "ee33035e-cf72-450f-ad1d-9f15d2c4af17",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2820,
+        -460
+      ]
+    }
+  ],
+  "pinData": {
+    "DeepL Post Name translate UA": [
+      {
+        "json": {
+          "detected_source_language": "EN",
+          "text": "назва тесту"
+        }
+      }
+    ],
+    "DeepL Translate Post name EN": [
+      {
+        "json": {
+          "detected_source_language": "EN",
+          "text": "test name"
+        }
+      }
+    ],
+    "DeepL Translate Description EN": [
+      {
+        "json": {
+          "detected_source_language": "EN",
+          "text": "test Description"
+        }
+      }
+    ],
+    "DeepL translate Description UA": [
+      {
+        "json": {
+          "detected_source_language": "EN",
+          "text": "тест Опис"
+        }
+      }
+    ],
+    "DeepL Translate Title EN": [
+      {
+        "json": {
+          "detected_source_language": "EN",
+          "text": "test title"
+        }
+      }
+    ],
+    "DeepL translate title UA": [
+      {
+        "json": {
+          "detected_source_language": "EN",
+          "text": "назва тесту"
+        }
+      }
+    ],
+    "Baserow upload 2": [
+      {
+        "json": {
+          "size": 44656,
+          "mime_type": "image/jpeg",
+          "is_image": true,
+          "image_width": 1024,
+          "image_height": 512,
+          "uploaded_at": "2024-11-08T13:16:03.706216Z",
+          "url": "https://baserow-backend-production20240528124524339000000001.s3.amazonaws.com/user_files/vsRZVR55vdR2Y1e2RE60tBdUZnHkgiaE_df40e009e88615b50ecd706eeb7ec712679c97c0bfad4f3156b5b79087f21828.jpeg",
+          "thumbnails": {
+            "tiny": {
+              "url": "https://baserow-backend-production20240528124524339000000001.s3.amazonaws.com/thumbnails/tiny/vsRZVR55vdR2Y1e2RE60tBdUZnHkgiaE_df40e009e88615b50ecd706eeb7ec712679c97c0bfad4f3156b5b79087f21828.jpeg",
+              "width": null,
+              "height": 21
+            },
+            "small": {
+              "url": "https://baserow-backend-production20240528124524339000000001.s3.amazonaws.com/thumbnails/small/vsRZVR55vdR2Y1e2RE60tBdUZnHkgiaE_df40e009e88615b50ecd706eeb7ec712679c97c0bfad4f3156b5b79087f21828.jpeg",
+              "width": 48,
+              "height": 48
+            },
+            "card_cover": {
+              "url": "https://baserow-backend-production20240528124524339000000001.s3.amazonaws.com/thumbnails/card_cover/vsRZVR55vdR2Y1e2RE60tBdUZnHkgiaE_df40e009e88615b50ecd706eeb7ec712679c97c0bfad4f3156b5b79087f21828.jpeg",
+              "width": 300,
+              "height": 160
+            }
+          },
+          "name": "vsRZVR55vdR2Y1e2RE60tBdUZnHkgiaE_df40e009e88615b50ecd706eeb7ec712679c97c0bfad4f3156b5b79087f21828.jpeg",
+          "original_name": "thumbnail.jpeg"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 2,
+  "updatedAt": "2024-11-08T21:02:45.000Z",
+  "versionId": "2d2bcddd-3b4f-4c56-9d2f-6878d6fd726f"
+}

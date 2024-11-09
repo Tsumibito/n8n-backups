@@ -1,0 +1,186 @@
+{
+  "active": false,
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "GitHub",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Image": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2024-09-14T16:20:56.043Z",
+  "id": "AyY5qe83oYTozmBO",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "TEST WF",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "test form",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "image",
+              "fieldType": "file",
+              "multipleFiles": false,
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "field #",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1c340e12-d56e-41df-9f2c-bb628231dcbc",
+      "name": "On form submission",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        1060,
+        600
+      ],
+      "webhookId": "57c54712-75ad-409f-a03c-5deb2b37677c"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.baserow.io/api/user-files/upload-file/",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Token cAkghBkNcvaZnJ0HJBBZAz5X8b7pxdBW"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "form-urlencoded",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "file",
+              "value": "image"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f49212cd-a331-4faa-babc-259859237bc0",
+      "name": "Baserow Upload 1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1520,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "crop",
+        "dataPropertyName": "image",
+        "options": {}
+      },
+      "id": "41731861-a454-49bf-ad64-ed32545902c2",
+      "name": "Edit Image",
+      "type": "n8n-nodes-base.editImage",
+      "typeVersion": 1,
+      "position": [
+        1380,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "owner": {
+          "__rl": true,
+          "value": "Tsumibito",
+          "mode": "list",
+          "cachedResultName": "Tsumibito",
+          "cachedResultUrl": "https://github.com/Tsumibito"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "navi",
+          "mode": "list",
+          "cachedResultName": "navi",
+          "cachedResultUrl": "https://github.com/Tsumibito/navi"
+        },
+        "filePath": "=images_{{ $('On form submission').item.json.image.filename }}",
+        "binaryData": true,
+        "binaryPropertyName": "image",
+        "commitMessage": "={{ $json.image.filename }}"
+      },
+      "id": "ffd1c488-b2f8-48e7-8b79-e4f815a06b92",
+      "name": "GitHub",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        1840,
+        1000
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "mCS0QTT2uk6nzN3K",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "={{ $('Edit Image').item.binary.image.data }}"
+            }
+          ]
+        },
+        "options": {
+          "includeBinaries": true
+        }
+      },
+      "id": "22f1a4ed-3ef1-42a6-900b-9d51584c10af",
+      "name": "Aggregate",
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1740,
+        500
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-11-09T17:24:20.000Z",
+  "versionId": "718cc4b1-fb42-4562-a5ad-264c0adca57d"
+}

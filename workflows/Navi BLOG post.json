@@ -48,30 +48,19 @@
             "node": "DeepL Translate keywords EN",
             "type": "main",
             "index": 0
-          }
-        ]
-      ]
-    },
-    "Edit Fields": {
-      "main": [
-        [
+          },
           {
-            "node": "Translate post to UA",
+            "node": "Edit Fields1",
             "type": "main",
             "index": 0
           },
           {
-            "node": "Translate post to EN",
+            "node": "GitHub image main upload",
             "type": "main",
             "index": 0
           },
           {
-            "node": "Merge1",
-            "type": "main",
-            "index": 1
-          },
-          {
-            "node": "OpenAI",
+            "node": "GitHub thumbnail image upload",
             "type": "main",
             "index": 0
           }
@@ -161,7 +150,7 @@
           {
             "node": "Merge",
             "type": "main",
-            "index": 6
+            "index": 5
           }
         ]
       ]
@@ -172,7 +161,7 @@
           {
             "node": "Merge",
             "type": "main",
-            "index": 7
+            "index": 6
           }
         ]
       ]
@@ -181,25 +170,24 @@
       "main": [
         [
           {
-            "node": "Merge",
-            "type": "main",
-            "index": 8
-          },
-          {
             "node": "Merge1",
             "type": "main",
             "index": 0
-          }
-        ]
-      ]
-    },
-    "Merge": {
-      "main": [
-        [
+          },
           {
-            "node": "Baserow add translations",
+            "node": "Edit Fields",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 7
           }
         ]
       ]
@@ -210,7 +198,7 @@
           {
             "node": "Merge1",
             "type": "main",
-            "index": 2
+            "index": 1
           }
         ]
       ]
@@ -221,18 +209,7 @@
           {
             "node": "Merge1",
             "type": "main",
-            "index": 3
-          }
-        ]
-      ]
-    },
-    "Merge1": {
-      "main": [
-        [
-          {
-            "node": "Baserow add Post translations and summary",
-            "type": "main",
-            "index": 0
+            "index": 2
           }
         ]
       ]
@@ -243,50 +220,7 @@
           {
             "node": "Merge1",
             "type": "main",
-            "index": 5
-          }
-        ]
-      ]
-    },
-    "DeepL Post Summary translate EN": {
-      "main": [
-        [
-          {
-            "node": "Merge1",
-            "type": "main",
-            "index": 6
-          }
-        ]
-      ]
-    },
-    "OpenAI": {
-      "main": [
-        [
-          {
-            "node": "Merge1",
-            "type": "main",
             "index": 4
-          },
-          {
-            "node": "DeepL Post Summary translate UA",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "DeepL Post Summary translate EN",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Baserow Upload 1": {
-      "main": [
-        [
-          {
-            "node": "Merge2",
-            "type": "main",
-            "index": 2
           }
         ]
       ]
@@ -302,56 +236,32 @@
         ]
       ]
     },
-    "Merge2": {
+    "Execute Workflow": {
       "main": [
         [
           {
-            "node": "Baserow files",
+            "node": "Translate post to UA",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Translate post to EN",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "OpenAI",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Baserow upload ": {
+    "Edit Fields": {
       "main": [
         [
           {
-            "node": "Baserow files1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Loop Over Items": {
-      "main": [
-        [],
-        [
-          {
-            "node": "Baserow upload ",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Code": {
-      "main": [
-        [
-          {
-            "node": "If",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Baserow files1": {
-      "main": [
-        [
-          {
-            "node": "Loop Over Items",
+            "node": "Merge3",
             "type": "main",
             "index": 0
           }
@@ -364,7 +274,7 @@
           {
             "node": "Merge3",
             "type": "main",
-            "index": 0
+            "index": 1
           }
         ]
       ]
@@ -373,17 +283,109 @@
       "main": [
         [
           {
-            "node": "Code",
+            "node": "Execute Workflow",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "If": {
+    "GitHub image main upload": {
       "main": [
-        [],
-        []
+        [
+          {
+            "node": "Baserow upload Main",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub thumbnail image upload": {
+      "main": [
+        [
+          {
+            "node": "Baserow upload 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow upload Main": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "DeepL Post Summary translate EN": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 5
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Baserow add Post translations and summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "DeepL Post Summary translate UA",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "DeepL Post Summary translate EN",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Baserow add translations",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge2": {
+      "main": [
+        [
+          {
+            "node": "Baserow files",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     }
   },
@@ -434,6 +436,7 @@
             }
           ]
         },
+        "responseMode": "lastNode",
         "options": {}
       },
       "id": "eef15e72-97b0-419a-a870-d7332b8f4b40",
@@ -441,8 +444,8 @@
       "type": "n8n-nodes-base.formTrigger",
       "typeVersion": 2.1,
       "position": [
-        1080,
-        520
+        420,
+        600
       ],
       "webhookId": "79d3dee2-ee2b-4070-8428-947ee2cc25de"
     },
@@ -649,36 +652,15 @@
     },
     {
       "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "4cd09f8b-a9f0-43e0-a1a8-d4d26ff53a00",
-              "name": "data",
-              "value": "={{ $('Merge3').item.json['Текст поста RU html'] }}",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "23b0bc5b-c41b-43f5-9638-8104bf4c9b14",
-      "name": "Edit Fields",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        1120,
-        1040
-      ]
-    },
-    {
-      "parameters": {
         "workflowId": {
           "__rl": true,
           "value": "mxjz49LdU7xLPaBS",
           "mode": "list",
-          "cachedResultName": "Translate big html from RU to EN"
+          "cachedResultName": "-- Translate big html from RU to EN"
         },
-        "options": {}
+        "options": {
+          "waitForSubWorkflow": true
+        }
       },
       "id": "b1939705-d072-416d-904c-ec4ba2ab95f2",
       "name": "Translate post to EN",
@@ -736,21 +718,6 @@
     },
     {
       "parameters": {
-        "mode": "chooseBranch",
-        "numberInputs": 9,
-        "useDataOfInput": 9
-      },
-      "id": "e48fdc2b-d937-48dd-b605-722c1f6232a3",
-      "name": "Merge",
-      "type": "n8n-nodes-base.merge",
-      "typeVersion": 3,
-      "position": [
-        1860,
-        -220
-      ]
-    },
-    {
-      "parameters": {
         "operation": "update",
         "databaseId": 139118,
         "tableId": 356544,
@@ -780,6 +747,18 @@
             {
               "fieldId": 2664719,
               "fieldValue": "={{ $node[\"DeepL Translate Title EN\"].json.text }}"
+            },
+            {
+              "fieldId": 2660081,
+              "fieldValue": "alex-burlakov"
+            },
+            {
+              "fieldId": 2660085,
+              "fieldValue": "15 min to read"
+            },
+            {
+              "fieldId": 2660079,
+              "fieldValue": "true"
             }
           ]
         }
@@ -798,20 +777,6 @@
           "name": "Baserow account"
         }
       }
-    },
-    {
-      "parameters": {
-        "mode": "chooseBranch",
-        "numberInputs": 7
-      },
-      "id": "25f72ad9-b285-40ae-b5cc-9bfe4640aa9c",
-      "name": "Merge1",
-      "type": "n8n-nodes-base.merge",
-      "typeVersion": 3,
-      "position": [
-        1940,
-        1020
-      ]
     },
     {
       "parameters": {
@@ -907,6 +872,282 @@
     },
     {
       "parameters": {
+        "method": "POST",
+        "url": "https://api.baserow.io/api/user-files/upload-via-url/",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Token cAkghBkNcvaZnJ0HJBBZAz5X8b7pxdBW"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "url",
+              "value": "={{ $('GitHub thumbnail image upload').item.json.content.download_url }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6087a85f-ecd7-47ca-aa8b-a8715759ee3c",
+      "name": "Baserow upload 2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2900,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 139118,
+        "tableId": 356544,
+        "rowId": "={{ $('Baserow create blog row').item.json.id }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 2660077,
+              "fieldValue": "={{ $('Baserow upload Main').item.json.name }}"
+            },
+            {
+              "fieldId": 2660078,
+              "fieldValue": "={{ $('Baserow upload 2').item.json.name }}"
+            }
+          ]
+        }
+      },
+      "id": "d8bbf622-23f3-448c-a92d-3d7e32b565fe",
+      "name": "Baserow files",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        3560,
+        40
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "PHQQyHKIBZp4JTHv",
+          "mode": "list",
+          "cachedResultName": "-- Navi upload images for blog post"
+        },
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "id": "6900ee33-00e3-4587-8b19-2bb58fd2154f",
+      "name": "Execute Workflow",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.1,
+      "position": [
+        1060,
+        1020
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "90a25192-b6ef-4062-98b5-eb5017715808",
+              "name": "id",
+              "value": "={{ $json.id }}",
+              "type": "number"
+            },
+            {
+              "id": "0f29f853-8f16-427a-8a0e-e9c1c03e3c68",
+              "name": "data",
+              "value": "={{ $('n8n Form Trigger').item.json['Текст поста RU html'] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "23cac241-b486-43cf-9f61-dcc0dc05bac7",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        640,
+        1000
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f8ffa9dd-c5b2-4a43-a9c0-0abee55fc321",
+              "name": "data",
+              "value": "={{ $json['Текст поста RU html'] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "143f9f3b-262c-4fff-a2d6-5318d3964f63",
+      "name": "Edit Fields1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        580,
+        1140
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "id": "887f5b96-7c21-4806-a815-817b2adadfaa",
+      "name": "Merge3",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        880,
+        1020
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "owner": {
+          "__rl": true,
+          "value": "Tsumibito",
+          "mode": "list",
+          "cachedResultName": "Tsumibito",
+          "cachedResultUrl": "https://github.com/Tsumibito"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "navi",
+          "mode": "list",
+          "cachedResultName": "navi",
+          "cachedResultUrl": "https://github.com/Tsumibito/navi"
+        },
+        "filePath": "={{ $now.format('yyyy-MM-dd-hh-mm-ss') }}_{{ $('n8n Form Trigger').item.json['Main Image (1400х655)'].filename }}",
+        "binaryData": true,
+        "binaryPropertyName": "Main_Image__1400_655_",
+        "commitMessage": "={{ $('n8n Form Trigger').item.json['Main Image (1400х655)'].filename }}"
+      },
+      "id": "deac80c5-d52c-43a3-afcd-7b2e3577ff4e",
+      "name": "GitHub image main upload",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        2320,
+        180
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "githubApi": {
+          "id": "mCS0QTT2uk6nzN3K",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "owner": {
+          "__rl": true,
+          "value": "Tsumibito",
+          "mode": "list",
+          "cachedResultName": "Tsumibito",
+          "cachedResultUrl": "https://github.com/Tsumibito"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "navi",
+          "mode": "list",
+          "cachedResultName": "navi",
+          "cachedResultUrl": "https://github.com/Tsumibito/navi"
+        },
+        "filePath": "={{ $now.format('yyyy-MM-dd-hh-mm-ss') }}__{{ $('n8n Form Trigger').item.json['Thumbnail image (400x400)'].filename }}",
+        "binaryData": true,
+        "binaryPropertyName": "Thumbnail_image__400x400_",
+        "commitMessage": "={{ $('n8n Form Trigger').item.json['Thumbnail image (400x400)'].filename }}"
+      },
+      "id": "993ded8c-751f-4132-96c1-c92ca986830e",
+      "name": "GitHub thumbnail image upload",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        2440,
+        700
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "githubApi": {
+          "id": "mCS0QTT2uk6nzN3K",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.baserow.io/api/user-files/upload-via-url/",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Token cAkghBkNcvaZnJ0HJBBZAz5X8b7pxdBW"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "url",
+              "value": "={{ $('GitHub image main upload').item.json.content.download_url }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "da06b9c0-d4be-41d1-a3d8-ec352642018c",
+      "name": "Baserow upload Main",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2860,
+        -200
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "numberInputs": 6
+      },
+      "id": "25f72ad9-b285-40ae-b5cc-9bfe4640aa9c",
+      "name": "Merge1",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        1940,
+        1020
+      ]
+    },
+    {
+      "parameters": {
         "modelId": {
           "__rl": true,
           "value": "gpt-4o-mini",
@@ -940,9 +1181,25 @@
     {
       "parameters": {
         "mode": "chooseBranch",
-        "numberInputs": 3
+        "numberInputs": 8,
+        "useDataOfInput": 8
       },
-      "id": "f0647cd4-20f9-4b65-a265-fa7bb3d0193e",
+      "id": "e48fdc2b-d937-48dd-b605-722c1f6232a3",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        1860,
+        -220
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "numberInputs": 3,
+        "output": "empty"
+      },
+      "id": "9ca9ecc1-5959-4596-b9d9-66e8d000ddea",
       "name": "Merge2",
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
@@ -950,405 +1207,15 @@
         3260,
         40
       ]
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "https://api.baserow.io/api/user-files/upload-file/",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Authorization",
-              "value": "Token cAkghBkNcvaZnJ0HJBBZAz5X8b7pxdBW"
-            }
-          ]
-        },
-        "sendBody": true,
-        "bodyParameters": {
-          "parameters": [
-            {}
-          ]
-        },
-        "options": {}
-      },
-      "id": "bb10c4b5-bfcb-4fec-8707-423b0ec899be",
-      "name": "Baserow Upload 1",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        2960,
-        -260
-      ]
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "https://api.baserow.io/api/user-files/upload-file/",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Authorization",
-              "value": "Token cAkghBkNcvaZnJ0HJBBZAz5X8b7pxdBW"
-            }
-          ]
-        },
-        "sendBody": true,
-        "bodyParameters": {
-          "parameters": [
-            {
-              "name": "url",
-              "value": "={{ $json['Image URL'] }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "6087a85f-ecd7-47ca-aa8b-a8715759ee3c",
-      "name": "Baserow upload 2",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        2960,
-        -80
-      ]
-    },
-    {
-      "parameters": {
-        "operation": "update",
-        "databaseId": 139118,
-        "tableId": 356544,
-        "rowId": "={{ $node[\"Merge\"].json.id }}",
-        "fieldsUi": {
-          "fieldValues": [
-            {
-              "fieldId": 2660093,
-              "fieldValue": "={{ $node[\"DeepL Post Name translate UA\"].json.text }}"
-            },
-            {
-              "fieldId": 2660094,
-              "fieldValue": "={{ $node[\"DeepL Translate Post name EN\"].json.text }}"
-            },
-            {
-              "fieldId": 2664555,
-              "fieldValue": "={{ $node[\"DeepL translate Description UA\"].json.text }}"
-            },
-            {
-              "fieldId": 2664606,
-              "fieldValue": "={{ $node[\"DeepL Translate Description EN\"].json.text }}"
-            },
-            {
-              "fieldId": 2664718,
-              "fieldValue": "={{ $node[\"DeepL translate title UA\"].json.text }}"
-            },
-            {
-              "fieldId": 2664719,
-              "fieldValue": "={{ $node[\"DeepL Translate Title EN\"].json.text }}"
-            }
-          ]
-        }
-      },
-      "id": "d8bbf622-23f3-448c-a92d-3d7e32b565fe",
-      "name": "Baserow files",
-      "type": "n8n-nodes-base.baserow",
-      "typeVersion": 1,
-      "position": [
-        3560,
-        40
-      ],
-      "credentials": {
-        "baserowApi": {
-          "id": "iKQh0Jcxz7wezRWR",
-          "name": "Baserow account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "requestMethod": "POST",
-        "url": "=https://api.baserow.io/api/user-files/upload-file/",
-        "jsonParameters": true,
-        "options": {
-          "bodyContentType": "multipart-form-data"
-        },
-        "sendBinaryData": true,
-        "binaryPropertyName": "={{ $('n8n Form Trigger').item.binary.Main_Image__1400_655_.data }}",
-        "headerParametersJson": "=Authorization: \"Token cAkghBkNcvaZnJ0HJBBZAz5X8b7pxdBW\"",
-        "queryParametersJson": "={{ $('n8n Form Trigger').item.binary.Main_Image__1400_655_ }}"
-      },
-      "name": "Upload BinaryFile Baserow",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 1,
-      "position": [
-        2940,
-        340
-      ],
-      "id": "26936c0d-58cd-438b-951b-e4b8245214c4"
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "%3Chttps://api.baserow.io/api/user-files/upload-via-url/%3E",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Authorization",
-              "value": "Token cAkghBkNcvaZnJ0HJBBZAz5X8b7pxdBW"
-            }
-          ]
-        },
-        "sendBody": true,
-        "bodyParameters": {
-          "parameters": [
-            {
-              "name": "url",
-              "value": "={{ $json.url }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "855c7c2c-e7c2-49b3-8b5a-15f6ce96666e",
-      "name": "Baserow upload ",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        180,
-        1500
-      ]
-    },
-    {
-      "parameters": {
-        "jsCode": "// Функция для извлечения URL изображений из HTML, исключая URL с \"baserow-backend-\"\nconst extractImageUrls = (html) => {\n  const urls = [];\n  const regex = /<img[^>]+src=[\"']([^\"']+)[\"']/g;\n  let match;\n\n  while ((match = regex.exec(html)) !== null) {\n    const url = match[1];\n    if (!url.includes(\"baserow-backend-\")) { // Исключаем URL с \"baserow-backend-\"\n      urls.push(url);\n    }\n  }\n\n  return urls;\n};\n\n// Инициализация массива для выходных пар [url, id]\nlet imageUrlPairs = [];\n\n// Переменная для хранения текущего HTML контента\nlet currentHtml = null;\n\n// Итерация по всем входным элементам\nfor (let i = 0; i < items.length; i++) {\n  const currentItem = items[i].json;\n\n  // Если текущий элемент содержит HTML, сохраняем его\n  if (currentItem[\"Текст поста RU html\"]) {\n    currentHtml = currentItem[\"Текст поста RU html\"];\n  }\n\n  // Если текущий элемент содержит ID, создаем пары\n  if (currentItem[\"id\"] || currentItem[\"Item ID\"]) {\n    const id = currentItem[\"id\"] || currentItem[\"Item ID\"];\n    \n    if (currentHtml && id) {\n      const imageUrls = extractImageUrls(currentHtml);\n      \n      // Создаем пары [url, id]\n      imageUrls.forEach(url => {\n        imageUrlPairs.push([url, id]);\n      });\n      \n      // Сбрасываем текущий HTML после создания пар\n      currentHtml = null;\n    }\n  }\n}\n\n// Возвращаем массив пар внутри одного объекта\nreturn [\n  {\n    json: {\n      imageUrlPairs: imageUrlPairs\n    }\n  }\n];\n"
-      },
-      "id": "6f5f054c-59d0-4a5a-ad02-a1566d2f6181",
-      "name": "Code",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        80,
-        1020
-      ]
-    },
-    {
-      "parameters": {
-        "options": {
-          "reset": false
-        }
-      },
-      "id": "a08cd66a-01d2-4a1a-b852-332800ee7b97",
-      "name": "Loop Over Items",
-      "type": "n8n-nodes-base.splitInBatches",
-      "typeVersion": 3,
-      "position": [
-        -40,
-        1500
-      ]
-    },
-    {
-      "parameters": {
-        "operation": "update",
-        "databaseId": 139118,
-        "tableId": 356544,
-        "rowId": "={{ $('Loop Over Items').item.json.id }}",
-        "fieldsUi": {
-          "fieldValues": [
-            {
-              "fieldId": 2660471,
-              "fieldValue": "={{ $('Baserow upload ').item.json.name }}"
-            }
-          ]
-        }
-      },
-      "id": "be218584-4aa1-4db2-b867-13e44ad454db",
-      "name": "Baserow files1",
-      "type": "n8n-nodes-base.baserow",
-      "typeVersion": 1,
-      "position": [
-        440,
-        1500
-      ],
-      "credentials": {
-        "baserowApi": {
-          "id": "iKQh0Jcxz7wezRWR",
-          "name": "Baserow account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "ee767ee8-ea5f-498d-a0b6-3816f185f175",
-              "name": "Текст поста RU html",
-              "value": "={{ $json['Текст поста RU html'] }}",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "d63e384e-3c10-4f95-ab60-825b1a816227",
-      "name": "Edit Fields1",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        100,
-        440
-      ]
-    },
-    {
-      "parameters": {},
-      "id": "4472e7ba-a68e-47cc-8a63-33e4ed805cd6",
-      "name": "Merge3",
-      "type": "n8n-nodes-base.merge",
-      "typeVersion": 3,
-      "position": [
-        80,
-        780
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 2
-          },
-          "conditions": [
-            {
-              "id": "f3f9ff3e-8cbc-4036-9b4e-181acba54408",
-              "leftValue": "={{ $json.imageUrlPairs }}",
-              "rightValue": "",
-              "operator": {
-                "type": "array",
-                "operation": "notEmpty",
-                "singleValue": true
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "id": "150bb2a7-d690-42e0-a70d-10b39ed4130b",
-      "name": "If",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.2,
-      "position": [
-        380,
-        1080
-      ]
-    },
-    {
-      "parameters": {
-        "content": "Do not work",
-        "height": 1199.2599923334703,
-        "width": 1046.3627643218024
-      },
-      "id": "ee33035e-cf72-450f-ad1d-9f15d2c4af17",
-      "name": "Sticky Note",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        2820,
-        -460
-      ]
     }
   ],
-  "pinData": {
-    "DeepL Post Name translate UA": [
-      {
-        "json": {
-          "detected_source_language": "EN",
-          "text": "назва тесту"
-        }
-      }
-    ],
-    "DeepL Translate Post name EN": [
-      {
-        "json": {
-          "detected_source_language": "EN",
-          "text": "test name"
-        }
-      }
-    ],
-    "DeepL Translate Description EN": [
-      {
-        "json": {
-          "detected_source_language": "EN",
-          "text": "test Description"
-        }
-      }
-    ],
-    "DeepL translate Description UA": [
-      {
-        "json": {
-          "detected_source_language": "EN",
-          "text": "тест Опис"
-        }
-      }
-    ],
-    "DeepL Translate Title EN": [
-      {
-        "json": {
-          "detected_source_language": "EN",
-          "text": "test title"
-        }
-      }
-    ],
-    "DeepL translate title UA": [
-      {
-        "json": {
-          "detected_source_language": "EN",
-          "text": "назва тесту"
-        }
-      }
-    ],
-    "Baserow upload 2": [
-      {
-        "json": {
-          "size": 44656,
-          "mime_type": "image/jpeg",
-          "is_image": true,
-          "image_width": 1024,
-          "image_height": 512,
-          "uploaded_at": "2024-11-08T13:16:03.706216Z",
-          "url": "https://baserow-backend-production20240528124524339000000001.s3.amazonaws.com/user_files/vsRZVR55vdR2Y1e2RE60tBdUZnHkgiaE_df40e009e88615b50ecd706eeb7ec712679c97c0bfad4f3156b5b79087f21828.jpeg",
-          "thumbnails": {
-            "tiny": {
-              "url": "https://baserow-backend-production20240528124524339000000001.s3.amazonaws.com/thumbnails/tiny/vsRZVR55vdR2Y1e2RE60tBdUZnHkgiaE_df40e009e88615b50ecd706eeb7ec712679c97c0bfad4f3156b5b79087f21828.jpeg",
-              "width": null,
-              "height": 21
-            },
-            "small": {
-              "url": "https://baserow-backend-production20240528124524339000000001.s3.amazonaws.com/thumbnails/small/vsRZVR55vdR2Y1e2RE60tBdUZnHkgiaE_df40e009e88615b50ecd706eeb7ec712679c97c0bfad4f3156b5b79087f21828.jpeg",
-              "width": 48,
-              "height": 48
-            },
-            "card_cover": {
-              "url": "https://baserow-backend-production20240528124524339000000001.s3.amazonaws.com/thumbnails/card_cover/vsRZVR55vdR2Y1e2RE60tBdUZnHkgiaE_df40e009e88615b50ecd706eeb7ec712679c97c0bfad4f3156b5b79087f21828.jpeg",
-              "width": 300,
-              "height": 160
-            }
-          },
-          "name": "vsRZVR55vdR2Y1e2RE60tBdUZnHkgiaE_df40e009e88615b50ecd706eeb7ec712679c97c0bfad4f3156b5b79087f21828.jpeg",
-          "original_name": "thumbnail.jpeg"
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "settings": {
     "executionOrder": "v1"
   },
   "staticData": null,
   "tags": [],
   "triggerCount": 2,
-  "updatedAt": "2024-11-08T21:02:45.000Z",
-  "versionId": "2d2bcddd-3b4f-4c56-9d2f-6878d6fd726f"
+  "updatedAt": "2024-11-09T22:44:52.000Z",
+  "versionId": "7d7550aa-b7ac-40bd-9afd-3477a7bfc31c"
 }

@@ -55,12 +55,12 @@
             "index": 0
           },
           {
-            "node": "GitHub image main upload",
+            "node": "Baserow Upload Thumbnail Image",
             "type": "main",
             "index": 0
           },
           {
-            "node": "GitHub thumbnail image upload",
+            "node": "Baserow Upload Main Image",
             "type": "main",
             "index": 0
           }
@@ -225,17 +225,6 @@
         ]
       ]
     },
-    "Baserow upload 2": {
-      "main": [
-        [
-          {
-            "node": "Merge2",
-            "type": "main",
-            "index": 1
-          }
-        ]
-      ]
-    },
     "Execute Workflow": {
       "main": [
         [
@@ -286,39 +275,6 @@
             "node": "Execute Workflow",
             "type": "main",
             "index": 0
-          }
-        ]
-      ]
-    },
-    "GitHub image main upload": {
-      "main": [
-        [
-          {
-            "node": "Baserow upload Main",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "GitHub thumbnail image upload": {
-      "main": [
-        [
-          {
-            "node": "Baserow upload 2",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Baserow upload Main": {
-      "main": [
-        [
-          {
-            "node": "Merge2",
-            "type": "main",
-            "index": 2
           }
         ]
       ]
@@ -377,7 +333,40 @@
         ]
       ]
     },
+    "Baserow Upload Main Image": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Baserow Upload Thumbnail Image": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
     "Merge2": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
       "main": [
         [
           {
@@ -444,8 +433,8 @@
       "type": "n8n-nodes-base.formTrigger",
       "typeVersion": 2.1,
       "position": [
-        420,
-        600
+        -1020,
+        560
       ],
       "webhookId": "79d3dee2-ee2b-4070-8428-947ee2cc25de"
     },
@@ -860,8 +849,8 @@
       "type": "n8n-nodes-base.baserow",
       "typeVersion": 1,
       "position": [
-        2400,
-        1080
+        2200,
+        1060
       ],
       "credentials": {
         "baserowApi": {
@@ -872,52 +861,19 @@
     },
     {
       "parameters": {
-        "method": "POST",
-        "url": "https://api.baserow.io/api/user-files/upload-via-url/",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Authorization",
-              "value": "Token cAkghBkNcvaZnJ0HJBBZAz5X8b7pxdBW"
-            }
-          ]
-        },
-        "sendBody": true,
-        "bodyParameters": {
-          "parameters": [
-            {
-              "name": "url",
-              "value": "={{ $('GitHub thumbnail image upload').item.json.content.download_url }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "6087a85f-ecd7-47ca-aa8b-a8715759ee3c",
-      "name": "Baserow upload 2",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        2900,
-        280
-      ]
-    },
-    {
-      "parameters": {
         "operation": "update",
         "databaseId": 139118,
         "tableId": 356544,
-        "rowId": "={{ $('Baserow create blog row').item.json.id }}",
+        "rowId": "={{ $json.id }}",
         "fieldsUi": {
           "fieldValues": [
             {
               "fieldId": 2660077,
-              "fieldValue": "={{ $('Baserow upload Main').item.json.name }}"
+              "fieldValue": "={{ $json.main_name }}"
             },
             {
               "fieldId": 2660078,
-              "fieldValue": "={{ $('Baserow upload 2').item.json.name }}"
+              "fieldValue": "={{ $json.thumb_name }}"
             }
           ]
         }
@@ -927,8 +883,8 @@
       "type": "n8n-nodes-base.baserow",
       "typeVersion": 1,
       "position": [
-        3560,
-        40
+        460,
+        -760
       ],
       "credentials": {
         "baserowApi": {
@@ -1025,115 +981,6 @@
     },
     {
       "parameters": {
-        "resource": "file",
-        "owner": {
-          "__rl": true,
-          "value": "Tsumibito",
-          "mode": "list",
-          "cachedResultName": "Tsumibito",
-          "cachedResultUrl": "https://github.com/Tsumibito"
-        },
-        "repository": {
-          "__rl": true,
-          "value": "navi",
-          "mode": "list",
-          "cachedResultName": "navi",
-          "cachedResultUrl": "https://github.com/Tsumibito/navi"
-        },
-        "filePath": "={{ $now.format('yyyy-MM-dd-hh-mm-ss') }}_{{ $('n8n Form Trigger').item.json['Main Image (1400х655)'].filename }}",
-        "binaryData": true,
-        "binaryPropertyName": "Main_Image__1400_655_",
-        "commitMessage": "={{ $('n8n Form Trigger').item.json['Main Image (1400х655)'].filename }}"
-      },
-      "id": "deac80c5-d52c-43a3-afcd-7b2e3577ff4e",
-      "name": "GitHub image main upload",
-      "type": "n8n-nodes-base.github",
-      "typeVersion": 1,
-      "position": [
-        2320,
-        180
-      ],
-      "retryOnFail": true,
-      "credentials": {
-        "githubApi": {
-          "id": "mCS0QTT2uk6nzN3K",
-          "name": "GitHub account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "resource": "file",
-        "owner": {
-          "__rl": true,
-          "value": "Tsumibito",
-          "mode": "list",
-          "cachedResultName": "Tsumibito",
-          "cachedResultUrl": "https://github.com/Tsumibito"
-        },
-        "repository": {
-          "__rl": true,
-          "value": "navi",
-          "mode": "list",
-          "cachedResultName": "navi",
-          "cachedResultUrl": "https://github.com/Tsumibito/navi"
-        },
-        "filePath": "={{ $now.format('yyyy-MM-dd-hh-mm-ss') }}__{{ $('n8n Form Trigger').item.json['Thumbnail image (400x400)'].filename }}",
-        "binaryData": true,
-        "binaryPropertyName": "Thumbnail_image__400x400_",
-        "commitMessage": "={{ $('n8n Form Trigger').item.json['Thumbnail image (400x400)'].filename }}"
-      },
-      "id": "993ded8c-751f-4132-96c1-c92ca986830e",
-      "name": "GitHub thumbnail image upload",
-      "type": "n8n-nodes-base.github",
-      "typeVersion": 1,
-      "position": [
-        2440,
-        700
-      ],
-      "retryOnFail": true,
-      "credentials": {
-        "githubApi": {
-          "id": "mCS0QTT2uk6nzN3K",
-          "name": "GitHub account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "https://api.baserow.io/api/user-files/upload-via-url/",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Authorization",
-              "value": "Token cAkghBkNcvaZnJ0HJBBZAz5X8b7pxdBW"
-            }
-          ]
-        },
-        "sendBody": true,
-        "bodyParameters": {
-          "parameters": [
-            {
-              "name": "url",
-              "value": "={{ $('GitHub image main upload').item.json.content.download_url }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "da06b9c0-d4be-41d1-a3d8-ec352642018c",
-      "name": "Baserow upload Main",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [
-        2860,
-        -200
-      ]
-    },
-    {
-      "parameters": {
         "mode": "chooseBranch",
         "numberInputs": 6
       },
@@ -1195,17 +1042,99 @@
     },
     {
       "parameters": {
+        "method": "POST",
+        "url": "https://api.baserow.io/api/user-files/upload-file/",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Token cAkghBkNcvaZnJ0HJBBZAz5X8b7pxdBW"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "file",
+              "inputDataFieldName": "Main_Image__1400_655_"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "723b8829-3abe-45a1-bdd2-c9e31ad7abd0",
+      "name": "Baserow Upload Main Image",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -220,
+        -720
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.baserow.io/api/user-files/upload-file/",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Token cAkghBkNcvaZnJ0HJBBZAz5X8b7pxdBW"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "file",
+              "inputDataFieldName": "Thumbnail_image__400x400_"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ff401097-f055-470b-8c76-2bfd2d50a03c",
+      "name": "Baserow Upload Thumbnail Image",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -200,
+        -360
+      ]
+    },
+    {
+      "parameters": {
         "mode": "chooseBranch",
-        "numberInputs": 3,
-        "output": "empty"
+        "numberInputs": 3
       },
       "id": "9ca9ecc1-5959-4596-b9d9-66e8d000ddea",
       "name": "Merge2",
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        3260,
-        40
+        20,
+        -560
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Получаем id из узла 'Baserow create blog row'\nconst baserowCreateBlogRowItems = $items(\"Baserow create blog row\", 0, 0);\n\nif (!baserowCreateBlogRowItems || baserowCreateBlogRowItems.length === 0) {\n  throw new Error(\"Не удалось найти данные в узле 'Baserow create blog row'\");\n}\n\nconst id = baserowCreateBlogRowItems[0].json.id;\n\n// Получаем имя из узла 'Baserow Upload Main Image'\nconst baserowUploadMainImageItems = $items(\"Baserow Upload Main Image\", 0, 0);\n\nif (!baserowUploadMainImageItems || baserowUploadMainImageItems.length === 0) {\n  throw new Error(\"Не удалось найти данные в узле 'Baserow Upload Main Image'\");\n}\n\nconst main_name = baserowUploadMainImageItems[0].json.name;\n\n// Получаем имя из узла 'Baserow Upload Thumbnail Image'\nconst baserowUploadThumbnailImageItems = $items(\"Baserow Upload Thumbnail Image\", 0, 0);\n\nif (!baserowUploadThumbnailImageItems || baserowUploadThumbnailImageItems.length === 0) {\n  throw new Error(\"Не удалось найти данные в узле 'Baserow Upload Thumbnail Image'\");\n}\n\nconst thumb_name = baserowUploadThumbnailImageItems[0].json.name;\n\n// Возвращаем данные в виде JSON\nreturn [\n  {\n    json: {\n      id: id,\n      main_name: main_name,\n      thumb_name: thumb_name\n    }\n  }\n];\n"
+      },
+      "id": "105c33e8-788c-4973-9bb1-155a49502091",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        240,
+        -560
       ]
     }
   ],
@@ -1214,8 +1143,15 @@
     "executionOrder": "v1"
   },
   "staticData": null,
-  "tags": [],
+  "tags": [
+    {
+      "createdAt": "2024-11-10T11:12:42.068Z",
+      "updatedAt": "2024-11-10T11:12:42.068Z",
+      "id": "vgr897z7Ao8rJnZh",
+      "name": "navi"
+    }
+  ],
   "triggerCount": 2,
-  "updatedAt": "2024-11-09T22:44:52.000Z",
-  "versionId": "7d7550aa-b7ac-40bd-9afd-3477a7bfc31c"
+  "updatedAt": "2024-11-10T11:12:44.000Z",
+  "versionId": "6a5ef222-d4f8-49d3-9907-f5f548f8fd19"
 }

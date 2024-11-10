@@ -541,8 +541,21 @@
     "executionOrder": "v1"
   },
   "staticData": null,
-  "tags": [],
+  "tags": [
+    {
+      "createdAt": "2024-11-10T11:13:00.957Z",
+      "updatedAt": "2024-11-10T11:13:00.957Z",
+      "id": "UCWLA0c2FsmSKRso",
+      "name": "sub"
+    },
+    {
+      "createdAt": "2024-11-10T11:12:42.068Z",
+      "updatedAt": "2024-11-10T11:12:42.068Z",
+      "id": "vgr897z7Ao8rJnZh",
+      "name": "navi"
+    }
+  ],
   "triggerCount": 0,
-  "updatedAt": "2024-09-12T07:53:14.000Z",
-  "versionId": "20f44ca0-191b-4382-9e5a-f5138d71711a"
+  "updatedAt": "2024-11-10T11:16:55.000Z",
+  "versionId": "40231a7a-a03b-4f6f-afa8-668712d45ac8"
 }

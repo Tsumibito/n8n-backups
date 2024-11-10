@@ -489,8 +489,15 @@
     "executionOrder": "v1"
   },
   "staticData": null,
-  "tags": [],
+  "tags": [
+    {
+      "createdAt": "2024-11-10T11:15:20.148Z",
+      "updatedAt": "2024-11-10T11:15:20.148Z",
+      "id": "cw1XP4sF94gFOSwT",
+      "name": "n8n"
+    }
+  ],
   "triggerCount": 1,
-  "updatedAt": "2024-10-09T09:07:09.000Z",
-  "versionId": "c827eaa7-180b-4311-90de-4b6d90a0ecdd"
+  "updatedAt": "2024-11-10T11:15:21.000Z",
+  "versionId": "9d759a98-1f27-4a52-9d61-d9c6a46686eb"
 }

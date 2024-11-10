@@ -168,8 +168,15 @@
     "executionOrder": "v1"
   },
   "staticData": null,
-  "tags": [],
+  "tags": [
+    {
+      "createdAt": "2024-11-10T11:13:57.747Z",
+      "updatedAt": "2024-11-10T11:13:57.747Z",
+      "id": "1PzLPF9JMjxD6OYs",
+      "name": "test"
+    }
+  ],
   "triggerCount": 0,
-  "updatedAt": "2024-11-08T16:20:29.000Z",
-  "versionId": "4d3e6b0b-a9f2-44cd-864f-8ae1bb5c05fa"
+  "updatedAt": "2024-11-10T11:14:14.000Z",
+  "versionId": "aaa3a63a-8ba5-4831-8074-d910a38c0e6a"
 }

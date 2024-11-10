@@ -173,8 +173,21 @@
     "executionOrder": "v1"
   },
   "staticData": null,
-  "tags": [],
+  "tags": [
+    {
+      "createdAt": "2024-11-10T11:13:00.957Z",
+      "updatedAt": "2024-11-10T11:13:00.957Z",
+      "id": "UCWLA0c2FsmSKRso",
+      "name": "sub"
+    },
+    {
+      "createdAt": "2024-11-10T11:12:42.068Z",
+      "updatedAt": "2024-11-10T11:12:42.068Z",
+      "id": "vgr897z7Ao8rJnZh",
+      "name": "navi"
+    }
+  ],
   "triggerCount": 0,
-  "updatedAt": "2024-11-09T09:38:30.000Z",
-  "versionId": "4881d248-cad5-4f86-af01-f309d2b63af3"
+  "updatedAt": "2024-11-10T11:13:07.000Z",
+  "versionId": "ad77d854-74a7-4ca7-b59d-ddeb6349ff81"
 }

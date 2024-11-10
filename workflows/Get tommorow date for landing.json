@@ -115,8 +115,15 @@
     "executionOrder": "v1"
   },
   "staticData": null,
-  "tags": [],
+  "tags": [
+    {
+      "createdAt": "2024-11-10T11:12:42.068Z",
+      "updatedAt": "2024-11-10T11:12:42.068Z",
+      "id": "vgr897z7Ao8rJnZh",
+      "name": "navi"
+    }
+  ],
   "triggerCount": 1,
-  "updatedAt": "2024-10-30T11:16:20.000Z",
-  "versionId": "aad5719f-494f-43bd-b26c-172f14d32170"
+  "updatedAt": "2024-11-10T11:14:41.000Z",
+  "versionId": "f540053d-6397-4cec-99e4-d194a386b9b8"
 }

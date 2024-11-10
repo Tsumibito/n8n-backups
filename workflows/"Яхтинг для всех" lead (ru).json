@@ -16,11 +16,6 @@
           }
         ]
       ]
-    },
-    "Slack to Navi lead Cannel": {
-      "main": [
-        []
-      ]
     }
   },
   "createdAt": "2024-10-17T08:54:41.917Z",
@@ -171,8 +166,15 @@
     "executionOrder": "v1"
   },
   "staticData": null,
-  "tags": [],
+  "tags": [
+    {
+      "createdAt": "2024-11-10T11:12:42.068Z",
+      "updatedAt": "2024-11-10T11:12:42.068Z",
+      "id": "vgr897z7Ao8rJnZh",
+      "name": "navi"
+    }
+  ],
   "triggerCount": 1,
-  "updatedAt": "2024-11-03T16:22:47.000Z",
-  "versionId": "4925e036-056f-4647-9183-d95c3791408f"
+  "updatedAt": "2024-11-10T11:14:26.000Z",
+  "versionId": "19e0ab2e-298b-4967-8446-a7ba5a694ea2"
 }

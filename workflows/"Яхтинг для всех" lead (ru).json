@@ -13,6 +13,33 @@
             "node": "Slack to Navi lead Cannel",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Mailjet",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -76,7 +103,7 @@
       "type": "n8n-nodes-base.baserow",
       "typeVersion": 1,
       "position": [
-        1240,
+        1260,
         520
       ],
       "credentials": {
@@ -85,22 +112,6 @@
           "name": "Baserow account"
         }
       }
-    },
-    {
-      "parameters": {
-        "httpMethod": "POST",
-        "path": "463e0e02-f6b9-4141-a46f-7e0b8daefedd",
-        "options": {}
-      },
-      "id": "f8904115-aca2-49e7-9d0b-18b7b73bb0df",
-      "name": "Webhook",
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2,
-      "position": [
-        1020,
-        520
-      ],
-      "webhookId": "463e0e02-f6b9-4141-a46f-7e0b8daefedd"
     },
     {
       "parameters": {
@@ -126,6 +137,92 @@
         "slackApi": {
           "id": "FrLH5fYXH48xDmpN",
           "name": "Slack account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "463e0e02-f6b9-4141-a46f-7e0b8daefedd",
+        "options": {}
+      },
+      "id": "f8904115-aca2-49e7-9d0b-18b7b73bb0df",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        880,
+        520
+      ],
+      "webhookId": "463e0e02-f6b9-4141-a46f-7e0b8daefedd"
+    },
+    {
+      "parameters": {
+        "sendTo": "alex.mon.navi@gmail.com",
+        "subject": "\"Яхтинг для всех\" +1",
+        "emailType": "text",
+        "message": "=Новая оплата курса \"Яхтинг для всех\" ({{ $json.body.Lang }}) \nName: {{ $json.body.first_name }}\nEmail: {{ $json.body.email }} \nUTM: {{ $json.body.utm_source }}\n{{ $json.body.utm_campaign }}\n{{ $json.body.utm_medium }}\n{{ $json.body.utm_term }}\n{{ $json.body.utm_content }}",
+        "options": {}
+      },
+      "id": "f8004a08-effe-4d77-b008-a40386c1fac5",
+      "name": "Gmail",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1260,
+        700
+      ],
+      "webhookId": "9245b6e6-cbcb-4412-9a9a-e42ccd28c9b3",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "qkdDun6kFLlujP1i",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "34c33a5c-66e5-4e9a-9f96-fc60fbb17247",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1500,
+        520
+      ],
+      "webhookId": "85480e14-6f84-42a9-bf8d-80b519e29228"
+    },
+    {
+      "parameters": {
+        "operation": "sendTemplate",
+        "subject": "Приветствую на марафоне \"Яхтинг для всех\"",
+        "fromEmail": "info@navi.training",
+        "toEmail": "={{ $json.Email }}",
+        "templateId": 6459557,
+        "additionalFields": {
+          "templateLanguage": true
+        },
+        "variablesUi": {
+          "variablesValues": [
+            {
+              "name": "firstname",
+              "value": "{{ $json.Name }}"
+            }
+          ]
+        }
+      },
+      "id": "8901f48f-9ca9-4f81-83a1-8ace9f032421",
+      "name": "Mailjet",
+      "type": "n8n-nodes-base.mailjet",
+      "typeVersion": 1,
+      "position": [
+        1720,
+        520
+      ],
+      "credentials": {
+        "mailjetEmailApi": {
+          "id": "HPoQPpK8H9h1lQ2u",
+          "name": "Mailjet Email account"
         }
       }
     }
@@ -175,6 +272,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-11-10T11:14:26.000Z",
-  "versionId": "19e0ab2e-298b-4967-8446-a7ba5a694ea2"
+  "updatedAt": "2024-11-11T21:54:51.000Z",
+  "versionId": "cdd420f5-57ec-4866-9599-336cfb507a0d"
 }

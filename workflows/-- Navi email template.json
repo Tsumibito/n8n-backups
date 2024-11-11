@@ -1,0 +1,122 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Templates": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-11-11T16:48:42.478Z",
+  "id": "xM0skB76nvbzgE7h",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "-- Navi email template",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "0ba8ac91-16d9-4589-99c3-55ec4b3fb98c",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      },
+      "id": "0287fc8b-2a76-4969-b053-045746c4bcf1",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1540,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "afa6b65e-57bc-42ed-8e0c-1564194c2120",
+              "name": "Email_Template",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "041ed784-b450-4d69-a2a1-d8fef57df518",
+              "name": "p_template",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "0609b842-db67-4b10-bc9a-dc550ab43ee6",
+              "name": "header_template",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "0eb3a644-2f40-4fac-afbd-4c51022d0ac7",
+              "name": "button_template",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "333de080-4acc-423a-86e0-a6feaed7fa63",
+      "name": "Templates",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1240,
+        660
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2024-11-10T11:13:00.957Z",
+      "updatedAt": "2024-11-10T11:13:00.957Z",
+      "id": "UCWLA0c2FsmSKRso",
+      "name": "sub"
+    },
+    {
+      "createdAt": "2024-11-10T11:12:42.068Z",
+      "updatedAt": "2024-11-10T11:12:42.068Z",
+      "id": "vgr897z7Ao8rJnZh",
+      "name": "navi"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2024-11-11T18:55:24.000Z",
+  "versionId": "9da084fc-57e1-49eb-986e-82dc8712ab44"
+}

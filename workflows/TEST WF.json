@@ -11,6 +11,17 @@
           }
         ]
       ]
+    },
+    "Baserow": {
+      "main": [
+        [
+          {
+            "node": "Mailjet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-09-14T16:20:56.043Z",
@@ -52,6 +63,19 @@
           "name": "Baserow account"
         }
       }
+    },
+    {
+      "parameters": {
+        "additionalFields": {}
+      },
+      "id": "9beee502-163d-4225-a1ad-2cf8878a9395",
+      "name": "Mailjet",
+      "type": "n8n-nodes-base.mailjet",
+      "typeVersion": 1,
+      "position": [
+        1340,
+        720
+      ]
     }
   ],
   "pinData": {},
@@ -68,6 +92,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-11-10T11:13:59.000Z",
-  "versionId": "974b9eee-ec2b-494b-941a-faaa13944492"
+  "updatedAt": "2024-11-11T16:28:13.000Z",
+  "versionId": "9e195a65-3248-4ff1-a7db-14db2547f4a0"
 }

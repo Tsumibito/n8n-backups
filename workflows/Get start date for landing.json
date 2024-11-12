@@ -1,0 +1,129 @@
+{
+  "active": true,
+  "connections": {
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-10-30T11:04:35.363Z",
+  "id": "3kzvjx9e66OzqYKc",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Get start date for landing",
+  "nodes": [
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "\nfrom datetime import datetime, timedelta\nfrom pytz import timezone\n\nparis_tz = timezone('Europe/Paris')\ntomorrow_paris = datetime.now(paris_tz) + timedelta(days=1)\nstart_date = tomorrow_paris.strftime('%d.%m.%Y')\n\nfor item in _input.all():\n    item.json['start_date'] = start_date\nreturn _input.all()\n"
+      },
+      "id": "c54bf247-f8bd-4348-a593-939dcf2901a9",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1240,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"start_date\": \"{{ $json.start_date }}\"\n} ",
+        "options": {}
+      },
+      "id": "13d09505-3c19-4072-9407-684e8d9fa88f",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1420,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "path": "1975ea92-3866-4ad3-94c0-f81719595fc2",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "d34c885f-b2ac-4208-900f-1fc9b90de09c",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        1020,
+        520
+      ],
+      "webhookId": "1975ea92-3866-4ad3-94c0-f81719595fc2"
+    }
+  ],
+  "pinData": {
+    "Code": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.navi.training",
+            "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7",
+            "cookie": "_ga=GA1.1.479178324.1723974004; rl_page_init_referrer=RudderEncrypt%3AU2FsdGVkX19RHRRKPcQQU2%2B3xd3%2FBk3TB31nj08hCXg%3D; rl_page_init_referring_domain=RudderEncrypt%3AU2FsdGVkX1%2FRvEW5PtInm3nBJMhvPOBcJzzljB%2BANsk%3D; _gcl_au=1.1.17396524.1723974004.1149881735.1729160504.1729165179; _fbp=fb.1.1729937388155.47148941335982102; cfz_facebook-pixel=%7B%22nTFB_fb-pixel%22%3A%7B%22v%22%3A%22fb.1.1730026203795.598359036%22%2C%22e%22%3A1761562203795%7D%7D; _ga_SFFJBRXMWX=GS1.1.1730040983.31.1.1730042392.60.0.995401548; cf_consent_vendors={\"755\":true,\"nonTcf-Meta\":true}; zaraz-consent={\"DvSD\":true,\"tcf-purposes-1\":true,\"tcf-purposes-3\":true,\"tcf-purposes-4\":true,\"tcf-purposes-2\":true,\"tcf-purposes-7\":true,\"tcf-purposes-9\":true,\"tcf-purposes-10\":true}; euconsent-v2=CQHJxkAQHJxkAGxABAENBNFgAPLAAAAAAAAAF5wAQF5gAAAA.YAAAAAAAAAAA; cf_consent={\"DvSD\":true,\"tcf-purposes-1\":true,\"tcf-purposes-3\":true,\"tcf-purposes-4\":true,\"tcf-purposes-2\":true,\"tcf-purposes-7\":true,\"tcf-purposes-9\":true,\"tcf-purposes-10\":true}; rl_anonymous_id=RudderEncrypt%3AU2FsdGVkX1%2BozsrGxGZxnIs42xbnx4G6n%2B0%2F88p1sIWLD2z%2BYyJSMZKG7B0%2FV5GDRYpEUBT3kWCCWaRIE968PA%3D%3D; rl_user_id=RudderEncrypt%3AU2FsdGVkX18q6qPto2%2FpzSnK3CBuI1de0N7Pu4fAq0FSR8E336StX7MsmgwNb7kVnWDtvAY9i07fBAjgw37HtxrASZraBSlcH%2BeQKrxPKs9JmxhZr0kjDg5ORQZES4dodBs3xxq4yHHv7YkE%2B13wUT%2BwBNF2caQiEHfYVgItpCc%3D; rl_trait=RudderEncrypt%3AU2FsdGVkX1%2FI%2FuirrF9W%2B6BwS%2BSFy7G793K2vQi4dr%2Fh3imK%2BK4soUM%2FgLLBxmspuEUzflFWwlrLtZMiwp7wq2B97bjcvHHhqc1pT7yjJS045%2F8UYazUQsN%2BSLlZcJ0IyFvLuTwIseWfOtMutJZqPQ%3D%3D; _ga_BD8HH5XQLF=GS1.1.1730122404.11.1.1730122791.60.0.0; cfzs_google-analytics_v4=%7B%22iutW_pageviewCounter%22%3A%7B%22v%22%3A%22196%22%7D%2C%22iutW_conversionCounter%22%3A%7B%22v%22%3A%222%22%7D%7D; ph_phc_hQioMQtcwvfhyK3K4QlyShME4bTESgaCgRH496bfcsA_posthog=%7B%22distinct_id%22%3A%220192cef6-41a0-703d-99a1-57334045f6e0%22%2C%22%24sesid%22%3A%5B1730153610700%2C%220192d530-475e-7ec2-9c06-c4af43b5e447%22%2C1730153563998%5D%7D; cfz_google-analytics_v4=%7B%22iutW_engagementDuration%22%3A%7B%22v%22%3A%220%22%2C%22e%22%3A1761750207404%7D%2C%22iutW_engagementStart%22%3A%7B%22v%22%3A%221730214207404%22%2C%22e%22%3A1761750207404%7D%2C%22iutW_counter%22%3A%7B%22v%22%3A%22229%22%2C%22e%22%3A1761750207404%7D%2C%22iutW_session_counter%22%3A%7B%22v%22%3A%228%22%2C%22e%22%3A1761750207404%7D%2C%22iutW_ga4%22%3A%7B%22v%22%3A%22b7c7cdd1-6bf5-47e9-9f14-fbae14e1a69e%22%2C%22e%22%3A1761750207404%7D%2C%22iutW__z_ga_audiences%22%3A%7B%22v%22%3A%22b7c7cdd1-6bf5-47e9-9f14-fbae14e1a69e%22%2C%22e%22%3A1761576980023%7D%2C%22iutW_let%22%3A%7B%22v%22%3A%221730214207404%22%2C%22e%22%3A1761750207404%7D%2C%22iutW_ga4sid%22%3A%7B%22v%22%3A%221040099820%22%2C%22e%22%3A1730216007404%7D%7D; twk_uuid_6408f7ae4247f20fefe4c888=%7B%22uuid%22%3A%221.1vXEVs4A0iGkQwmORd0oLI2ID5gnWI4onafVD21LprS7kxVxgou7nA3UaSqWPdc43hwoiVbPrB2HxkkiJNKIcm8Y23KQLExRGFfK4tod6v7rNPAMbe706KQ%22%2C%22version%22%3A3%2C%22domain%22%3A%22navi.training%22%2C%22ts%22%3A1730228738473%7D; n8n-auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA2MDVkOGRmLTJhMzktNGU3ZS1hYzk3LWZiNDczMDJmODI3MSIsImhhc2giOiJhSklZbzdOZUpXIiwiYnJvd3NlcklkIjoicU9IV0dnWTRWbk0ra2NFaUtUK3psR3hnWDFKTEUxNXI3Z3NwN2kzM2luMD0iLCJpYXQiOjE3MzAyODYxOTAsImV4cCI6MTczMDg5MDk5MH0.kwBlS2Z6sLO2oVJ-_5KXb2n7Ae35rx1cSG2pYGB5Zn8; ph_phc_4URIAm1uYfJO7j8kWSe0J8lc8IqnstRLS7Jx8NcakHo_posthog=%7B%22distinct_id%22%3A%2204faae0a7a2bbdd5003eb0391853224ce404da4ef758e165eb412a772825c164%230605d8df-2a39-4e7e-ac97-fb47302f8271%22%2C%22%24sesid%22%3A%5B1730286314033%2C%220192dd18-cde8-763c-b748-782b87ac5fb7%22%2C1730286243303%5D%2C%22%24epp%22%3Atrue%7D; rl_session=RudderEncrypt%3AU2FsdGVkX19MrwHyt3yh6LFWNDlg48nfdSNNRt%2FEW5vGFx2ORU0dO5u%2BFWm1GevZ62bzLgYhliXPoONUBMT5Y0zh5Dz1ChaTul53u53Xb2daz75rr5QNf7Z3dUaunEJCH3EudCyFWgFhOXHBv%2FbtCw%3D%3D",
+            "priority": "u=0, i",
+            "sec-ch-ua": "\"Chromium\";v=\"130\", \"Google Chrome\";v=\"130\", \"Not?A_Brand\";v=\"99\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"macOS\"",
+            "sec-fetch-dest": "document",
+            "sec-fetch-mode": "navigate",
+            "sec-fetch-site": "none",
+            "sec-fetch-user": "?1",
+            "upgrade-insecure-requests": "1",
+            "x-forwarded-for": "88.169.43.45",
+            "x-forwarded-host": "n8n.navi.training",
+            "x-forwarded-proto": "https"
+          },
+          "params": {},
+          "query": {},
+          "body": {},
+          "webhookUrl": "https://n8n.navi.training/webhook-test/1975ea92-3866-4ad3-94c0-f81719595fc2",
+          "executionMode": "test",
+          "start_date": "31.10.2024"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2024-11-10T11:12:42.068Z",
+      "updatedAt": "2024-11-10T11:12:42.068Z",
+      "id": "vgr897z7Ao8rJnZh",
+      "name": "navi"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-11-12T10:15:28.000Z",
+  "versionId": "f0f893b5-e053-411c-8d6a-f12e87bf82ea"
+}

@@ -43,6 +43,28 @@
           }
         ]
       ]
+    },
+    "Mailjet": {
+      "main": [
+        [
+          {
+            "node": "Brevo1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Brevo1": {
+      "main": [
+        [
+          {
+            "node": "Brevo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-10-17T08:54:41.917Z",
@@ -206,7 +228,11 @@
           "variablesValues": [
             {
               "name": "firstname",
-              "value": "{{ $json.Name }}"
+              "value": "={{ $json.Name }}"
+            },
+            {
+              "name": "name",
+              "value": "={{ $json.Name }}"
             }
           ]
         }
@@ -223,6 +249,59 @@
         "mailjetEmailApi": {
           "id": "HPoQPpK8H9h1lQ2u",
           "name": "Mailjet Email account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "sendTemplate",
+        "templateId": 2,
+        "receipients": "={{ $('Webhook').item.json.body.email }}",
+        "additionalFields": {},
+        "requestOptions": {}
+      },
+      "id": "0f5cf1da-e811-4755-8ca7-93f74c872c77",
+      "name": "Brevo",
+      "type": "n8n-nodes-base.sendInBlue",
+      "typeVersion": 1,
+      "position": [
+        2160,
+        520
+      ],
+      "credentials": {
+        "sendInBlueApi": {
+          "id": "J9yp1mjVbwjhXWUG",
+          "name": "Brevo account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "contact",
+        "email": "={{ $('Webhook').item.json.body.email }}",
+        "createContactAttributes": {
+          "attributesValues": [
+            {
+              "fieldName": "FIRSTNAME",
+              "fieldValue": "={{ $('Webhook').item.json.body.first_name }}"
+            }
+          ]
+        },
+        "requestOptions": {}
+      },
+      "id": "46027661-2b63-4692-9847-b7362208d7c1",
+      "name": "Brevo1",
+      "type": "n8n-nodes-base.sendInBlue",
+      "typeVersion": 1,
+      "position": [
+        1940,
+        520
+      ],
+      "credentials": {
+        "sendInBlueApi": {
+          "id": "J9yp1mjVbwjhXWUG",
+          "name": "Brevo account"
         }
       }
     }
@@ -272,6 +351,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-11-11T21:54:51.000Z",
-  "versionId": "cdd420f5-57ec-4866-9599-336cfb507a0d"
+  "updatedAt": "2024-11-12T21:44:19.000Z",
+  "versionId": "5735816d-b8f9-46cc-b17e-920f5ed9bca9"
 }

@@ -203,7 +203,9 @@
       }
     },
     {
-      "parameters": {},
+      "parameters": {
+        "unit": "minutes"
+      },
       "id": "34c33a5c-66e5-4e9a-9f96-fc60fbb17247",
       "name": "Wait",
       "type": "n8n-nodes-base.wait",
@@ -274,7 +276,8 @@
           "id": "J9yp1mjVbwjhXWUG",
           "name": "Brevo account"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -351,6 +354,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-11-12T21:44:19.000Z",
-  "versionId": "5735816d-b8f9-46cc-b17e-920f5ed9bca9"
+  "updatedAt": "2024-11-16T18:43:01.000Z",
+  "versionId": "7d1b8c91-166e-419b-852d-fac59177351e"
 }

@@ -44,6 +44,17 @@
           }
         ]
       ]
+    },
+    "Anthropic Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-11-16T09:24:11.718Z",
@@ -139,6 +150,7 @@
     },
     {
       "parameters": {
+        "model": "claude-3-5-haiku-20241022",
         "options": {}
       },
       "id": "fae0b1be-ce4c-4922-a170-3744a4d1339e",
@@ -151,7 +163,7 @@
       ],
       "credentials": {
         "anthropicApi": {
-          "id": "8bzxEgWTAi1hO6SX",
+          "id": "lg9KQQ8WqN1NcLEl",
           "name": "Anthropic account"
         }
       }
@@ -188,6 +200,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2024-11-16T15:33:08.000Z",
-  "versionId": "9b5317fa-ac04-450e-86f0-1ceeadf0beab"
+  "updatedAt": "2024-11-17T17:26:02.000Z",
+  "versionId": "2fb68a52-8822-4017-b89e-f609c2a17cac"
 }

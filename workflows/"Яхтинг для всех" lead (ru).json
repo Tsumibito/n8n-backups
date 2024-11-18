@@ -1,27 +1,6 @@
 {
   "active": true,
   "connections": {
-    "Webhook": {
-      "main": [
-        [
-          {
-            "node": "Baserow",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Slack to Navi lead Cannel",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Gmail",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Baserow": {
       "main": [
         [
@@ -60,6 +39,27 @@
         [
           {
             "node": "Brevo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Baserow",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Slack to Navi lead Cannel",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Gmail",
             "type": "main",
             "index": 0
           }
@@ -161,22 +161,6 @@
           "name": "Slack account"
         }
       }
-    },
-    {
-      "parameters": {
-        "httpMethod": "POST",
-        "path": "463e0e02-f6b9-4141-a46f-7e0b8daefedd",
-        "options": {}
-      },
-      "id": "f8904115-aca2-49e7-9d0b-18b7b73bb0df",
-      "name": "Webhook",
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2,
-      "position": [
-        880,
-        520
-      ],
-      "webhookId": "463e0e02-f6b9-4141-a46f-7e0b8daefedd"
     },
     {
       "parameters": {
@@ -307,6 +291,22 @@
           "name": "Brevo account"
         }
       }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "463e0e02-f6b9-4141-a46f-7e0b8daefedd",
+        "options": {}
+      },
+      "id": "f8904115-aca2-49e7-9d0b-18b7b73bb0df",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        880,
+        520
+      ],
+      "webhookId": "463e0e02-f6b9-4141-a46f-7e0b8daefedd"
     }
   ],
   "pinData": {
@@ -354,6 +354,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-11-16T18:43:01.000Z",
-  "versionId": "7d1b8c91-166e-419b-852d-fac59177351e"
+  "updatedAt": "2024-11-18T21:36:01.000Z",
+  "versionId": "5fbfc131-756f-4b71-9160-1ad47732143f"
 }

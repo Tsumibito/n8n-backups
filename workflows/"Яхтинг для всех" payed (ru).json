@@ -1,0 +1,328 @@
+{
+  "active": true,
+  "connections": {
+    "Baserow": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Mailjet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mailjet": {
+      "main": [
+        [
+          {
+            "node": "Brevo1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Brevo1": {
+      "main": [
+        [
+          {
+            "node": "Brevo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Baserow",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Slack to Navi lead Cannel",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-11-18T21:37:27.918Z",
+  "id": "F5mgYBOl0CDMGBbk",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "\"Яхтинг для всех\" payed (ru)",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "create",
+        "databaseId": 139118,
+        "tableId": 380230,
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 2873835,
+              "fieldValue": "={{ $json.body.first_name }}"
+            },
+            {
+              "fieldId": 2873845,
+              "fieldValue": "={{ $json.body.email }}"
+            },
+            {
+              "fieldId": 2873847,
+              "fieldValue": "={{ $json.body.Lang }}"
+            },
+            {
+              "fieldId": 2873846,
+              "fieldValue": "={{ $json.body.utm_source }}"
+            },
+            {
+              "fieldId": 2873848,
+              "fieldValue": "={{ $json.body.utm_campaign }}"
+            },
+            {
+              "fieldId": 2873854,
+              "fieldValue": "={{ $json.body.utm_medium }}"
+            },
+            {
+              "fieldId": 2873855,
+              "fieldValue": "={{ $json.body.utm_term }}"
+            },
+            {
+              "fieldId": 2873856,
+              "fieldValue": "={{ $json.body.utm_content }}"
+            },
+            {
+              "fieldId": 2873837,
+              "fieldValue": "true"
+            }
+          ]
+        }
+      },
+      "id": "7aee6090-2b49-4fd3-9b2c-0f17c49fbe39",
+      "name": "Baserow",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        1260,
+        520
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C07H25HAK4N",
+          "mode": "list",
+          "cachedResultName": "navi-sailing-school"
+        },
+        "text": "=Новая оплата курса \"Яхтинг для всех\" ({{ $json.body.Lang }}) \nName: {{ $json.body.first_name }}\nEmail: {{ $json.body.email }} \nUTM: {{ $json.body.utm_source }}\n{{ $json.body.utm_campaign }}\n{{ $json.body.utm_medium }}\n{{ $json.body.utm_term }}\n{{ $json.body.utm_content }}",
+        "otherOptions": {}
+      },
+      "id": "ab32df47-ba2a-4560-8485-c9d038bbc107",
+      "name": "Slack to Navi lead Cannel",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.2,
+      "position": [
+        1240,
+        320
+      ],
+      "credentials": {
+        "slackApi": {
+          "id": "FrLH5fYXH48xDmpN",
+          "name": "Slack account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "alex.mon.navi@gmail.com",
+        "subject": "\"Яхтинг для всех\" +1",
+        "emailType": "text",
+        "message": "=Новая оплата курса \"Яхтинг для всех\" ({{ $json.body.Lang }}) \nName: {{ $json.body.first_name }}\nEmail: {{ $json.body.email }} \nUTM: {{ $json.body.utm_source }}\n{{ $json.body.utm_campaign }}\n{{ $json.body.utm_medium }}\n{{ $json.body.utm_term }}\n{{ $json.body.utm_content }}",
+        "options": {}
+      },
+      "id": "63e95804-78e2-42d4-8c1c-a77da52ff128",
+      "name": "Gmail",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1260,
+        700
+      ],
+      "webhookId": "19f3aafd-2657-4400-a383-e5ecdab1fa30",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "qkdDun6kFLlujP1i",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "unit": "minutes"
+      },
+      "id": "f3929520-eaa3-43b9-8904-58d4894774f2",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1500,
+        520
+      ],
+      "webhookId": "e65d39d4-4350-4cc9-b3f9-605a8fd1d3b4"
+    },
+    {
+      "parameters": {
+        "operation": "sendTemplate",
+        "subject": "Приветствую на марафоне \"Яхтинг для всех\"",
+        "fromEmail": "info@navi.training",
+        "toEmail": "={{ $json.Email }}",
+        "templateId": 6459557,
+        "additionalFields": {
+          "templateLanguage": true
+        },
+        "variablesUi": {
+          "variablesValues": [
+            {
+              "name": "firstname",
+              "value": "={{ $json.Name }}"
+            },
+            {
+              "name": "name",
+              "value": "={{ $json.Name }}"
+            }
+          ]
+        }
+      },
+      "id": "ee12e40e-e641-4360-881d-2b04f58337a0",
+      "name": "Mailjet",
+      "type": "n8n-nodes-base.mailjet",
+      "typeVersion": 1,
+      "position": [
+        1720,
+        520
+      ],
+      "credentials": {
+        "mailjetEmailApi": {
+          "id": "HPoQPpK8H9h1lQ2u",
+          "name": "Mailjet Email account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "sendTemplate",
+        "templateId": 2,
+        "receipients": "={{ $('Webhook').item.json.body.email }}",
+        "additionalFields": {},
+        "requestOptions": {}
+      },
+      "id": "68247562-0e89-4bec-925d-6b6322e156ba",
+      "name": "Brevo",
+      "type": "n8n-nodes-base.sendInBlue",
+      "typeVersion": 1,
+      "position": [
+        2160,
+        520
+      ],
+      "credentials": {
+        "sendInBlueApi": {
+          "id": "J9yp1mjVbwjhXWUG",
+          "name": "Brevo account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "resource": "contact",
+        "email": "={{ $('Webhook').item.json.body.email }}",
+        "createContactAttributes": {
+          "attributesValues": [
+            {
+              "fieldName": "FIRSTNAME",
+              "fieldValue": "={{ $('Webhook').item.json.body.first_name }}"
+            }
+          ]
+        },
+        "requestOptions": {}
+      },
+      "id": "e32f6a03-1f1d-4b63-89fe-9183819421e1",
+      "name": "Brevo1",
+      "type": "n8n-nodes-base.sendInBlue",
+      "typeVersion": 1,
+      "position": [
+        1940,
+        520
+      ],
+      "credentials": {
+        "sendInBlueApi": {
+          "id": "J9yp1mjVbwjhXWUG",
+          "name": "Brevo account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "1f9b0e86-f734-44d3-8320-72d8e679b883",
+        "options": {}
+      },
+      "id": "62f50b64-d042-4730-b3cc-776fde6b668e",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        880,
+        520
+      ],
+      "webhookId": "1f9b0e86-f734-44d3-8320-72d8e679b883"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2024-11-10T11:12:42.068Z",
+      "updatedAt": "2024-11-10T11:12:42.068Z",
+      "id": "vgr897z7Ao8rJnZh",
+      "name": "navi"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-11-18T21:43:09.000Z",
+  "versionId": "074d3213-15d6-4a7c-b615-81266b8a9957"
+}

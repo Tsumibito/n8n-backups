@@ -133,7 +133,8 @@
           "id": "iKQh0Jcxz7wezRWR",
           "name": "Baserow account"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -198,7 +199,8 @@
         1500,
         520
       ],
-      "webhookId": "e65d39d4-4350-4cc9-b3f9-605a8fd1d3b4"
+      "webhookId": "e65d39d4-4350-4cc9-b3f9-605a8fd1d3b4",
+      "disabled": true
     },
     {
       "parameters": {
@@ -290,7 +292,8 @@
           "id": "J9yp1mjVbwjhXWUG",
           "name": "Brevo account"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -323,6 +326,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-11-18T21:43:09.000Z",
-  "versionId": "074d3213-15d6-4a7c-b615-81266b8a9957"
+  "updatedAt": "2024-11-19T08:38:58.000Z",
+  "versionId": "406dd455-fe2d-424c-9353-9d6f92c03f0f"
 }

@@ -144,7 +144,7 @@
           "mode": "list",
           "cachedResultName": "navi-sailing-school"
         },
-        "text": "=Новая оплата курса \"Яхтинг для всех\" ({{ $json.body.Lang }}) \nName: {{ $json.body.first_name }}\nEmail: {{ $json.body.email }} \nUTM: {{ $json.body.utm_source }}\n{{ $json.body.utm_campaign }}\n{{ $json.body.utm_medium }}\n{{ $json.body.utm_term }}\n{{ $json.body.utm_content }}",
+        "text": "=Форма заполнена \"Яхтинг для всех\" ({{ $json.body.Lang }}) \nName: {{ $json.body.first_name }}\nEmail: {{ $json.body.email }} \nUTM: {{ $json.body.utm_source }}\n{{ $json.body.utm_campaign }}\n{{ $json.body.utm_medium }}\n{{ $json.body.utm_term }}\n{{ $json.body.utm_content }}",
         "otherOptions": {}
       },
       "id": "cca7616a-1da8-4fea-bbb1-581d30345ca0",
@@ -167,7 +167,7 @@
         "sendTo": "alex.mon.navi@gmail.com",
         "subject": "\"Яхтинг для всех\" +1",
         "emailType": "text",
-        "message": "=Новая оплата курса \"Яхтинг для всех\" ({{ $json.body.Lang }}) \nName: {{ $json.body.first_name }}\nEmail: {{ $json.body.email }} \nUTM: {{ $json.body.utm_source }}\n{{ $json.body.utm_campaign }}\n{{ $json.body.utm_medium }}\n{{ $json.body.utm_term }}\n{{ $json.body.utm_content }}",
+        "message": "=Форма заполнена \"Яхтинг для всех\" ({{ $json.body.Lang }}) \nName: {{ $json.body.first_name }}\nEmail: {{ $json.body.email }} \nUTM: {{ $json.body.utm_source }}\n{{ $json.body.utm_campaign }}\n{{ $json.body.utm_medium }}\n{{ $json.body.utm_term }}\n{{ $json.body.utm_content }}",
         "options": {}
       },
       "id": "f8004a08-effe-4d77-b008-a40386c1fac5",
@@ -354,6 +354,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-11-18T21:36:01.000Z",
-  "versionId": "5fbfc131-756f-4b71-9160-1ad47732143f"
+  "updatedAt": "2024-11-19T08:38:32.000Z",
+  "versionId": "5e05c91d-99d2-4d83-bdbb-f54b28a47453"
 }

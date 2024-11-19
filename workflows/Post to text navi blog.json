@@ -1,0 +1,138 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Baserow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Baserow1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-11-19T09:31:12.856Z",
+  "id": "FjtRMgxUxiANDsHg",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Post to text navi blog",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "a4085a24-52fe-4b57-a5bf-03c6a16d630e",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        620,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "databaseId": 139118,
+        "tableId": 356544,
+        "rowId": "6"
+      },
+      "id": "80b0819f-412e-49d5-91f0-aab9209dc078",
+      "name": "Baserow",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        840,
+        520
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "function convertHtmlToText(html) {\n  if (!html) return '';\n  \n  let text = html;\n  \n  // Удаляем все figure блоки с изображениями\n  text = text.replace(/<figure\\b[^>]*>.*?<\\/figure>/gs, '');\n  \n  // Удаляем все теги изображений\n  text = text.replace(/<img\\b[^>]*>/g, '');\n  \n  // Заменяем ссылки только их текстовым содержимым\n  text = text.replace(/<a\\b[^>]*>(.*?)<\\/a>/g, '$1');\n  \n  // Добавляем переносы строк для заголовков\n  text = text.replace(/<h[1-6][^>]*>(.*?)<\\/h[1-6]>/g, '\\n$1\\n');\n  \n  // Добавляем переносы строк для параграфов\n  text = text.replace(/<p[^>]*>(.*?)<\\/p>/g, '$1\\n');\n  \n  // Обрабатываем списки\n  text = text.replace(/<li[^>]*>(.*?)<\\/li>/g, '• $1\\n');\n  \n  // Сохраняем форматирование для strong и em\n  text = text.replace(/<strong[^>]*>(.*?)<\\/strong>/g, '$1');\n  text = text.replace(/<em[^>]*>(.*?)<\\/em>/g, '$1');\n  \n  // Удаляем все оставшиеся HTML теги\n  text = text.replace(/<[^>]+>/g, '');\n  \n  // Удаляем все HTML атрибуты id\n  text = text.replace(/\\sid=\"[^\"]*\"/g, '');\n  \n  // Заменяем множественные пробелы одним\n  text = text.replace(/\\s+/g, ' ');\n  \n  // Заменяем множественные переносы строк на двойной перенос\n  text = text.replace(/\\n\\s*\\n/g, '\\n\\n');\n  \n  // Удаляем пробелы в начале и конце строк\n  text = text.split('\\n').map(line => line.trim()).join('\\n');\n  \n  // Удаляем пустые строки в начале и конце текста\n  text = text.trim();\n  \n  // Декодируем HTML entities\n  text = text.replace(/&nbsp;/g, ' ')\n             .replace(/&amp;/g, '&')\n             .replace(/&lt;/g, '<')\n             .replace(/&gt;/g, '>')\n             .replace(/&quot;/g, '\"')\n             .replace(/&#39;/g, \"'\")\n             .replace(/&ndash;/g, '-')\n             .replace(/&mdash;/g, '-')\n             .replace(/&laquo;/g, '\"')\n             .replace(/&raquo;/g, '\"')\n             .replace(/&rsquo;/g, \"'\");\n\n  return text;\n}\n\n// Получаем входные данные\nconst items = $input.all();\nconst result = [];\n\nfor (const item of items) {\n  if (item.json[\"Post Body_RU\"]) {\n    const cleanText = convertHtmlToText(item.json[\"Post Body_RU\"]);\n    result.push({\n      json: {\n        \"Post Body_RU\": cleanText\n      }\n    });\n  }\n}\n\nreturn result;"
+      },
+      "id": "0d8712de-9b02-4318-8f9d-36e368c6f2ea",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1060,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 139118,
+        "tableId": 356544,
+        "rowId": "={{ $('Baserow').item.json.id }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 2987678,
+              "fieldValue": "={{ $json['Post Body_RU'] }}"
+            }
+          ]
+        }
+      },
+      "id": "5f194438-3b72-4006-b085-ed6099f1798a",
+      "name": "Baserow1",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        520
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2024-11-10T11:12:42.068Z",
+      "updatedAt": "2024-11-10T11:12:42.068Z",
+      "id": "vgr897z7Ao8rJnZh",
+      "name": "navi"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2024-11-19T12:46:58.000Z",
+  "versionId": "2d072a85-6f32-47c4-9a33-1b3cc7ff2744"
+}

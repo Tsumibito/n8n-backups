@@ -332,6 +332,25 @@
         1360,
         540
       ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "f57cb638-52a8-484f-bc57-35818261c8ae",
+      "name": "Anthropic Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.2,
+      "position": [
+        1080,
+        840
+      ],
+      "credentials": {
+        "anthropicApi": {
+          "id": "vZo4J3iAaKChpHRb",
+          "name": "Anthropic account"
+        }
+      }
     }
   ],
   "pinData": {
@@ -352,6 +371,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2024-11-19T20:28:46.000Z",
-  "versionId": "1c168fb6-5158-41cd-97da-2e298a41f3ac"
+  "updatedAt": "2024-11-20T19:18:30.000Z",
+  "versionId": "a36304dd-a48c-4923-ad70-3e2605677c0c"
 }

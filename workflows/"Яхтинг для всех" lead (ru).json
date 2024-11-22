@@ -5,17 +5,6 @@
       "main": [
         [
           {
-            "node": "Wait",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Wait": {
-      "main": [
-        [
-          {
             "node": "Mailjet",
             "type": "main",
             "index": 0
@@ -27,7 +16,7 @@
       "main": [
         [
           {
-            "node": "Brevo1",
+            "node": "Mailjet1",
             "type": "main",
             "index": 0
           }
@@ -60,6 +49,17 @@
           },
           {
             "node": "Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mailjet1": {
+      "main": [
+        [
+          {
+            "node": "Brevo1",
             "type": "main",
             "index": 0
           }
@@ -152,7 +152,7 @@
       "type": "n8n-nodes-base.slack",
       "typeVersion": 2.2,
       "position": [
-        1240,
+        1260,
         320
       ],
       "credentials": {
@@ -188,47 +188,19 @@
     },
     {
       "parameters": {
-        "unit": "minutes"
-      },
-      "id": "34c33a5c-66e5-4e9a-9f96-fc60fbb17247",
-      "name": "Wait",
-      "type": "n8n-nodes-base.wait",
-      "typeVersion": 1.1,
-      "position": [
-        1500,
-        520
-      ],
-      "webhookId": "85480e14-6f84-42a9-bf8d-80b519e29228"
-    },
-    {
-      "parameters": {
         "operation": "sendTemplate",
-        "subject": "Приветствую на марафоне \"Яхтинг для всех\"",
+        "subject": "Регистрация на марафон \"Яхтинг для всех\"",
         "fromEmail": "info@navi.training",
         "toEmail": "={{ $json.Email }}",
-        "templateId": 6459557,
-        "additionalFields": {
-          "templateLanguage": true
-        },
-        "variablesUi": {
-          "variablesValues": [
-            {
-              "name": "firstname",
-              "value": "={{ $json.Name }}"
-            },
-            {
-              "name": "name",
-              "value": "={{ $json.Name }}"
-            }
-          ]
-        }
+        "templateId": 6497161,
+        "additionalFields": {}
       },
       "id": "8901f48f-9ca9-4f81-83a1-8ace9f032421",
       "name": "Mailjet",
       "type": "n8n-nodes-base.mailjet",
       "typeVersion": 1,
       "position": [
-        1720,
+        1580,
         520
       ],
       "credentials": {
@@ -236,8 +208,7 @@
           "id": "HPoQPpK8H9h1lQ2u",
           "name": "Mailjet Email account"
         }
-      },
-      "disabled": true
+      }
     },
     {
       "parameters": {
@@ -252,7 +223,7 @@
       "type": "n8n-nodes-base.sendInBlue",
       "typeVersion": 1,
       "position": [
-        2160,
+        2380,
         520
       ],
       "credentials": {
@@ -282,7 +253,7 @@
       "type": "n8n-nodes-base.sendInBlue",
       "typeVersion": 1,
       "position": [
-        1940,
+        2160,
         520
       ],
       "credentials": {
@@ -290,7 +261,8 @@
           "id": "J9yp1mjVbwjhXWUG",
           "name": "Brevo account"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -307,6 +279,41 @@
         520
       ],
       "webhookId": "463e0e02-f6b9-4141-a46f-7e0b8daefedd"
+    },
+    {
+      "parameters": {
+        "operation": "sendTemplate",
+        "subject": "Регистрация на марафон \"Яхтинг для всех\"",
+        "fromEmail": "info@navi.training",
+        "toEmail": "={{ $json.To[0].Email }}",
+        "templateId": 6459557,
+        "additionalFields": {
+          "templateLanguage": true
+        },
+        "variablesUi": {
+          "variablesValues": [
+            {
+              "name": "firstname",
+              "value": "={{ $('Webhook').item.json.body.first_name }}"
+            }
+          ]
+        }
+      },
+      "id": "5b7d114b-59c7-41d1-8aee-24f967bed4cb",
+      "name": "Mailjet1",
+      "type": "n8n-nodes-base.mailjet",
+      "typeVersion": 1,
+      "position": [
+        1980,
+        520
+      ],
+      "credentials": {
+        "mailjetEmailApi": {
+          "id": "HPoQPpK8H9h1lQ2u",
+          "name": "Mailjet Email account"
+        }
+      },
+      "disabled": true
     }
   ],
   "pinData": {
@@ -354,6 +361,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-11-19T08:38:32.000Z",
-  "versionId": "5e05c91d-99d2-4d83-bdbb-f54b28a47453"
+  "updatedAt": "2024-11-22T20:41:05.000Z",
+  "versionId": "b584ec7e-4369-41bb-9e32-08d5c8fec7b5"
 }

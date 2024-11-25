@@ -1,0 +1,441 @@
+{
+  "active": true,
+  "connections": {
+    "RSS Feed Trigger": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram": {
+      "main": [
+        [
+          {
+            "node": "Start",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Start NoIm",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start NoIm": {
+      "main": [
+        [
+          {
+            "node": "Telegram1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Telegram2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Start",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        [
+          {
+            "node": "Start NoIm",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        [
+          {
+            "node": "Telegram3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Feed Trigger1": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-11-25T12:28:50.381Z",
+  "id": "ZUUhh8xM7sNc5Grd",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "News selection wf",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyHour"
+            }
+          ]
+        },
+        "feedUrl": "https://rss.app/feeds/jESabGy2DN3jHCWQ.xml"
+      },
+      "id": "c1537a17-9997-45cc-a95c-b7f714ef4320",
+      "name": "RSS Feed Trigger",
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://extractorapi.com/api/v1/extractor/?apikey=29f19977b07fd7eef29c39ed419a70f9f0a1fb82&url={{ $json.link }}",
+        "options": {}
+      },
+      "id": "14396ba5-d494-48b0-8ddf-8993654e0a97",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1980,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "132704485",
+        "text": "=Предлагаю к рассмотрению пост:\n{{ $json.title }}\n\n{{ $json.contentSnippet }}\n\nURL: {{ $json.link }}\n\nИспользовать его для статьи?",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "Да",
+                    "additionalFields": {
+                      "callback_data": "Start"
+                    }
+                  },
+                  {
+                    "text": "Да - Noim",
+                    "additionalFields": {
+                      "callback_data": "Start_noimage"
+                    }
+                  },
+                  {
+                    "text": "Отказать",
+                    "additionalFields": {
+                      "callback_data": "Reject"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "625a21e9-dad1-477e-a84d-85e92646794c",
+      "name": "Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1240,
+        520
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "etl9JrBN3VDYrqzG",
+          "name": "Telegram Navi_training_boot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "inline_query",
+          "callback_query"
+        ],
+        "additionalFields": {}
+      },
+      "id": "d351b345-b59b-47e7-b55d-84cdf2d5f34c",
+      "name": "Telegram Trigger",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        1020,
+        920
+      ],
+      "webhookId": "871eed9f-92f4-4025-935f-cb331de28727",
+      "credentials": {
+        "telegramApi": {
+          "id": "etl9JrBN3VDYrqzG",
+          "name": "Telegram Navi_training_boot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "132704485",
+        "text": "=Спасибо, ваш ответ Start NoIm",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "0f576db0-e456-4572-9547-518b5c8fe19a",
+      "name": "Telegram1",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1980,
+        860
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "etl9JrBN3VDYrqzG",
+          "name": "Telegram Navi_training_boot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "output": "empty"
+      },
+      "id": "2e862f51-709b-4347-94ce-04cb5380b487",
+      "name": "Start NoIm",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        1680,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "output": "empty"
+      },
+      "id": "ac3484b9-fa9e-4ecc-9043-be8614d13860",
+      "name": "Start",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        1680,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "132704485",
+        "text": "=Спасибо, ваш ответ Start",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "a093ae48-f3a3-4aa0-9d8c-c57c1437747b",
+      "name": "Telegram2",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1980,
+        620
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "etl9JrBN3VDYrqzG",
+          "name": "Telegram Navi_training_boot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "132704485",
+        "text": "=Спасибо, ваш ответ Reject",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "b6562cb8-1c33-4376-8f98-c25cf29e48b4",
+      "name": "Telegram3",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1600,
+        1080
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "etl9JrBN3VDYrqzG",
+          "name": "Telegram Navi_training_boot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.callback_query.data }}",
+                    "rightValue": "Start",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "db16f07a-7254-4589-8ca1-7347a65e6b7d",
+                    "leftValue": "={{ $json.callback_query.data }}",
+                    "rightValue": "Start_noimage",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "74523d1b-35c0-4105-9b3e-2331f7ddde22",
+                    "leftValue": "={{ $json.callback_query.data }}",
+                    "rightValue": "Reject",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f0d3e4cd-0975-4cdb-aa2d-93a54a1893a2",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        1340,
+        920
+      ]
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyHour"
+            }
+          ]
+        },
+        "feedUrl": "https://rss.app/feeds/C8xn0fIprLZUN3KI.xml"
+      },
+      "id": "a7a9c0d1-3118-42a1-ac06-15ff22234b85",
+      "name": "RSS Feed Trigger1",
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        1020,
+        380
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:RSS Feed Trigger": {
+      "lastItemDate": "2024-11-25T17:50:00.000Z"
+    },
+    "node:RSS Feed Trigger1": {}
+  },
+  "tags": [
+    {
+      "createdAt": "2024-11-10T11:12:42.068Z",
+      "updatedAt": "2024-11-10T11:12:42.068Z",
+      "id": "vgr897z7Ao8rJnZh",
+      "name": "navi"
+    }
+  ],
+  "triggerCount": 3,
+  "updatedAt": "2024-11-25T22:29:01.000Z",
+  "versionId": "919f52e6-1346-42f8-91bf-54ead4ba0239"
+}

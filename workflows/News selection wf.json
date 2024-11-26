@@ -423,7 +423,7 @@
   },
   "staticData": {
     "node:RSS Feed Trigger": {
-      "lastItemDate": "2024-11-25T17:50:00.000Z"
+      "lastItemDate": "2024-11-26T19:45:00.000Z"
     },
     "node:RSS Feed Trigger1": {}
   },
@@ -436,6 +436,6 @@
     }
   ],
   "triggerCount": 3,
-  "updatedAt": "2024-11-25T22:29:01.000Z",
-  "versionId": "919f52e6-1346-42f8-91bf-54ead4ba0239"
+  "updatedAt": "2024-11-26T13:49:47.000Z",
+  "versionId": "99caa40e-b24e-4a06-b114-8ee72d2ef075"
 }

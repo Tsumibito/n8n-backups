@@ -12,22 +12,22 @@
         ]
       ]
     },
-    "Mailjet": {
+    "Brevo1": {
       "main": [
         [
           {
-            "node": "Mailjet1",
+            "node": "Brevo",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Brevo1": {
+    "Mailjet1": {
       "main": [
         [
           {
-            "node": "Brevo",
+            "node": "Brevo1",
             "type": "main",
             "index": 0
           }
@@ -49,17 +49,6 @@
           },
           {
             "node": "Gmail",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Mailjet1": {
-      "main": [
-        [
-          {
-            "node": "Brevo1",
             "type": "main",
             "index": 0
           }
@@ -175,8 +164,8 @@
       "type": "n8n-nodes-base.gmail",
       "typeVersion": 2.1,
       "position": [
-        1260,
-        700
+        1280,
+        720
       ],
       "webhookId": "9245b6e6-cbcb-4412-9a9a-e42ccd28c9b3",
       "credentials": {
@@ -184,7 +173,8 @@
           "id": "qkdDun6kFLlujP1i",
           "name": "Gmail account"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -193,14 +183,24 @@
         "fromEmail": "info@navi.training",
         "toEmail": "={{ $json.Email }}",
         "templateId": 6497161,
-        "additionalFields": {}
+        "additionalFields": {
+          "templateLanguage": true
+        },
+        "variablesUi": {
+          "variablesValues": [
+            {
+              "name": "firstname",
+              "value": "={{ $json.Name }}"
+            }
+          ]
+        }
       },
       "id": "8901f48f-9ca9-4f81-83a1-8ace9f032421",
       "name": "Mailjet",
       "type": "n8n-nodes-base.mailjet",
       "typeVersion": 1,
       "position": [
-        1580,
+        1500,
         520
       ],
       "credentials": {
@@ -266,22 +266,6 @@
     },
     {
       "parameters": {
-        "httpMethod": "POST",
-        "path": "463e0e02-f6b9-4141-a46f-7e0b8daefedd",
-        "options": {}
-      },
-      "id": "f8904115-aca2-49e7-9d0b-18b7b73bb0df",
-      "name": "Webhook",
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2,
-      "position": [
-        880,
-        520
-      ],
-      "webhookId": "463e0e02-f6b9-4141-a46f-7e0b8daefedd"
-    },
-    {
-      "parameters": {
         "operation": "sendTemplate",
         "subject": "Регистрация на марафон \"Яхтинг для всех\"",
         "fromEmail": "info@navi.training",
@@ -306,6 +290,47 @@
       "position": [
         1980,
         520
+      ],
+      "credentials": {
+        "mailjetEmailApi": {
+          "id": "HPoQPpK8H9h1lQ2u",
+          "name": "Mailjet Email account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "463e0e02-f6b9-4141-a46f-7e0b8daefedd",
+        "options": {}
+      },
+      "id": "f8904115-aca2-49e7-9d0b-18b7b73bb0df",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        880,
+        520
+      ],
+      "webhookId": "463e0e02-f6b9-4141-a46f-7e0b8daefedd"
+    },
+    {
+      "parameters": {
+        "operation": "sendTemplate",
+        "subject": "Регистрация на марафон \"Яхтинг для всех\"",
+        "fromEmail": "info@navi.training",
+        "toEmail": "={{ $json.Email }}",
+        "templateId": 6497161,
+        "additionalFields": {}
+      },
+      "id": "b5a5376f-237e-4bd5-896c-fc832179167a",
+      "name": "Mailjet2",
+      "type": "n8n-nodes-base.mailjet",
+      "typeVersion": 1,
+      "position": [
+        1980,
+        740
       ],
       "credentials": {
         "mailjetEmailApi": {
@@ -361,6 +386,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-11-22T20:41:05.000Z",
-  "versionId": "b584ec7e-4369-41bb-9e32-08d5c8fec7b5"
+  "updatedAt": "2024-11-28T20:34:47.000Z",
+  "versionId": "a072735c-cd0e-4351-8637-0dac2c7872f7"
 }

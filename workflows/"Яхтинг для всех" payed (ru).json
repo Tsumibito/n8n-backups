@@ -1,22 +1,11 @@
 {
   "active": true,
   "connections": {
-    "Baserow": {
-      "main": [
-        [
-          {
-            "node": "Wait",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Wait": {
       "main": [
         [
           {
-            "node": "Mailjet",
+            "node": "Client to TG Chat",
             "type": "main",
             "index": 0
           }
@@ -45,21 +34,37 @@
         ]
       ]
     },
-    "Webhook": {
+    "Find Lead": {
       "main": [
         [
           {
-            "node": "Baserow",
+            "node": "Add payment info to Baserow",
             "type": "main",
             "index": 0
-          },
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
           {
             "node": "Slack to Navi lead Cannel",
             "type": "main",
             "index": 0
           },
           {
-            "node": "Gmail",
+            "node": "Notification to me",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Find Lead",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Wait",
             "type": "main",
             "index": 0
           }
@@ -74,68 +79,6 @@
   },
   "name": "\"Яхтинг для всех\" payed (ru)",
   "nodes": [
-    {
-      "parameters": {
-        "operation": "create",
-        "databaseId": 139118,
-        "tableId": 380230,
-        "fieldsUi": {
-          "fieldValues": [
-            {
-              "fieldId": 2873835,
-              "fieldValue": "={{ $json.body.first_name }}"
-            },
-            {
-              "fieldId": 2873845,
-              "fieldValue": "={{ $json.body.email }}"
-            },
-            {
-              "fieldId": 2873847,
-              "fieldValue": "={{ $json.body.Lang }}"
-            },
-            {
-              "fieldId": 2873846,
-              "fieldValue": "={{ $json.body.utm_source }}"
-            },
-            {
-              "fieldId": 2873848,
-              "fieldValue": "={{ $json.body.utm_campaign }}"
-            },
-            {
-              "fieldId": 2873854,
-              "fieldValue": "={{ $json.body.utm_medium }}"
-            },
-            {
-              "fieldId": 2873855,
-              "fieldValue": "={{ $json.body.utm_term }}"
-            },
-            {
-              "fieldId": 2873856,
-              "fieldValue": "={{ $json.body.utm_content }}"
-            },
-            {
-              "fieldId": 2873837,
-              "fieldValue": "true"
-            }
-          ]
-        }
-      },
-      "id": "7aee6090-2b49-4fd3-9b2c-0f17c49fbe39",
-      "name": "Baserow",
-      "type": "n8n-nodes-base.baserow",
-      "typeVersion": 1,
-      "position": [
-        1260,
-        520
-      ],
-      "credentials": {
-        "baserowApi": {
-          "id": "iKQh0Jcxz7wezRWR",
-          "name": "Baserow account"
-        }
-      },
-      "disabled": true
-    },
     {
       "parameters": {
         "select": "channel",
@@ -153,7 +96,7 @@
       "type": "n8n-nodes-base.slack",
       "typeVersion": 2.2,
       "position": [
-        1240,
+        1260,
         320
       ],
       "credentials": {
@@ -165,42 +108,18 @@
     },
     {
       "parameters": {
-        "sendTo": "alex.mon.navi@gmail.com",
-        "subject": "\"Яхтинг для всех\" +1",
-        "emailType": "text",
-        "message": "=Новая оплата курса \"Яхтинг для всех\" ({{ $json.body.Lang }}) \nName: {{ $json.body.first_name }}\nEmail: {{ $json.body.email }} \nUTM: {{ $json.body.utm_source }}\n{{ $json.body.utm_campaign }}\n{{ $json.body.utm_medium }}\n{{ $json.body.utm_term }}\n{{ $json.body.utm_content }}",
-        "options": {}
-      },
-      "id": "63e95804-78e2-42d4-8c1c-a77da52ff128",
-      "name": "Gmail",
-      "type": "n8n-nodes-base.gmail",
-      "typeVersion": 2.1,
-      "position": [
-        1260,
-        700
-      ],
-      "webhookId": "19f3aafd-2657-4400-a383-e5ecdab1fa30",
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "qkdDun6kFLlujP1i",
-          "name": "Gmail account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "unit": "minutes"
+        "amount": 24,
+        "unit": "hours"
       },
       "id": "f3929520-eaa3-43b9-8904-58d4894774f2",
       "name": "Wait",
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        1500,
-        520
+        1260,
+        900
       ],
-      "webhookId": "e65d39d4-4350-4cc9-b3f9-605a8fd1d3b4",
-      "disabled": true
+      "webhookId": "e65d39d4-4350-4cc9-b3f9-605a8fd1d3b4"
     },
     {
       "parameters": {
@@ -230,8 +149,8 @@
       "type": "n8n-nodes-base.mailjet",
       "typeVersion": 1,
       "position": [
-        1720,
-        520
+        2040,
+        240
       ],
       "credentials": {
         "mailjetEmailApi": {
@@ -254,8 +173,8 @@
       "type": "n8n-nodes-base.sendInBlue",
       "typeVersion": 1,
       "position": [
-        2160,
-        520
+        2520,
+        300
       ],
       "credentials": {
         "sendInBlueApi": {
@@ -284,8 +203,8 @@
       "type": "n8n-nodes-base.sendInBlue",
       "typeVersion": 1,
       "position": [
-        1940,
-        520
+        2300,
+        280
       ],
       "credentials": {
         "sendInBlueApi": {
@@ -294,6 +213,37 @@
         }
       },
       "disabled": true
+    },
+    {
+      "parameters": {
+        "databaseId": 139118,
+        "tableId": 380230,
+        "returnAll": true,
+        "additionalOptions": {
+          "filters": {
+            "fields": [
+              {
+                "field": 2873845,
+                "value": "={{ $json.body.email }}"
+              }
+            ]
+          }
+        }
+      },
+      "id": "f584ea53-fb21-42a7-be15-f9cbf102410f",
+      "name": "Find Lead",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        1260,
+        520
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
     },
     {
       "parameters": {
@@ -310,9 +260,141 @@
         520
       ],
       "webhookId": "1f9b0e86-f734-44d3-8320-72d8e679b883"
+    },
+    {
+      "parameters": {
+        "operation": "sendTemplate",
+        "subject": "Регистрация на марафон \"Яхтинг для всех\"",
+        "fromEmail": "info@navi.training",
+        "toEmail": "={{ $json.Email }}",
+        "templateId": 6459557,
+        "additionalFields": {
+          "templateLanguage": true
+        },
+        "variablesUi": {
+          "variablesValues": [
+            {
+              "name": "firstname",
+              "value": "={{ $json.body.first_name }}"
+            }
+          ]
+        }
+      },
+      "id": "0412093e-0462-4b43-8130-8b272384cb85",
+      "name": "Client to TG Chat",
+      "type": "n8n-nodes-base.mailjet",
+      "typeVersion": 1,
+      "position": [
+        1480,
+        900
+      ],
+      "credentials": {
+        "mailjetEmailApi": {
+          "id": "HPoQPpK8H9h1lQ2u",
+          "name": "Mailjet Email account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 139118,
+        "tableId": 380230,
+        "rowId": "={{ $json.id }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 2985835,
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": 2985836,
+              "fieldValue": "={{ $('Webhook').item.json.body.payment_price }}"
+            },
+            {
+              "fieldId": 2873836,
+              "fieldValue": "=IP: {{ $('Webhook').item.json.body.ip_address }}, Transaction ID: {{ $('Webhook').item.json.body.transaction_id }} "
+            }
+          ]
+        }
+      },
+      "id": "e3160753-b4cd-4fa0-b23a-8576b3995e25",
+      "name": "Add payment info to Baserow",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        1480,
+        520
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "alex.mon.navi@gmail.com",
+        "subject": "\"Яхтинг для всех\" +1",
+        "emailType": "text",
+        "message": "=Новая оплата курса \"Яхтинг для всех\" ({{ $json.body.Lang }}) \nName: {{ $json.body.first_name }}\nEmail: {{ $json.body.email }} \nUTM: {{ $json.body.utm_source }}\n{{ $json.body.utm_campaign }}\n{{ $json.body.utm_medium }}\n{{ $json.body.utm_term }}\n{{ $json.body.utm_content }}",
+        "options": {}
+      },
+      "id": "63e95804-78e2-42d4-8c1c-a77da52ff128",
+      "name": "Notification to me",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1260,
+        700
+      ],
+      "webhookId": "19f3aafd-2657-4400-a383-e5ecdab1fa30",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "qkdDun6kFLlujP1i",
+          "name": "Gmail account"
+        }
+      }
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "n8n.navi.training",
+            "user-agent": "GuzzleHttp/7",
+            "content-length": "638",
+            "content-type": "application/json",
+            "x-forwarded-for": "78.47.177.61",
+            "x-forwarded-host": "n8n.navi.training",
+            "x-forwarded-proto": "https",
+            "accept-encoding": "gzip"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "first_name": "Алексей",
+            "email": "aleksei.gridnev75@gmail.com",
+            "payment_price": "14",
+            "ip_address": "-",
+            "Lang": "RU",
+            "payment_currency": "euro",
+            "transaction_id": "pi_3QQ5ygDYx6DNu2Yt1CjQrvn2",
+            "offer_utm_source": "facebook",
+            "offer_utm_campaign": "120214750870130085",
+            "offer_utm_medium": "CPC",
+            "offer_utm_term": "",
+            "offer_utm_content": "120214809903220085",
+            "description": "Успешная оплата предложения Яхтинг для всех (ru) -84%"
+          },
+          "webhookUrl": "https://n8n.navi.training/webhook/1f9b0e86-f734-44d3-8320-72d8e679b883",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1"
   },
@@ -326,6 +408,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-11-25T08:31:11.000Z",
-  "versionId": "c491e47c-8923-410f-8a3d-79df5e556701"
+  "updatedAt": "2024-11-28T20:35:23.000Z",
+  "versionId": "8103e5f1-e4c7-4a86-970b-76af6f3ff158"
 }

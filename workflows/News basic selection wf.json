@@ -1,0 +1,496 @@
+{
+  "active": true,
+  "connections": {
+    "RSS Feed Trigger": {
+      "main": [
+        [
+          {
+            "node": "Remove Duplicates From RSS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Feed Trigger1": {
+      "main": [
+        [
+          {
+            "node": "Remove Duplicates From RSS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Remove Duplicates",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remove Duplicates": {
+      "main": [
+        [
+          {
+            "node": "Jina get page source",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Jina get page source": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save to Baserow": {
+      "main": [
+        [
+          {
+            "node": "For Approve",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remove Duplicates From RSS": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Save to Baserow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-11-25T12:28:50.381Z",
+  "id": "ZUUhh8xM7sNc5Grd",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "News basic selection wf",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyHour"
+            }
+          ]
+        },
+        "feedUrl": "https://rss.app/feeds/jESabGy2DN3jHCWQ.xml"
+      },
+      "id": "c1537a17-9997-45cc-a95c-b7f714ef4320",
+      "name": "RSS Feed Trigger",
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        860,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyHour"
+            }
+          ]
+        },
+        "feedUrl": "https://rss.app/feeds/C8xn0fIprLZUN3KI.xml"
+      },
+      "id": "a7a9c0d1-3118-42a1-ac06-15ff22234b85",
+      "name": "RSS Feed Trigger1",
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        880,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "a8c5d7fb-4561-4248-8b22-3a9fabc5dfe7",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        640
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "LWqwOoyrWqYHIcaW",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "71304c5c-0acd-4428-bb3b-7743538b1af2",
+              "leftValue": "={{ $json.output['For News'] }}",
+              "rightValue": "true",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "425ad003-c015-4ee9-9f63-8472130a2176",
+              "leftValue": "={{ $json.output['For Blog'] }}",
+              "rightValue": "true",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "id": "52badc2b-4e6c-43ba-a857-1626508ecf8e",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1820,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "=`${Date.now()}-${Math.random().toString(36).substr(2, 9)}`",
+        "contextWindowLength": 30
+      },
+      "id": "0199f624-5510-4ec5-9aed-324178bc9142",
+      "name": "Postgres Chat Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        1460,
+        660
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "gC43g74KXlCIkWvk",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "387908bd-a30f-49ff-8f30-b068a38aa46a",
+      "name": "No Operation, do nothing",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        2120,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "agent": "conversationalAgent",
+        "promptType": "define",
+        "text": "=You are an experienced editor responsible for selecting appropriate content for publication on the website of the yachting company Navi.training. The company specializes in the development of cruising yachting, yacht travel, and provides training through its yachting school.\n\nOur Interests:\n\t•\tContent dedicated to cruising yachting and yacht travel.\n\t•\tMaterials related to yachting education and advancement of sailors’ qualifications.\n\t•\tContent suitable for beginner sailors and individuals who are just starting to show interest in yachting.\n\t•\tPreferably introductory-level materials or content about the most significant events in the yachting world.\n\nYour Task:\n\nReview data incoming from RSS feeds. Based on this data, determine whether the content aligns with our profile and objectives.\n\nFor each news item, you need to append to the JSON format you received with the news by adding two fields:\n\t1.\t“For News”: “true” or “false”\n\t•\t“true” means that, in your opinion, the news item aligns with our goals and can be used in our news feed or blog as a news announcement with a link to the source.\n\t•\tThe content is relevant, timely, and of interest to our audience.\n\t•\tIt may cover recent events, updates in the yachting industry, or other newsworthy topics.\n\t2.\t“For Blog”: “true” or “false”\n\t•\t“true” indicates that the material is likely not strictly news, not advertising, and not based on the personal story of an individual sailor.\n\t•\tSuch materials are valuable as they can be developed into comprehensive articles for our blog.\n\t•\tThe content should be suitable for educational purposes, offering insights, how-to guides, tips, or in-depth information beneficial to beginner sailors.\n\t•\tThese materials will be forwarded to a senior editor for further review and development.\n\nGuidelines for Evaluation:\n\t•\tRelevance: Ensure the content is directly related to cruising yachting, yacht travel, or yachting education.\n\t•\tAudience Fit: The material should be appropriate for beginners or those new to yachting.\n\t•\tQuality: Assess whether the content is informative, well-written, and free from excessive jargon that might not be understood by novices.\n\t•\tOriginality: Prefer content that offers unique insights or information not widely covered elsewhere.\n\t•\tAvoid: Promotional content, advertisements, or personal anecdotes that do not provide broader value to our audience.\n\nExample:\n\t•\tA personal story about a sailor’s journey around the world can be marked as:\n\t•\t“For News”: “true”\n\t•\t“For Blog”: “false”\n\t•\tA how-to guide on basic sailing knot or An article about the latest advancements in yacht safety technology could be marked as:\n\t•\t“For News”: “false”\n\t•\t“For Blog”: “true”\n\tA article without broader educational value might be, a promotional article or an article that does not fit into our thematic context can be marked as:\n\t•\tA how-to guide on basic sailing knots:\n\t•\t“For News”: “false”\n\t•\t“For Blog”: “false”\n\nOutcome:\n\nBy carefully analyzing each news item and applying these criteria, you will help curate content that enhances our website’s value, engages our target audience, and supports the company’s mission to promote cruising yachting and yachting education.\n\nNext Steps:\n\t•\tFor each news item, update the JSON data accordingly.\n\t•\tForward materials marked “For Blog”: “true” to the senior editor for further consideration.\n\t•\tEnsure all selections maintain the company’s standards and align with our audience’s interests.\n\nThank you for your attention to detail and commitment to providing high-quality content for Navi.training.\n\n\nInput Data:\n\n{\n\"creator\": \"{{ $json.creator }}\",\n\"title\": \"{{ $json.title }}\",\n\"link\": \"{{ $json.link }}\",\n\"pubDate\": \"{{ $json.pubDate }}\",\n\"dc:creator\": \"{{ $json['dc:creator'] }}\",\n\"content\": \"{{ $json.content }}\",\n\"contentSnippet\": \"{{ $json.contentSnippet }}\",\n\"guid\": \"{{ $json.guid }}\",\n\"isoDate\": \"{{ $json.isoDate }}\"\n}\n\n\nFormat data for Output:\nJSON\n{\n“For News”: “boolean”,\n“For Blog”: “boolean”,\n\"creator\": \"string\",\n\"title\": \"string\",\n\"link\": \"url\",\n\"pubDate\": \"datetime\",\n\"dc:creator\": \"string\",\n\"content\": \"string\",\n\"contentSnippet\": \"string\",\n\"guid\": \"string\",\n\"isoDate\": \"datetime\"\n}\n\nDo not duplicate output of the same articles",
+        "options": {}
+      },
+      "id": "0a7febe9-e8e8-4c3c-b46b-8dee4a92d66e",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        1440,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "compare": "selectedFields",
+        "fieldsToCompare": "output.link",
+        "options": {}
+      },
+      "id": "d4f6f439-3b9e-48a6-9d0c-7c9b8f66d96c",
+      "name": "Remove Duplicates",
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 2,
+      "position": [
+        2080,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://r.jina.ai/https://www.bbc.co.uk/sport/sailing/articles/c4gmnz32pxro",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer jina_e37a680bcc3c4147bdb45b91a73edceeeU2xswt1l7F0PMqAz9U2ni14fk8n"
+            },
+            {
+              "name": "X-Remove-Selector",
+              "value": "header, .class, #id, a"
+            },
+            {
+              "name": "X-Retain-Images",
+              "value": "none"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "657ea202-cfb3-48de-ba18-b4eae8cb1d3c",
+      "name": "Jina get page source",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2340,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "databaseId": 139118,
+        "tableId": 399957,
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 3048548,
+              "fieldValue": "={{ $('AI Agent').item.json.output.title }}"
+            },
+            {
+              "fieldId": 3048554,
+              "fieldValue": "={{ $('AI Agent').item.json.output.link }}"
+            },
+            {
+              "fieldId": 3048555,
+              "fieldValue": "={{ $('AI Agent').item.json.output.contentSnippet }}"
+            },
+            {
+              "fieldId": 3048557,
+              "fieldValue": "={{ $('AI Agent').item.json.output['For Blog'] }}"
+            },
+            {
+              "fieldId": 3049227,
+              "fieldValue": "={{ $('AI Agent').item.json.output.content }}"
+            },
+            {
+              "fieldId": 3048558,
+              "fieldValue": "={{ $('Jina get page source').item.json.data.content }}"
+            },
+            {
+              "fieldId": 3048556,
+              "fieldValue": "={{ $('Code').item.json.imageUrl }}"
+            }
+          ]
+        }
+      },
+      "id": "32f60cbf-e62a-4a23-bdd6-a31f656a0946",
+      "name": "Save to Baserow",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        2800,
+        300
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "132704485",
+        "text": "=Предлагаю к рассмотрению пост:\n{{ $('AI Agent').item.json.output.title }}\n\n{{ $('AI Agent').item.json.output.contentSnippet }}\n\nURL: {{ $('AI Agent').item.json.output.link }}\n\nИспользовать его для статьи?",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "Bog",
+                    "additionalFields": {
+                      "callback_data": "=blog,{{ $json.UUID }},{{ $json.id }}"
+                    }
+                  },
+                  {
+                    "text": "News",
+                    "additionalFields": {
+                      "callback_data": "=news,{{ $json.UUID }},{{ $json.id }}"
+                    }
+                  },
+                  {
+                    "text": "Отказать",
+                    "additionalFields": {
+                      "callback_data": "=reject,{{ $json.UUID }},{{ $json.id }}"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "625a21e9-dad1-477e-a84d-85e92646794c",
+      "name": "For Approve",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        3080,
+        300
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "etl9JrBN3VDYrqzG",
+          "name": "Telegram Navi_training_boot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "removeItemsSeenInPreviousExecutions",
+        "dedupeValue": "={{ $json.link }}",
+        "options": {}
+      },
+      "id": "3a980356-d4e4-4217-bbc9-3dc95481094f",
+      "name": "Remove Duplicates From RSS",
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 2,
+      "position": [
+        1200,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Получаем данные из узла \"Remove Duplicates\"\nconst data = $node[\"Remove Duplicates\"].json;\n\n// Проверяем, что данные и контент существуют\nif (!data || !data.output || !data.output.content) {\n  return [{ json: { error: 'No content found in the Remove Duplicates node' } }];\n}\n\n// Извлекаем HTML из поля content\nconst htmlContent = data.output.content;\n\n// Используем регулярное выражение для поиска первого тега <img> и извлечения значения атрибута src\nconst regex = /<img[^>]+src=\"([^\">]+)\"/;\nconst match = htmlContent.match(regex);\n\n// Если изображение найдено, возвращаем его URL\nif (match && match[1]) {\n  return [{ json: { imageUrl: match[1] } }];\n} else {\n  return [{ json: { error: 'No image URL found in the content' } }];\n}"
+      },
+      "id": "dbca30c5-1492-429c-b267-0f5dce670b3e",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2560,
+        300
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:RSS Feed Trigger": {
+      "lastItemDate": "2024-11-29T21:00:19.000Z"
+    },
+    "node:RSS Feed Trigger1": {}
+  },
+  "tags": [
+    {
+      "createdAt": "2024-11-10T11:12:42.068Z",
+      "updatedAt": "2024-11-10T11:12:42.068Z",
+      "id": "vgr897z7Ao8rJnZh",
+      "name": "navi"
+    }
+  ],
+  "triggerCount": 2,
+  "updatedAt": "2024-11-29T22:39:29.000Z",
+  "versionId": "d7fc343b-5b9e-47f8-b268-6f0b44d9d426"
+}

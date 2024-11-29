@@ -1,0 +1,356 @@
+{
+  "active": false,
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Baserow Blog Update",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Baserow News Update",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Baserow Delete row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow Delete row": {
+      "main": [
+        [
+          {
+            "node": "Telegram3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-11-29T21:14:22.768Z",
+  "id": "a4zNU7rD4GEwmAjA",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "News approve WF",
+  "nodes": [
+    {
+      "parameters": {
+        "chatId": "132704485",
+        "text": "=Спасибо, ваш ответ Start",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "f0e0464b-9e8e-4da5-b4b2-da9e31ab183c",
+      "name": "Telegram2",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        180,
+        320
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "etl9JrBN3VDYrqzG",
+          "name": "Telegram Navi_training_boot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "132704485",
+        "text": "=Спасибо, ваш ответ Reject, пост {{ $('Switch').item.json.UUID }} в строке {{ $('Switch').item.json.ID }} удален",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "b1ab7679-b3ef-4660-8d4f-6775acbc54b6",
+      "name": "Telegram3",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -840,
+        760
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "etl9JrBN3VDYrqzG",
+          "name": "Telegram Navi_training_boot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "132704485",
+        "text": "=Спасибо, ваш ответ Start NoIm",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "dcdf942f-47de-410e-b4d9-7b8780306b7f",
+      "name": "Telegram1",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        200,
+        520
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "etl9JrBN3VDYrqzG",
+          "name": "Telegram Navi_training_boot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "inline_query",
+          "callback_query"
+        ],
+        "additionalFields": {}
+      },
+      "id": "da6f5679-fe5c-4b71-94e3-f5b86d3cc41d",
+      "name": "Telegram Trigger",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -1740,
+        400
+      ],
+      "webhookId": "871eed9f-92f4-4025-935f-cb331de28727",
+      "credentials": {
+        "telegramApi": {
+          "id": "etl9JrBN3VDYrqzG",
+          "name": "Telegram Navi_training_boot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "return $input.all().map(item => {\n  // Ensure item and item.json are defined\n  if (!item || !item.json) {\n    return { json: { error: 'Invalid item structure' } };\n  }\n\n  // Attempt to access the 'data' field\n  const dataString = item.json.data || item.json.message?.data || item.json.callback_query?.data;\n\n  // Check if dataString exists and is a string\n  if (typeof dataString !== 'string') {\n    return { json: { error: 'Data not found or invalid', dataString } };\n  }\n\n  // Split the dataString by ','\n  const splitData = dataString.split(',');\n\n  // Validate the split result\n  if (splitData.length !== 3) {\n    return { json: { error: 'Data format incorrect', dataString } };\n  }\n\n  const [resultRaw, uuid, id] = splitData;\n\n  // Return the desired output\n  return { json: { UUID: uuid, result: resultRaw.toLowerCase(), ID: id } };\n});"
+      },
+      "id": "993c5fbd-4f0c-4b1a-8a08-a63e1c90cac1",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1520,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.result }}",
+                    "rightValue": "blog",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "db16f07a-7254-4589-8ca1-7347a65e6b7d",
+                    "leftValue": "={{ $json.result }}",
+                    "rightValue": "news",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "74523d1b-35c0-4105-9b3e-2331f7ddde22",
+                    "leftValue": "={{ $json.result }}",
+                    "rightValue": "reject",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d3ae376d-f635-4daf-80c6-38dcb2b1b133",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -1200,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 139118,
+        "tableId": 399957,
+        "rowId": "{{ $json.ID }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 3048550,
+              "fieldValue": "true"
+            }
+          ]
+        }
+      },
+      "id": "b72283f3-6c6f-47e4-8c72-d85c86bde6ea",
+      "name": "Baserow News Update",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        -880,
+        400
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "databaseId": 139118,
+        "tableId": 399957,
+        "rowId": "={{ $json.ID }}"
+      },
+      "id": "814d1544-ba0e-4758-b900-855e28b17ff2",
+      "name": "Baserow Delete row",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        -1040,
+        760
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 139118,
+        "tableId": 399957,
+        "rowId": "{{ $json.ID }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 3048550,
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": 3048557,
+              "fieldValue": "true"
+            }
+          ]
+        }
+      },
+      "id": "42135957-4382-42c5-bce2-f5e1004cdc39",
+      "name": "Baserow Blog Update",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        -920,
+        40
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-11-29T21:51:22.000Z",
+  "versionId": "c7ca41f1-edfd-42e5-83ea-ce2a815f7719"
+}

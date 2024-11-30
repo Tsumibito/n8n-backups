@@ -315,7 +315,7 @@
             },
             {
               "name": "Authorization",
-              "value": "Bearer jina_e37a680bcc3c4147bdb45b91a73edceeeU2xswt1l7F0PMqAz9U2ni14fk8n"
+              "value": "Bearer"
             },
             {
               "name": "X-Remove-Selector",

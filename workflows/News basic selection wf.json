@@ -146,7 +146,7 @@
             }
           ]
         },
-        "feedUrl": "https://rss.app/feeds/jESabGy2DN3jHCWQ.xml"
+        "feedUrl": "https://news.google.com/rss/search?q=sailing%2C%20cruicing%2C%20yachts&hl=en-US&gl=US&ceid=US%3Aen"
       },
       "id": "c1537a17-9997-45cc-a95c-b7f714ef4320",
       "name": "RSS Feed Trigger",
@@ -155,7 +155,8 @@
       "position": [
         860,
         580
-      ]
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -166,7 +167,7 @@
             }
           ]
         },
-        "feedUrl": "https://rss.app/feeds/C8xn0fIprLZUN3KI.xml"
+        "feedUrl": "https://rss.app/feeds/q4NC0Q1EBRL9amk3.xml"
       },
       "id": "a7a9c0d1-3118-42a1-ac06-15ff22234b85",
       "name": "RSS Feed Trigger1",
@@ -301,21 +302,20 @@
       "position": [
         2080,
         300
-      ]
+      ],
+      "disabled": true
     },
     {
       "parameters": {
         "url": "https://r.jina.ai/https://www.bbc.co.uk/sport/sailing/articles/c4gmnz32pxro",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
             {
               "name": "Accept",
               "value": "application/json"
-            },
-            {
-              "name": "Authorization",
-              "value": "Bearer"
             },
             {
               "name": "X-Remove-Selector",
@@ -336,7 +336,13 @@
       "position": [
         2340,
         300
-      ]
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "OgWuI0zGNlKRf5Np",
+          "name": "Jina.ai"
+        }
+      }
     },
     {
       "parameters": {
@@ -456,7 +462,8 @@
       "position": [
         1200,
         400
-      ]
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -478,9 +485,11 @@
   },
   "staticData": {
     "node:RSS Feed Trigger": {
-      "lastItemDate": "2024-11-29T21:00:19.000Z"
+      "lastItemDate": "2024-11-30T16:28:58.000Z"
     },
-    "node:RSS Feed Trigger1": {}
+    "node:RSS Feed Trigger1": {
+      "lastItemDate": "2024-11-29T18:24:57.000Z"
+    }
   },
   "tags": [
     {
@@ -490,7 +499,7 @@
       "name": "navi"
     }
   ],
-  "triggerCount": 2,
-  "updatedAt": "2024-11-29T22:39:29.000Z",
-  "versionId": "d7fc343b-5b9e-47f8-b268-6f0b44d9d426"
+  "triggerCount": 1,
+  "updatedAt": "2024-11-30T19:11:07.000Z",
+  "versionId": "5e352464-e9ae-4ce7-be78-2f7b669dc23f"
 }

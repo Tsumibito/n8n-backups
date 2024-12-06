@@ -301,22 +301,6 @@
     },
     {
       "parameters": {
-        "httpMethod": "POST",
-        "path": "463e0e02-f6b9-4141-a46f-7e0b8daefedd",
-        "options": {}
-      },
-      "id": "f8904115-aca2-49e7-9d0b-18b7b73bb0df",
-      "name": "Webhook",
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2,
-      "position": [
-        880,
-        520
-      ],
-      "webhookId": "463e0e02-f6b9-4141-a46f-7e0b8daefedd"
-    },
-    {
-      "parameters": {
         "operation": "sendTemplate",
         "subject": "Регистрация на марафон \"Яхтинг для всех\"",
         "fromEmail": "info@navi.training",
@@ -339,40 +323,25 @@
         }
       },
       "disabled": true
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "463e0e02-f6b9-4141-a46f-7e0b8daefedd",
+        "options": {}
+      },
+      "id": "f8904115-aca2-49e7-9d0b-18b7b73bb0df",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        880,
+        520
+      ],
+      "webhookId": "463e0e02-f6b9-4141-a46f-7e0b8daefedd"
     }
   ],
-  "pinData": {
-    "Webhook": [
-      {
-        "json": {
-          "headers": {
-            "host": "n8n.navi.training",
-            "user-agent": "GuzzleHttp/7",
-            "content-length": "152",
-            "content-type": "application/json",
-            "x-forwarded-for": "78.47.177.61",
-            "x-forwarded-host": "n8n.navi.training",
-            "x-forwarded-proto": "https",
-            "accept-encoding": "gzip"
-          },
-          "params": {},
-          "query": {},
-          "body": {
-            "first_name": "Oleksii",
-            "email": "alex.tsumibito@gmail.com",
-            "Lang": "RU",
-            "utm_source": "",
-            "utm_campaign": "",
-            "utm_medium": "",
-            "utm_term": "",
-            "utm_content": ""
-          },
-          "webhookUrl": "https://n8n.navi.training/webhook-test/463e0e02-f6b9-4141-a46f-7e0b8daefedd",
-          "executionMode": "test"
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "settings": {
     "executionOrder": "v1"
   },
@@ -386,6 +355,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-11-28T20:34:47.000Z",
-  "versionId": "a072735c-cd0e-4351-8637-0dac2c7872f7"
+  "updatedAt": "2024-12-06T17:36:58.000Z",
+  "versionId": "093e4b47-2d5a-4cc5-8e22-a6bf930f5df8"
 }

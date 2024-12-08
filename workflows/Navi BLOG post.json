@@ -376,6 +376,28 @@
           }
         ]
       ]
+    },
+    "Baserow add Post translations and summary": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "Execute Workflow1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-11-08T09:25:05.152Z",
@@ -1136,6 +1158,42 @@
         240,
         -560
       ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1e21c144-a81c-48af-b3d6-a77f60f7881f",
+              "name": "id",
+              "value": "={{ $json.id }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "340d38c5-b400-486d-bb0a-62e73a2788c5",
+      "name": "Edit Fields2",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2420,
+        1060
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "a60396f8-0c30-4de0-87a9-fff0a208ea74",
+      "name": "Execute Workflow1",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.1,
+      "position": [
+        2640,
+        1060
+      ]
     }
   ],
   "pinData": {},
@@ -1152,6 +1210,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-11-10T11:12:44.000Z",
-  "versionId": "6a5ef222-d4f8-49d3-9907-f5f548f8fd19"
+  "updatedAt": "2024-12-08T11:28:05.000Z",
+  "versionId": "0d456207-6906-4e76-9dc9-969c619e8ca0"
 }

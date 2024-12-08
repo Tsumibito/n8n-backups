@@ -1,0 +1,562 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Baserow Get Article",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Baserow Get All others",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow Get All others": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Set static internal urls": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow Get Article": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge2": {
+      "main": [
+        [
+          {
+            "node": "Links RU",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Links UA",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Links EN",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Baserow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code3": {
+      "main": [
+        [
+          {
+            "node": "Baserow2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Links RU": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Links UA": {
+      "main": [
+        [
+          {
+            "node": "Code2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code2": {
+      "main": [
+        [
+          {
+            "node": "Baserow1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Links EN": {
+      "main": [
+        [
+          {
+            "node": "Code3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-12-08T11:28:35.817Z",
+  "id": "OiplipE8Zch4oHXE",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "--Navi link builder",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "11788859-1bfc-4f4e-94a0-8218340a26ff",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        760,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "databaseId": 139118,
+        "tableId": 356544,
+        "returnAll": true,
+        "additionalOptions": {
+          "filters": {
+            "fields": [
+              {
+                "field": 2660071,
+                "operator": "not_equal",
+                "value": "={{ $json.id }}"
+              }
+            ]
+          }
+        }
+      },
+      "id": "689c5f00-f2f2-42c0-9bfe-4387ce112b89",
+      "name": "Baserow Get All others",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        1380,
+        520
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "databaseId": 139118,
+        "tableId": 356544,
+        "rowId": "={{ $json.id }}"
+      },
+      "id": "883b6e53-95ae-4aa6-b25d-a3e1c73c6e86",
+      "name": "Baserow Get Article",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        1380,
+        760
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Supported languages and their base URLs\nconst languages = [\n  { code: 'RU', baseUrl: 'https://navi.training/ru/blog' },\n  { code: 'UA', baseUrl: 'https://navi.training/ua/blog' },\n  { code: 'EN', baseUrl: 'https://navi.training/en/blog' },\n];\n\n// Function to parse static links\nfunction parseStaticLinks(staticLinksStr) {\n  const urlDefs = staticLinksStr.split('||');\n  const links = [];\n\n  for (const def of urlDefs) {\n    if (!def.trim()) continue; // Skip empty strings\n    const parts = def.split('|');\n    if (parts.length < 2) continue; // Skip malformed entries\n\n    const anchors = parts[0]\n      .split(',')\n      .map(a => a.trim())\n      .filter(a => a); // Extract list of anchors\n\n    const url = parts[1].trim(); // Extract URL\n\n    links.push({ url, anchors });\n  }\n\n  return links;\n}\n\n// Function to generate a random number in the range [min, max]\nfunction getRandomInt(min, max) {\n  return Math.floor(Math.random() * (max - min + 1)) + min;\n}\n\n// Initialize results for each language\nconst results = {\n  RU_links: [],\n  UA_links: [],\n  EN_links: [],\n  RU_linkCount: 0,\n  UA_linkCount: 0,\n  EN_linkCount: 0,\n};\n\n// Retrieve all input items\nconst inputItems = items;\n\n// Check for at least one item (static links)\nif (inputItems.length === 0) {\n  return [];\n}\n\n// First item contains static links\nconst staticItem = inputItems[0].json;\n\n// Parse static links for each language and add them to results\nfor (const lang of languages) {\n  const key = `static_links_${lang.code.toLowerCase()}`;\n  const staticLinksStr = staticItem[key] || '';\n  const parsedStaticLinks = parseStaticLinks(staticLinksStr);\n\n  if (lang.code === 'RU') {\n    results.RU_links.push(...parsedStaticLinks);\n  } else if (lang.code === 'UA') {\n    results.UA_links.push(...parsedStaticLinks);\n  } else if (lang.code === 'EN') {\n    results.EN_links.push(...parsedStaticLinks);\n  }\n}\n\n// Process dynamic links (from the second item onward)\nfor (let i = 1; i < inputItems.length; i++) {\n  const post = inputItems[i].json;\n  const slug = post['Slug'];\n\n  if (!slug) {\n    // Skip entries without Slug\n    continue;\n  }\n\n  for (const lang of languages) {\n    const keywordsKey = `keywords we target ${lang.code}`;\n    const keywordsStr = post[keywordsKey] || '';\n\n    if (keywordsStr.trim()) {\n      const anchors = keywordsStr.split(',')\n        .map(a => a.trim())\n        .filter(a => a);\n\n      if (anchors.length > 0) {\n        const url = `${lang.baseUrl}/${slug}`;\n        if (lang.code === 'RU') {\n          results.RU_links.push({ url, anchors });\n        } else if (lang.code === 'UA') {\n          results.UA_links.push({ url, anchors });\n        } else if (lang.code === 'EN') {\n          results.EN_links.push({ url, anchors });\n        }\n      }\n    }\n  }\n}\n\n// Generate random numbers for the number of links in the article\nresults.RU_linkCount = getRandomInt(3, 7);\nresults.UA_linkCount = getRandomInt(3, 7);\nresults.EN_linkCount = getRandomInt(3, 7);\n\n// Convert results to string format for each language\nconst output = [\n  {\n    json: {\n      RU_links: results.RU_links\n        .map(link => `${link.url} (${link.anchors.join(', ')})`)\n        .join('; '),\n      UA_links: results.UA_links\n        .map(link => `${link.url} (${link.anchors.join(', ')})`)\n        .join('; '),\n      EN_links: results.EN_links\n        .map(link => `${link.url} (${link.anchors.join(', ')})`)\n        .join('; '),\n      RU_linkCount: `${results.RU_linkCount}`,\n      UA_linkCount: `${results.UA_linkCount}`,\n      EN_linkCount: `${results.EN_linkCount}`\n    }\n  }\n];\n\nreturn output;"
+      },
+      "id": "ff86fc50-aaed-4d99-ac56-749551d16106",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1940,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "55311b13-635f-4a8e-9a66-0d7ccec61ec8",
+              "name": "static_links_ru",
+              "value": "Navi.training,агентство Navi.training,школа капитанов,курсы яхтинга|https://navi.training/|| яхтенная школа,школа яхтинга,школа капитанов,курсы яхтинга,школа Navi.training,курсы Navi.training|https://navi.training/ru/sailing-school|| чартер яхт,чартер с капитаном,чартерное агентство,чартер Navi.training,аренда яхт|https://navi.training/ru/charter|| курс Inshore Skipper Sail,права Inshore Skipper Sail,обучение Inshore Skipper Sail|https://navi.training/ru/inshore-skipper-sail|| курс Яхтинг для всех,яхтинг для чайников,курс яхтинга для новичков|https://navi.training/ru/yahting-dlya-vseh|| блог Navi.training,яхтенный блог,блог по яхтингу,статьи яхтинг,блог яхтенные лайфаки,статьи Navi.training|https://navi.training/ru/blog||",
+              "type": "string"
+            },
+            {
+              "id": "6224f3a2-c01a-4bad-afe0-db3aa3aba515",
+              "name": "static_links_ua",
+              "value": "Navi.training,агенція Navi.training,школа капітанів,курси яхтингу|https://navi.training/ua/home|| яхтова школа,школа яхтингу,школа капітанів,курси яхтингу,школа Navi.training,курси Navi.training|https://navi.training/ua/sailing-school|| чартер яхт,чартер з капітаном,чартерне агентство,чартер Navi.training,оренда яхт|https://navi.training/ua/charter|| курс Inshore Skipper Sail,права Inshore Skipper Sail,навчання Inshore Skipper Sail|https://navi.training/ua/inshore-skipper-sail|| курс Яхтинг для всіх,яхтинг для початківців,курс яхтингу для новачків|https://navi.training/ua/yahting-dlya-vseh|| блог Navi.training,яхтовий блог,блог про яхтинг,статті яхтинг,блог яхтові лайфхаки,статті Navi.training|https://navi.training/ua/blog||",
+              "type": "string"
+            },
+            {
+              "id": "dac0b1be-13d3-436e-b7eb-d86d539025a7",
+              "name": "static_links_en",
+              "value": "Navi.training,Navi.training agency,captain's school,yachting courses|https://navi.training/en/home|| yachting school,yacht school,captain's school,yachting courses,Navi.training school,Navi.training courses|https://navi.training/en/sailing-school|| yacht charter,charter with captain,charter agency,Navi.training charter,yacht rental|https://navi.training/en/charter|| Inshore Skipper Sail course,Inshore Skipper Sail license,Inshore Skipper Sail training|https://navi.training/en/inshore-skipper-sail|| Navi.training blog,yachting blog,blog about yachting,yachting articles,yachting lifehacks blog,Navi.training articles|https://navi.training/en/blog||",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f621dbec-d8bd-4fb4-8249-131e7d121224",
+      "name": "Set static internal urls",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1380,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "id": "106fbad3-988e-4229-ad3b-61922f3ec3d2",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        1740,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "id": "5d59a1e3-b78d-43fa-ba3a-4e7450553f0d",
+      "name": "Merge2",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        2160,
+        500
+      ],
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "jsCode": "// Получаем входные данные\nconst inputData = $input.all();\n\n// Проверяем, есть ли входные данные и они являются массивом\nif (!Array.isArray(inputData) || inputData.length === 0) {\n  return []; // Возвращаем пустой массив, если данных нет\n}\n\n// Перебираем входные элементы\nconst outputData = inputData.map(item => {\n  // Проверяем наличие поля `message.content` в данных\n  if (item.json.message && item.json.message.content && typeof item.json.message.content === 'string') {\n    // Убираем символы \\n, ```html, ``` и другие лишние\n    let cleanHTML = item.json.message.content\n      .replace(/```html/g, '') // Убираем ```html\n      .replace(/```/g, '') // Убираем ```\n      .replace(/\\\\n/g, '') // Убираем \\n\n      .trim(); // Убираем пробелы с начала и конца строки\n\n    // Возвращаем очищенные данные\n    return {\n      json: {\n        cleanHTML, // Очищенный HTML\n      },\n    };\n  } else {\n    // Если `message.content` отсутствует или не строка, возвращаем пустой объект\n    return { json: {} };\n  }\n});\n\n// Возвращаем очищенные данные\nreturn outputData;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2820,
+        160
+      ],
+      "id": "7d687431-fc79-4d54-940b-876f21293ccf",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Получаем входные данные\nconst inputData = $input.all();\n\n// Проверяем, есть ли входные данные и они являются массивом\nif (!Array.isArray(inputData) || inputData.length === 0) {\n  return []; // Возвращаем пустой массив, если данных нет\n}\n\n// Перебираем входные элементы\nconst outputData = inputData.map(item => {\n  // Проверяем наличие поля `message.content` в данных\n  if (item.json.message && item.json.message.content && typeof item.json.message.content === 'string') {\n    // Убираем символы \\n, ```html, ``` и другие лишние\n    let cleanHTML = item.json.message.content\n      .replace(/```html/g, '') // Убираем ```html\n      .replace(/```/g, '') // Убираем ```\n      .replace(/\\\\n/g, '') // Убираем \\n\n      .trim(); // Убираем пробелы с начала и конца строки\n\n    // Возвращаем очищенные данные\n    return {\n      json: {\n        cleanHTML, // Очищенный HTML\n      },\n    };\n  } else {\n    // Если `message.content` отсутствует или не строка, возвращаем пустой объект\n    return { json: {} };\n  }\n});\n\n// Возвращаем очищенные данные\nreturn outputData;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2820,
+        500
+      ],
+      "id": "03428701-122c-419c-9f58-b17237539815",
+      "name": "Code2"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Получаем входные данные\nconst inputData = $input.all();\n\n// Проверяем, есть ли входные данные и они являются массивом\nif (!Array.isArray(inputData) || inputData.length === 0) {\n  return []; // Возвращаем пустой массив, если данных нет\n}\n\n// Перебираем входные элементы\nconst outputData = inputData.map(item => {\n  // Проверяем наличие поля `message.content` в данных\n  if (item.json.message && item.json.message.content && typeof item.json.message.content === 'string') {\n    // Убираем символы \\n, ```html, ``` и другие лишние\n    let cleanHTML = item.json.message.content\n      .replace(/```html/g, '') // Убираем ```html\n      .replace(/```/g, '') // Убираем ```\n      .replace(/\\\\n/g, '') // Убираем \\n\n      .trim(); // Убираем пробелы с начала и конца строки\n\n    // Возвращаем очищенные данные\n    return {\n      json: {\n        cleanHTML, // Очищенный HTML\n      },\n    };\n  } else {\n    // Если `message.content` отсутствует или не строка, возвращаем пустой объект\n    return { json: {} };\n  }\n});\n\n// Возвращаем очищенные данные\nreturn outputData;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2820,
+        780
+      ],
+      "id": "e0b0e81d-a08e-4638-b18e-73a2fb4750d8",
+      "name": "Code3"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 139118,
+        "tableId": 356544,
+        "rowId": "={{ $('Merge2').item.json.id }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 2660075,
+              "fieldValue": "={{ $json.cleanHTML }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        3040,
+        160
+      ],
+      "id": "62b0f039-d400-4e0e-8f92-7c9867b48bcb",
+      "name": "Baserow",
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 139118,
+        "tableId": 356544,
+        "rowId": "={{ $('Merge2').item.json.id }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 2660175,
+              "fieldValue": "={{ $json.cleanHTML }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        3040,
+        500
+      ],
+      "id": "1aff1aaf-ea84-4cda-81e1-0eb3bfd9286c",
+      "name": "Baserow1",
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 139118,
+        "tableId": 356544,
+        "rowId": "={{ $('Merge2').item.json.id }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 2660174,
+              "fieldValue": "={{ $json.cleanHTML }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        3040,
+        780
+      ],
+      "id": "3a53ae9c-24e6-421f-a881-76eb8eb92735",
+      "name": "Baserow2",
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "o1-mini",
+          "mode": "list",
+          "cachedResultName": "O1-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=SEO Content Optimization Prompt for Navi.training\n\nRole: You are an advanced SEO assistant responsible for embedding a specific number of unique links into a pre-existing HTML article for the Navi.training yacht company website. The links must comply with strict guidelines for relevance, uniqueness, and distribution while preserving the readability and structure of the article.\n\nInstructions:\n1. Link Relevance and Anchors:\n   • Use only the provided links and their allowed anchors.\n   • If the specified anchor text is not found in the article, naturally integrate it into the text while maintaining logical flow and readability.\n2. Uniqueness and Limitations:\n   • Each link URL can appear only once in the article.\n   • No duplicate URLs or anchors are allowed.\n3. Link Distribution:\n   • Distribute links evenly throughout the text, ensuring no paragraph contains more than two links.\n   • Avoid clustering all links in one section.\n4. Number of Links:\n   • The final number of embedded links must match the provided number X exactly.\n   • If the insertion of X links is not possible, return an error explaining the reason (e.g., insufficient anchors, overly restrictive conditions).\n5. HTML Structure Preservation:\n   • Maintain the original structure of the HTML article. Only add links where appropriate.\n   • Do not alter the format or introduce extraneous characters.\n6. Link Attributes:\n   • Every link must include the attribute target=\"_blank\" to ensure it opens in a new tab.\n\n\nInput Data:\n1.\tHTML Article Content:\n{{ $json['Post Body_RU'] }}\n\n\n2.\tLink List with Allowed Anchors:\n{{ $json.RU_links }}\n\n\n3.\tNumber of Links to Embed: {{ $json.RU_linkCount }}\n\nOutput Format:\n• Return only the updated HTML code with embedded links. Do not include any extraneous characters, comments, or explanations.\n• Ensure that:\n  • Each link uses an allowed anchor.\n  • The number of links equals {{ $json.RU_linkCount }}.\n\n\nExample Output:\n\"<h2><strong>Что такое швартовка и почему она важна?</strong></h2>\n<p>Швартовка - один из основополагающих навыков, которым должен овладеть каждый яхтсмен. Овладеть навыком швартовки вам поможет <a href=\"https://navi.training/ru/sailing-school\" target=\"_blank\">школа Navi.training</a>, где вы можете пройти швартовочный тренинг.</p>\"`\n"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.7,
+      "position": [
+        2380,
+        160
+      ],
+      "id": "ac65efbd-e051-4e50-be11-934d26f48cc0",
+      "name": "Links RU",
+      "credentials": {
+        "openAiApi": {
+          "id": "LWqwOoyrWqYHIcaW",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "o1-mini",
+          "mode": "list",
+          "cachedResultName": "O1-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=SEO Content Optimization Prompt for Navi.training\n\nRole: You are an advanced SEO assistant responsible for embedding a specific number of unique links into a pre-existing HTML article for the Navi.training yacht company website. The links must comply with strict guidelines for relevance, uniqueness, and distribution while preserving the readability and structure of the article.\n\nInstructions:\n1. Link Relevance and Anchors:\n   • Use only the provided links and their allowed anchors.\n   • If the specified anchor text is not found in the article, naturally integrate it into the text while maintaining logical flow and readability.\n2. Uniqueness and Limitations:\n   • Each link URL can appear only once in the article.\n   • No duplicate URLs or anchors are allowed.\n3. Link Distribution:\n   • Distribute links evenly throughout the text, ensuring no paragraph contains more than two links.\n   • Avoid clustering all links in one section.\n4. Number of Links:\n   • The final number of embedded links must match the provided number X exactly.\n   • If the insertion of X links is not possible, return an error explaining the reason (e.g., insufficient anchors, overly restrictive conditions).\n5. HTML Structure Preservation:\n   • Maintain the original structure of the HTML article. Only add links where appropriate.\n   • Do not alter the format or introduce extraneous characters.\n6. Link Attributes:\n   • Every link must include the attribute target=\"_blank\" to ensure it opens in a new tab.\n\n\nInput Data:\n1.\tHTML Article Content:\n{{ $json['Post Body_UA'] }}\n\n\n2.\tLink List with Allowed Anchors:\n{{ $json.UA_links }}\n\n\n3.\tNumber of Links to Embed: {{ $json.UA_linkCount }}\n\nOutput Format:\n• Return only the updated HTML code with embedded links. Do not include any extraneous characters, comments, or explanations.\n• Ensure that:\n  • Each link uses an allowed anchor.\n  • The number of links equals {{ $json.UA_linkCount }}.\n\n\nExample Output:\n\"<h2><strong>Що таке швартування і чому воно важливе?</strong></h2>\n<p>Швартування - одна з основоположних навичок, яку повинен опанувати кожен яхтсмен. Оволодіти навичкою швартування вам допоможе <a href=\"https://navi.training/ua/sailing-school\" target=\"_blank\">школа Navi.training</a>, де ви можете пройти швартувальний тренінг.</p>\"`\n"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.7,
+      "position": [
+        2380,
+        500
+      ],
+      "id": "6386be4e-1cdd-453e-94d9-e6228b4a019e",
+      "name": "Links UA",
+      "credentials": {
+        "openAiApi": {
+          "id": "LWqwOoyrWqYHIcaW",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "o1-mini",
+          "mode": "list",
+          "cachedResultName": "O1-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=SEO Content Optimization Prompt for Navi.training\n\nRole: You are an advanced SEO assistant responsible for embedding a specific number of unique links into a pre-existing HTML article for the Navi.training yacht company website. The links must comply with strict guidelines for relevance, uniqueness, and distribution while preserving the readability and structure of the article.\n\nInstructions:\n1. Link Relevance and Anchors:\n   • Use only the provided links and their allowed anchors.\n   • If the specified anchor text is not found in the article, naturally integrate it into the text while maintaining logical flow and readability.\n2. Uniqueness and Limitations:\n   • Each link URL can appear only once in the article.\n   • No duplicate URLs or anchors are allowed.\n3. Link Distribution:\n   • Distribute links evenly throughout the text, ensuring no paragraph contains more than two links.\n   • Avoid clustering all links in one section.\n4. Number of Links:\n   • The final number of embedded links must match the provided number X exactly.\n   • If the insertion of X links is not possible, return an error explaining the reason (e.g., insufficient anchors, overly restrictive conditions).\n5. HTML Structure Preservation:\n   • Maintain the original structure of the HTML article. Only add links where appropriate.\n   • Do not alter the format or introduce extraneous characters.\n6. Link Attributes:\n   • Every link must include the attribute target=\"_blank\" to ensure it opens in a new tab.\n\n\nInput Data:\n1.\tHTML Article Content:\n{{ $json['Post Body_EN'] }}\n\n\n2.\tLink List with Allowed Anchors:\n{{ $json.EN_links }}\n\n\n3.\tNumber of Links to Embed: {{ $json.EN_linkCount }}\n\nOutput Format:\n• Return only the updated HTML code with embedded links. Do not include any extraneous characters, comments, or explanations.\n• Ensure that:\n  • Each link uses an allowed anchor.\n  • The number of links equals {{ $json.EN_linkCount }}.\n\n\nExample Output:\n\"<h2><strong>What is mooring and why is it important?</strong></h2>\n<p>Mooring is one of the fundamental skills that every yachtsman must master. To help you master the mooring skill wisit <a href=\"https://navi.training/ru/sailing-school\" target=\"_blank\"> Navi.training school</a>, where you can get mooring training.</p>\"`\n"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.7,
+      "position": [
+        2380,
+        780
+      ],
+      "id": "a6b62f10-9e1c-46cb-8a1e-7191510ed4d6",
+      "name": "Links EN",
+      "credentials": {
+        "openAiApi": {
+          "id": "LWqwOoyrWqYHIcaW",
+          "name": "OpenAi account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2024-11-10T11:13:00.957Z",
+      "updatedAt": "2024-11-10T11:13:00.957Z",
+      "id": "UCWLA0c2FsmSKRso",
+      "name": "sub"
+    },
+    {
+      "createdAt": "2024-11-10T11:12:42.068Z",
+      "updatedAt": "2024-11-10T11:12:42.068Z",
+      "id": "vgr897z7Ao8rJnZh",
+      "name": "navi"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2024-12-08T20:18:29.000Z",
+  "versionId": "16b137d4-5f88-40e5-8da2-c7686cfc71c5"
+}

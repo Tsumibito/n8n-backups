@@ -1184,6 +1184,12 @@
     },
     {
       "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "OiplipE8Zch4oHXE",
+          "mode": "list",
+          "cachedResultName": "--Navi link builder"
+        },
         "options": {}
       },
       "id": "a60396f8-0c30-4de0-87a9-fff0a208ea74",
@@ -1210,6 +1216,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-12-08T11:28:05.000Z",
-  "versionId": "0d456207-6906-4e76-9dc9-969c619e8ca0"
+  "updatedAt": "2024-12-15T18:08:26.000Z",
+  "versionId": "7218a3b6-ca26-4b8b-a5ef-30485add993d"
 }

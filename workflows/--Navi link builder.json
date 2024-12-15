@@ -13,6 +13,11 @@
             "node": "Baserow Get All others",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Set static internal urls",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -537,7 +542,15 @@
       }
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "id": 364
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1"
   },
@@ -557,6 +570,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-12-08T20:18:29.000Z",
-  "versionId": "16b137d4-5f88-40e5-8da2-c7686cfc71c5"
+  "updatedAt": "2024-12-15T18:26:17.000Z",
+  "versionId": "15b18666-bb74-4e9b-9986-b93d3f37d857"
 }

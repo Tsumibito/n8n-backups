@@ -1,0 +1,217 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Baserow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Baserow1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-12-26T09:36:58.097Z",
+  "id": "lw80c43RD9uYeGfZ",
+  "meta": null,
+  "name": "Convert to markup",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "c73dbf1e-e4c6-48d5-aa60-d2fd2a7af471",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "53ff8a36-9698-4eda-95f0-6486a77a48d3",
+              "name": "id",
+              "value": "400",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        0
+      ],
+      "id": "5c9ba9b3-910e-4202-874f-d0485a09bb58",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "databaseId": 139118,
+        "tableId": 356544,
+        "rowId": "={{ $json.id }}"
+      },
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        440,
+        0
+      ],
+      "id": "951a372e-b89c-4e97-ac6d-b9d29dc3b679",
+      "name": "Baserow",
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "61ff10b9-4b66-4f64-a1dc-5a36a5763d87",
+              "name": "Post Body_RU",
+              "value": "={{ $json['Post Body_RU'] }}",
+              "type": "string"
+            },
+            {
+              "id": "f7ccd0f3-6926-4df5-ab81-67c7c479ff23",
+              "name": "Post Body_UA",
+              "value": "={{ $json['Post Body_UA'] }}",
+              "type": "string"
+            },
+            {
+              "id": "f2e519ce-f31d-4c64-9bbf-2c910336e9fb",
+              "name": "Post Body_EN",
+              "value": "={{ $json['Post Body_EN'] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        660,
+        0
+      ],
+      "id": "0265caaa-c831-444e-8860-792fd098eaa2",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n\n  const hasAnyHtml = item.json[\"Post Body_RU\"] \n                  || item.json[\"Post Body_UA\"] \n                  || item.json[\"Post Body_EN\"];\n\n  if (!hasAnyHtml) {\n    return item;\n  }\n\n  function htmlToMarkdown(html) {\n    if (!html) return \"\";\n\n    let md = html;\n\n    // 1) <figure><img> ... </figure> -> ![alt](src)\n    md = md.replace(\n      /<figure[^>]*>[\\s\\S]*?<img[^>]*src=\"([^\"]+)\"[^>]*(alt=\"([^\"]*)\")?[^>]*>[\\s\\S]*?<\\/figure>/gi,\n      (_, src, __, altText) => {\n        const alt = altText || \"\";\n        return `\\n\\n![${alt}](${src})\\n\\n`;\n      }\n    );\n\n    // 2) Обычные <img> вне <figure>\n    md = md.replace(\n      /<img[^>]*src=\"([^\"]+)\"[^>]*alt=\"([^\"]*)\"[^>]*>/gi,\n      \"\\n\\n![$2]($1)\\n\\n\"\n    );\n    md = md.replace(\n      /<img[^>]*src=\"([^\"]+)\"[^>]*>/gi,\n      \"\\n\\n![]($1)\\n\\n\"\n    );\n\n    // 3) Заголовки <h1>.. <h6>\n    md = md.replace(/<h1[^>]*>([\\s\\S]*?)<\\/h1>/gi, \"\\n# $1\\n\");\n    md = md.replace(/<h2[^>]*>([\\s\\S]*?)<\\/h2>/gi, \"\\n## $1\\n\");\n    md = md.replace(/<h3[^>]*>([\\s\\S]*?)<\\/h3>/gi, \"\\n### $1\\n\");\n    md = md.replace(/<h4[^>]*>([\\s\\S]*?)<\\/h4>/gi, \"\\n#### $1\\n\");\n    md = md.replace(/<h5[^>]*>([\\s\\S]*?)<\\/h5>/gi, \"\\n##### $1\\n\");\n    md = md.replace(/<h6[^>]*>([\\s\\S]*?)<\\/h6>/gi, \"\\n###### $1\\n\");\n\n    // 4) <p> -> отдельный абзац\n    md = md.replace(/<p[^>]*>([\\s\\S]*?)<\\/p>/gi, \"\\n$1\\n\");\n\n    // 5) <strong> / <b> -> **\n    md = md.replace(/<strong[^>]*>([\\s\\S]*?)<\\/strong>/gi, \"**$1**\");\n    md = md.replace(/<b[^>]*>([\\s\\S]*?)<\\/b>/gi, \"**$1**\");\n\n    // 6) <em> / <i> -> _\n    md = md.replace(/<em[^>]*>([\\s\\S]*?)<\\/em>/gi, \"_$1_\");\n    md = md.replace(/<i[^>]*>([\\s\\S]*?)<\\/i>/gi, \"_$1_\");\n\n    // 7) <a href=\"...\">Text</a> -> [Text](URL)\n    md = md.replace(/<a[^>]*href=\"([^\"]+)\"[^>]*>([\\s\\S]*?)<\\/a>/gi, \"[$2]($1)\");\n\n    // 8) Списки <ul>, <ol>, <li>\n    md = md.replace(/<ul[^>]*>/gi, \"\\n\");\n    md = md.replace(/<\\/ul>/gi, \"\\n\");\n    md = md.replace(/<ol[^>]*>/gi, \"\\n\");\n    md = md.replace(/<\\/ol>/gi, \"\\n\");\n    md = md.replace(/<li[^>]*>([\\s\\S]*?)<\\/li>/gi, \"- $1\\n\");\n\n    // 9) <br>, <hr>, остатки figure/figcaption\n    md = md.replace(/<br[^>]*\\/?>/gi, \"\\n\");\n    md = md.replace(/<hr[^>]*>/gi, \"\\n----\\n\");\n    md = md.replace(/<\\/?figcaption[^>]*>/gi, \"\");\n\n    // 10) Удаляем оставшиеся теги\n    md = md.replace(/<[^>]+>/g, \"\");\n\n    // 11) Заменяем >2 подряд идущих \\n на максимум 2\n    md = md.replace(/\\n{3,}/g, \"\\n\\n\");\n\n    // 12) Убираем ведущие пробелы у строк, начинающихся с дефиса (список)\n    //    Превращаем:\n    //        - Пункт\n    //    в\n    //    - Пункт\n    md = md.replace(/^[ \\t]+(- )/gm, \"$1\");\n\n    // 13) trim\n    md = md.trim();\n\n    return md;\n  }\n\n  // Применяем конвертацию\n  if (item.json[\"Post Body_RU\"]) {\n    item.json[\"Post Body_RU_Markdown\"] = htmlToMarkdown(item.json[\"Post Body_RU\"]);\n  }\n  if (item.json[\"Post Body_UA\"]) {\n    item.json[\"Post Body_UA_Markdown\"] = htmlToMarkdown(item.json[\"Post Body_UA\"]);\n  }\n  if (item.json[\"Post Body_EN\"]) {\n    item.json[\"Post Body_EN_Markdown\"] = htmlToMarkdown(item.json[\"Post Body_EN\"]);\n  }\n\n  return item;\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        880,
+        0
+      ],
+      "id": "005e7281-d382-4169-a88a-502682646bf8",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 139118,
+        "tableId": 356544,
+        "rowId": "={{ $('Edit Fields').item.json.id }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 3176723,
+              "fieldValue": "={{ $json['Post Body_RU_Markdown'] }}"
+            },
+            {
+              "fieldId": 3176724,
+              "fieldValue": "={{ $json['Post Body_UA_Markdown'] }}"
+            },
+            {
+              "fieldId": 3176725,
+              "fieldValue": "={{ $json['Post Body_EN_Markdown'] }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        0
+      ],
+      "id": "9dd49cb4-bb6c-4b63-8a5c-35cdbdb0ce2f",
+      "name": "Baserow1",
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-12-26T13:58:47.000Z",
+  "versionId": "77f90dc7-44ed-4043-9e58-410c3a28e224"
+}

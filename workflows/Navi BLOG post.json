@@ -5,62 +5,17 @@
       "main": [
         [
           {
-            "node": "Generate slug",
+            "node": "Baserow Upload Main Image",
             "type": "main",
             "index": 0
           },
           {
-            "node": "DeepL Post Name translate UA",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "DeepL Translate Post name EN",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "DeepL Translate Title EN",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "DeepL translate title UA",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "DeepL Translate Description EN",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "DeepL translate Description UA",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "DeepL translate keywords UA",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "DeepL Translate keywords EN",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Edit Fields1",
+            "node": "Data Input",
             "type": "main",
             "index": 0
           },
           {
             "node": "Baserow Upload Thumbnail Image",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Baserow Upload Main Image",
             "type": "main",
             "index": 0
           }
@@ -78,116 +33,13 @@
         ]
       ]
     },
-    "DeepL translate keywords UA": {
-      "main": [
-        [
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 1
-          }
-        ]
-      ]
-    },
-    "DeepL Translate keywords EN": {
-      "main": [
-        [
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "DeepL translate Description UA": {
-      "main": [
-        [
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 2
-          }
-        ]
-      ]
-    },
-    "DeepL Translate Description EN": {
-      "main": [
-        [
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 3
-          }
-        ]
-      ]
-    },
-    "DeepL translate title UA": {
-      "main": [
-        [
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 4
-          }
-        ]
-      ]
-    },
-    "DeepL Translate Title EN": {
-      "main": [
-        [
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 4
-          }
-        ]
-      ]
-    },
-    "DeepL Translate Post name EN": {
-      "main": [
-        [
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 5
-          }
-        ]
-      ]
-    },
-    "DeepL Post Name translate UA": {
-      "main": [
-        [
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 6
-          }
-        ]
-      ]
-    },
     "Baserow create blog row": {
       "main": [
         [
           {
-            "node": "Merge1",
+            "node": "Get ID",
             "type": "main",
             "index": 0
-          },
-          {
-            "node": "Edit Fields",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Merge2",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 7
           }
         ]
       ]
@@ -221,60 +73,6 @@
             "node": "Merge1",
             "type": "main",
             "index": 4
-          }
-        ]
-      ]
-    },
-    "Execute Workflow": {
-      "main": [
-        [
-          {
-            "node": "Translate post to UA",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Translate post to EN",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "OpenAI",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Edit Fields": {
-      "main": [
-        [
-          {
-            "node": "Merge3",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Edit Fields1": {
-      "main": [
-        [
-          {
-            "node": "Merge3",
-            "type": "main",
-            "index": 1
-          }
-        ]
-      ]
-    },
-    "Merge3": {
-      "main": [
-        [
-          {
-            "node": "Execute Workflow",
-            "type": "main",
-            "index": 0
           }
         ]
       ]
@@ -318,17 +116,6 @@
             "node": "Merge1",
             "type": "main",
             "index": 3
-          }
-        ]
-      ]
-    },
-    "Merge": {
-      "main": [
-        [
-          {
-            "node": "Baserow add translations",
-            "type": "main",
-            "index": 0
           }
         ]
       ]
@@ -392,7 +179,49 @@
       "main": [
         [
           {
-            "node": "Execute Workflow1",
+            "node": "Navi link builder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic translate": {
+      "main": [
+        []
+      ]
+    },
+    "Upload Post Images": {
+      "main": [
+        []
+      ]
+    },
+    "Get ID": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Basic translate",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Upload Post Images",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Data Input": {
+      "main": [
+        [
+          {
+            "node": "Generate slug",
             "type": "main",
             "index": 0
           }
@@ -419,7 +248,7 @@
               "requiredField": true
             },
             {
-              "fieldLabel": "Текст поста RU html",
+              "fieldLabel": "Текст поста RU markdown",
               "fieldType": "textarea",
               "requiredField": true
             },
@@ -455,191 +284,23 @@
       "type": "n8n-nodes-base.formTrigger",
       "typeVersion": 2.1,
       "position": [
-        -1020,
-        560
+        -2040,
+        540
       ],
       "webhookId": "79d3dee2-ee2b-4070-8428-947ee2cc25de"
     },
     {
       "parameters": {
-        "jsCode": "// Функция транслитерации\nfunction transliterate(text) {\n  const transliterationTable = {\n    'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd',\n    'е': 'e', 'ё': 'yo', 'ж': 'zh', 'з': 'z',\n    'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l',\n    'м': 'm', 'н': 'n', 'о': 'o', 'п': 'p',\n    'р': 'r', 'с': 's', 'т': 't', 'у': 'u',\n    'ф': 'f', 'х': 'h', 'ц': 'ts', 'ч': 'ch',\n    'ш': 'sh', 'щ': 'sch', 'ъ': '', 'ы': 'y', 'ь': '',\n    'э': 'e', 'ю': 'yu', 'я': 'ya',\n    'А': 'A', 'Б': 'B', 'В': 'V', 'Г': 'G', 'Д': 'D',\n    'Е': 'E', 'Ё': 'Yo', 'Ж': 'Zh', 'З': 'Z',\n    'И': 'I', 'Й': 'Y', 'К': 'K', 'Л': 'L',\n    'М': 'M', 'Н': 'N', 'О': 'O', 'П': 'P',\n    'Р': 'R', 'С': 'S', 'Т': 'T', 'У': 'U',\n    'Ф': 'F', 'Х': 'H', 'Ц': 'Ts', 'Ч': 'Ch',\n    'Ш': 'Sh', 'Щ': 'Sch', 'Ъ': '', 'Ы': 'Y', 'Ь': '',\n    'Э': 'E', 'Ю': 'Yu', 'Я': 'Ya',\n  };\n\n  return text.split('').map(function (char) {\n    return transliterationTable[char] || char;\n  }).join('');\n}\n\n// Функция создания слага\nfunction slugify(text) {\n  // Транслитерация\n  text = transliterate(text);\n\n  // Приводим к нижнему регистру\n  text = text.toLowerCase();\n\n  // Заменяем все символы, кроме букв и цифр, на дефисы\n  text = text.replace(/[^a-z0-9]+/g, '-');\n\n  // Удаляем начальные и конечные дефисы\n  text = text.replace(/^-+|-+$/g, '');\n\n  return text;\n}\n\n// Перебираем каждый элемент в массиве items\nreturn items.map(item => {\n  // Получаем значение из поля \"Заголовок RU\"\n  const title = item.json['Заголовок RU'];\n\n  // Генерируем слаг\n  const slug = slugify(title);\n\n  // Добавляем поле \"Slug\" в текущий элемент\n  return {\n    json: {\n      ...item.json,\n      'Slug': slug\n    }\n  };\n});\n"
+        "jsCode": "// Функция транслитерации\nfunction transliterate(text) {\n  const transliterationTable = {\n    'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd',\n    'е': 'e', 'ё': 'yo', 'ж': 'zh', 'з': 'z',\n    'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l',\n    'м': 'm', 'н': 'n', 'о': 'o', 'п': 'p',\n    'р': 'r', 'с': 's', 'т': 't', 'у': 'u',\n    'ф': 'f', 'х': 'h', 'ц': 'ts', 'ч': 'ch',\n    'ш': 'sh', 'щ': 'sch', 'ъ': '', 'ы': 'y', 'ь': '',\n    'э': 'e', 'ю': 'yu', 'я': 'ya',\n    'А': 'A', 'Б': 'B', 'В': 'V', 'Г': 'G', 'Д': 'D',\n    'Е': 'E', 'Ё': 'Yo', 'Ж': 'Zh', 'З': 'Z',\n    'И': 'I', 'Й': 'Y', 'К': 'K', 'Л': 'L',\n    'М': 'M', 'Н': 'N', 'О': 'O', 'П': 'P',\n    'Р': 'R', 'С': 'S', 'Т': 'T', 'У': 'U',\n    'Ф': 'F', 'Х': 'H', 'Ц': 'Ts', 'Ч': 'Ch',\n    'Ш': 'Sh', 'Щ': 'Sch', 'Ъ': '', 'Ы': 'Y', 'Ь': '',\n    'Э': 'E', 'Ю': 'Yu', 'Я': 'Ya',\n  };\n\n  return text.split('').map(function (char) {\n    return transliterationTable[char] || char;\n  }).join('');\n}\n\n// Функция создания слага\nfunction slugify(text) {\n  // Транслитерация\n  text = transliterate(text);\n\n  // Приводим к нижнему регистру\n  text = text.toLowerCase();\n\n  // Заменяем все символы, кроме букв и цифр, на дефисы\n  text = text.replace(/[^a-z0-9]+/g, '-');\n\n  // Удаляем начальные и конечные дефисы\n  text = text.replace(/^-+|-+$/g, '');\n\n  return text;\n}\n\n// Перебираем каждый элемент в массиве items\nreturn items.map(item => {\n  // Получаем значение из поля \"Заголовок RU\"\n  const title = item.json['post Name'];\n\n  // Генерируем слаг\n  const slug = slugify(title);\n\n  // Добавляем поле \"Slug\" в текущий элемент\n  return {\n    json: {\n      ...item.json,\n      'Slug': slug\n    }\n  };\n});\n"
       },
       "id": "efccfd56-c90a-49ec-a19e-1b5888415b79",
       "name": "Generate slug",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1300,
-        520
+        -1260,
+        540
       ]
-    },
-    {
-      "parameters": {
-        "text": "={{ $json[\"Заголовок RU\"] }}",
-        "translateTo": "UK",
-        "additionalFields": {}
-      },
-      "id": "31044e47-4f63-400e-94ad-6bf23e641183",
-      "name": "DeepL Post Name translate UA",
-      "type": "n8n-nodes-base.deepL",
-      "typeVersion": 1,
-      "position": [
-        1300,
-        320
-      ],
-      "credentials": {
-        "deepLApi": {
-          "id": "Fa3gRfaikTneP7NW",
-          "name": "DeepL account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "text": "={{ $json[\"Заголовок RU\"] }}",
-        "translateTo": "EN-US",
-        "additionalFields": {}
-      },
-      "id": "0711f8da-7c88-4a92-93d3-32a58434c530",
-      "name": "DeepL Translate Post name EN",
-      "type": "n8n-nodes-base.deepL",
-      "typeVersion": 1,
-      "position": [
-        1300,
-        140
-      ],
-      "credentials": {
-        "deepLApi": {
-          "id": "Fa3gRfaikTneP7NW",
-          "name": "DeepL account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "text": "={{ $json.Title }}",
-        "translateTo": "EN-US",
-        "additionalFields": {}
-      },
-      "id": "037bb705-fb49-4dbc-8869-84ea3db9e8e4",
-      "name": "DeepL Translate Title EN",
-      "type": "n8n-nodes-base.deepL",
-      "typeVersion": 1,
-      "position": [
-        1300,
-        -40
-      ],
-      "credentials": {
-        "deepLApi": {
-          "id": "Fa3gRfaikTneP7NW",
-          "name": "DeepL account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "text": "={{ $json.Title }}",
-        "translateTo": "UK",
-        "additionalFields": {}
-      },
-      "id": "496fa835-d9c3-428f-9b37-a752aa1d20a0",
-      "name": "DeepL translate title UA",
-      "type": "n8n-nodes-base.deepL",
-      "typeVersion": 1,
-      "position": [
-        1300,
-        -220
-      ],
-      "credentials": {
-        "deepLApi": {
-          "id": "Fa3gRfaikTneP7NW",
-          "name": "DeepL account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "text": "={{ $json.Description }}",
-        "translateTo": "EN-US",
-        "additionalFields": {}
-      },
-      "id": "9c24a572-0076-4145-8ea5-036c81806440",
-      "name": "DeepL Translate Description EN",
-      "type": "n8n-nodes-base.deepL",
-      "typeVersion": 1,
-      "position": [
-        1300,
-        -400
-      ],
-      "credentials": {
-        "deepLApi": {
-          "id": "Fa3gRfaikTneP7NW",
-          "name": "DeepL account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "text": "={{ $json.Description }}",
-        "translateTo": "UK",
-        "additionalFields": {}
-      },
-      "id": "b8ec4db9-bf30-46ac-91d2-be7124e2efeb",
-      "name": "DeepL translate Description UA",
-      "type": "n8n-nodes-base.deepL",
-      "typeVersion": 1,
-      "position": [
-        1300,
-        -580
-      ],
-      "credentials": {
-        "deepLApi": {
-          "id": "Fa3gRfaikTneP7NW",
-          "name": "DeepL account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "text": "={{ $json.keywords }}",
-        "translateTo": "UK",
-        "additionalFields": {}
-      },
-      "id": "ace53939-50c3-4a27-8cc6-46716da8123f",
-      "name": "DeepL translate keywords UA",
-      "type": "n8n-nodes-base.deepL",
-      "typeVersion": 1,
-      "position": [
-        1300,
-        -760
-      ],
-      "credentials": {
-        "deepLApi": {
-          "id": "Fa3gRfaikTneP7NW",
-          "name": "DeepL account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "text": "={{ $json.keywords }}",
-        "translateTo": "EN-US",
-        "additionalFields": {}
-      },
-      "id": "62f63552-5bbd-4038-9b40-8298380e5f28",
-      "name": "DeepL Translate keywords EN",
-      "type": "n8n-nodes-base.deepL",
-      "typeVersion": 1,
-      "position": [
-        1300,
-        -940
-      ],
-      "credentials": {
-        "deepLApi": {
-          "id": "Fa3gRfaikTneP7NW",
-          "name": "DeepL account"
-        }
-      }
     },
     {
       "parameters": {
@@ -657,7 +318,7 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1.1,
       "position": [
-        1420,
+        1860,
         1020
       ]
     },
@@ -678,7 +339,7 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1.1,
       "position": [
-        1420,
+        1860,
         1200
       ]
     },
@@ -695,19 +356,31 @@
             },
             {
               "fieldId": 2660067,
-              "fieldValue": "={{ $('n8n Form Trigger').item.json['Заголовок RU'] }}"
+              "fieldValue": "={{ $('Data Input').item.json['post Name'] }}"
             },
             {
               "fieldId": 2660083,
-              "fieldValue": "={{ $('n8n Form Trigger').item.json.Title }}"
+              "fieldValue": "={{ $('Data Input').item.json.title }}"
             },
             {
               "fieldId": 2660084,
-              "fieldValue": "={{ $('n8n Form Trigger').item.json.Description }}"
+              "fieldValue": "={{ $('Data Input').item.json.description }}"
             },
             {
               "fieldId": 2896460,
-              "fieldValue": "={{ $('n8n Form Trigger').item.json.keywords }}"
+              "fieldValue": "={{ $('Data Input').item.json.keywords }}"
+            },
+            {
+              "fieldId": 2660079,
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": 3176727,
+              "fieldValue": "false"
+            },
+            {
+              "fieldId": 3176723,
+              "fieldValue": "={{ $json.data }}"
             }
           ]
         }
@@ -717,70 +390,8 @@
       "type": "n8n-nodes-base.baserow",
       "typeVersion": 1,
       "position": [
-        1600,
-        520
-      ],
-      "credentials": {
-        "baserowApi": {
-          "id": "iKQh0Jcxz7wezRWR",
-          "name": "Baserow account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "update",
-        "databaseId": 139118,
-        "tableId": 356544,
-        "rowId": "={{ $node[\"Merge\"].json.id }}",
-        "fieldsUi": {
-          "fieldValues": [
-            {
-              "fieldId": 2660093,
-              "fieldValue": "={{ $node[\"DeepL Post Name translate UA\"].json.text }}"
-            },
-            {
-              "fieldId": 2660094,
-              "fieldValue": "={{ $node[\"DeepL Translate Post name EN\"].json.text }}"
-            },
-            {
-              "fieldId": 2664555,
-              "fieldValue": "={{ $node[\"DeepL translate Description UA\"].json.text }}"
-            },
-            {
-              "fieldId": 2664606,
-              "fieldValue": "={{ $node[\"DeepL Translate Description EN\"].json.text }}"
-            },
-            {
-              "fieldId": 2664718,
-              "fieldValue": "={{ $node[\"DeepL translate title UA\"].json.text }}"
-            },
-            {
-              "fieldId": 2664719,
-              "fieldValue": "={{ $node[\"DeepL Translate Title EN\"].json.text }}"
-            },
-            {
-              "fieldId": 2660081,
-              "fieldValue": "alex-burlakov"
-            },
-            {
-              "fieldId": 2660085,
-              "fieldValue": "15 min to read"
-            },
-            {
-              "fieldId": 2660079,
-              "fieldValue": "true"
-            }
-          ]
-        }
-      },
-      "id": "499eff75-ceb4-4b98-848c-2d2a1c7c1b3b",
-      "name": "Baserow add translations",
-      "type": "n8n-nodes-base.baserow",
-      "typeVersion": 1,
-      "position": [
-        2160,
-        -140
+        -1020,
+        540
       ],
       "credentials": {
         "baserowApi": {
@@ -800,7 +411,7 @@
       "type": "n8n-nodes-base.deepL",
       "typeVersion": 1,
       "position": [
-        1700,
+        2140,
         1460
       ],
       "credentials": {
@@ -821,7 +432,7 @@
       "type": "n8n-nodes-base.deepL",
       "typeVersion": 1,
       "position": [
-        1700,
+        2140,
         1700
       ],
       "credentials": {
@@ -841,7 +452,7 @@
           "fieldValues": [
             {
               "fieldId": 2660075,
-              "fieldValue": "={{ $node[\"Edit Fields\"].json.data }}"
+              "fieldValue": "={{ $node[\"Get ID\"].json.data }}"
             },
             {
               "fieldId": 2660175,
@@ -871,7 +482,7 @@
       "type": "n8n-nodes-base.baserow",
       "typeVersion": 1,
       "position": [
-        2200,
+        2640,
         1060
       ],
       "credentials": {
@@ -905,8 +516,8 @@
       "type": "n8n-nodes-base.baserow",
       "typeVersion": 1,
       "position": [
-        460,
-        -760
+        140,
+        1460
       ],
       "credentials": {
         "baserowApi": {
@@ -914,92 +525,6 @@
           "name": "Baserow account"
         }
       }
-    },
-    {
-      "parameters": {
-        "workflowId": {
-          "__rl": true,
-          "value": "PHQQyHKIBZp4JTHv",
-          "mode": "list",
-          "cachedResultName": "-- Navi upload images for blog post"
-        },
-        "options": {
-          "waitForSubWorkflow": true
-        }
-      },
-      "id": "6900ee33-00e3-4587-8b19-2bb58fd2154f",
-      "name": "Execute Workflow",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1.1,
-      "position": [
-        1060,
-        1020
-      ]
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "90a25192-b6ef-4062-98b5-eb5017715808",
-              "name": "id",
-              "value": "={{ $json.id }}",
-              "type": "number"
-            },
-            {
-              "id": "0f29f853-8f16-427a-8a0e-e9c1c03e3c68",
-              "name": "data",
-              "value": "={{ $('n8n Form Trigger').item.json['Текст поста RU html'] }}",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "23cac241-b486-43cf-9f61-dcc0dc05bac7",
-      "name": "Edit Fields",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        640,
-        1000
-      ]
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "f8ffa9dd-c5b2-4a43-a9c0-0abee55fc321",
-              "name": "data",
-              "value": "={{ $json['Текст поста RU html'] }}",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "143f9f3b-262c-4fff-a2d6-5318d3964f63",
-      "name": "Edit Fields1",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        580,
-        1140
-      ]
-    },
-    {
-      "parameters": {
-        "mode": "chooseBranch"
-      },
-      "id": "887f5b96-7c21-4806-a815-817b2adadfaa",
-      "name": "Merge3",
-      "type": "n8n-nodes-base.merge",
-      "typeVersion": 3,
-      "position": [
-        880,
-        1020
-      ]
     },
     {
       "parameters": {
@@ -1011,7 +536,7 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        1940,
+        2380,
         1020
       ]
     },
@@ -1026,7 +551,7 @@
         "messages": {
           "values": [
             {
-              "content": "=Сгенерируй привлекательное и интересное резюме для статьи на русском языке, так чтобы ее захотелось прочитать, не менее чем на 400 символов с пробелами, но не более чем на 550 символов с пробелами в текстовом формате без разметки. В качестве ответа верни только готовое резюме поста, без каких либо комментариев и дополнений. \n\nВот текст поста в HTML:\n{{ $json.data }}"
+              "content": "=Сгенерируй привлекательное и интересное резюме для статьи на русском языке, так чтобы ее захотелось прочитать, не менее чем на 400 символов с пробелами, но не более чем на 550 символов с пробелами в текстовом формате без разметки. В качестве ответа верни только готовое резюме поста, без каких либо комментариев и дополнений. \n\nВот текст поста в Markdown:\n{{ $json.data }}"
             }
           ]
         },
@@ -1037,7 +562,7 @@
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.5,
       "position": [
-        1240,
+        1680,
         1460
       ],
       "credentials": {
@@ -1046,21 +571,6 @@
           "name": "OpenAi account"
         }
       }
-    },
-    {
-      "parameters": {
-        "mode": "chooseBranch",
-        "numberInputs": 8,
-        "useDataOfInput": 8
-      },
-      "id": "e48fdc2b-d937-48dd-b605-722c1f6232a3",
-      "name": "Merge",
-      "type": "n8n-nodes-base.merge",
-      "typeVersion": 3,
-      "position": [
-        1860,
-        -220
-      ]
     },
     {
       "parameters": {
@@ -1093,8 +603,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -220,
-        -720
+        -860,
+        1260
       ]
     },
     {
@@ -1128,8 +638,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -200,
-        -360
+        -860,
+        1480
       ]
     },
     {
@@ -1142,21 +652,21 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        20,
-        -560
+        -340,
+        1460
       ]
     },
     {
       "parameters": {
-        "jsCode": "// Получаем id из узла 'Baserow create blog row'\nconst baserowCreateBlogRowItems = $items(\"Baserow create blog row\", 0, 0);\n\nif (!baserowCreateBlogRowItems || baserowCreateBlogRowItems.length === 0) {\n  throw new Error(\"Не удалось найти данные в узле 'Baserow create blog row'\");\n}\n\nconst id = baserowCreateBlogRowItems[0].json.id;\n\n// Получаем имя из узла 'Baserow Upload Main Image'\nconst baserowUploadMainImageItems = $items(\"Baserow Upload Main Image\", 0, 0);\n\nif (!baserowUploadMainImageItems || baserowUploadMainImageItems.length === 0) {\n  throw new Error(\"Не удалось найти данные в узле 'Baserow Upload Main Image'\");\n}\n\nconst main_name = baserowUploadMainImageItems[0].json.name;\n\n// Получаем имя из узла 'Baserow Upload Thumbnail Image'\nconst baserowUploadThumbnailImageItems = $items(\"Baserow Upload Thumbnail Image\", 0, 0);\n\nif (!baserowUploadThumbnailImageItems || baserowUploadThumbnailImageItems.length === 0) {\n  throw new Error(\"Не удалось найти данные в узле 'Baserow Upload Thumbnail Image'\");\n}\n\nconst thumb_name = baserowUploadThumbnailImageItems[0].json.name;\n\n// Возвращаем данные в виде JSON\nreturn [\n  {\n    json: {\n      id: id,\n      main_name: main_name,\n      thumb_name: thumb_name\n    }\n  }\n];\n"
+        "jsCode": "// Получаем id из узла 'Baserow create blog row'\nconst baserowCreateBlogRowItems = $items(\"Get ID\", 0, 0);\n\nif (!baserowCreateBlogRowItems || baserowCreateBlogRowItems.length === 0) {\n  throw new Error(\"Не удалось найти данные в узле 'Baserow create blog row'\");\n}\n\nconst id = baserowCreateBlogRowItems[0].json.id;\n\n// Получаем имя из узла 'Baserow Upload Main Image'\nconst baserowUploadMainImageItems = $items(\"Baserow Upload Main Image\", 0, 0);\n\nif (!baserowUploadMainImageItems || baserowUploadMainImageItems.length === 0) {\n  throw new Error(\"Не удалось найти данные в узле 'Baserow Upload Main Image'\");\n}\n\nconst main_name = baserowUploadMainImageItems[0].json.name;\n\n// Получаем имя из узла 'Baserow Upload Thumbnail Image'\nconst baserowUploadThumbnailImageItems = $items(\"Baserow Upload Thumbnail Image\", 0, 0);\n\nif (!baserowUploadThumbnailImageItems || baserowUploadThumbnailImageItems.length === 0) {\n  throw new Error(\"Не удалось найти данные в узле 'Baserow Upload Thumbnail Image'\");\n}\n\nconst thumb_name = baserowUploadThumbnailImageItems[0].json.name;\n\n// Возвращаем данные в виде JSON\nreturn [\n  {\n    json: {\n      id: id,\n      main_name: main_name,\n      thumb_name: thumb_name\n    }\n  }\n];\n"
       },
       "id": "105c33e8-788c-4973-9bb1-155a49502091",
       "name": "Code",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        240,
-        -560
+        -100,
+        1460
       ]
     },
     {
@@ -1178,8 +688,48 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2420,
+        2860,
         1060
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "UERhR9Z3FoxynX4L",
+          "mode": "list",
+          "cachedResultName": "--- Navi Blog Post translate"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.1,
+      "position": [
+        20,
+        400
+      ],
+      "id": "56e1ff73-3303-4598-9a99-564c22b45d06",
+      "name": "Basic translate"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "PHQQyHKIBZp4JTHv",
+          "mode": "list",
+          "cachedResultName": "-- Navi upload images for blog post"
+        },
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "id": "6900ee33-00e3-4587-8b19-2bb58fd2154f",
+      "name": "Upload Post Images",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.1,
+      "position": [
+        20,
+        680
       ]
     },
     {
@@ -1193,16 +743,94 @@
         "options": {}
       },
       "id": "a60396f8-0c30-4de0-87a9-fff0a208ea74",
-      "name": "Execute Workflow1",
+      "name": "Navi link builder",
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1.1,
       "position": [
-        2640,
+        3080,
         1060
       ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "04fafee6-7626-4a26-9c9d-78948cee7657",
+              "name": "id",
+              "value": "={{ $json.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -660,
+        540
+      ],
+      "id": "3dae109f-7297-4bc5-ac00-b26127524624",
+      "name": "Get ID"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6d788532-3884-4e8a-b33b-1fef59f5bc40",
+              "name": "post Name",
+              "value": "={{ $json['Заголовок RU'] }}",
+              "type": "string"
+            },
+            {
+              "id": "079cc562-ad3b-4b84-bc70-a015bc09432f",
+              "name": "data",
+              "value": "={{ $json['Текст поста RU markdown'] }}",
+              "type": "string"
+            },
+            {
+              "id": "0d285180-66e6-410e-9208-ceab08e6009f",
+              "name": "title",
+              "value": "={{ $json.Title }}",
+              "type": "string"
+            },
+            {
+              "id": "287401df-f9ef-4200-afa7-525118898057",
+              "name": "description",
+              "value": "={{ $json.Description }}",
+              "type": "string"
+            },
+            {
+              "id": "673f662e-bbb0-49e5-8825-76b53526ca87",
+              "name": "keywords",
+              "value": "={{ $json.keywords }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1560,
+        540
+      ],
+      "id": "6a224c07-99d4-491b-9797-65e55606fff7",
+      "name": "Data Input"
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "Get ID": [
+      {
+        "json": {
+          "id": "431"
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1"
   },
@@ -1216,6 +844,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-12-15T18:08:26.000Z",
-  "versionId": "7218a3b6-ca26-4b8b-a5ef-30485add993d"
+  "updatedAt": "2024-12-27T19:18:24.000Z",
+  "versionId": "e4510736-eb7e-4dbf-9b56-93ed80e14f1c"
 }

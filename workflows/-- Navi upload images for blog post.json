@@ -5,7 +5,7 @@
       "main": [
         [
           {
-            "node": "Find all images in HTML",
+            "node": "Baserow",
             "type": "main",
             "index": 0
           }
@@ -171,6 +171,17 @@
           }
         ]
       ]
+    },
+    "Baserow": {
+      "main": [
+        [
+          {
+            "node": "Find all images in HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2024-11-09T09:35:20.629Z",
@@ -187,7 +198,7 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
       "position": [
-        1140,
+        860,
         680
       ]
     },
@@ -221,7 +232,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1840,
+        2060,
         680
       ]
     },
@@ -254,7 +265,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1700,
+        1920,
         1140
       ],
       "alwaysOutputData": false,
@@ -285,7 +296,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2040,
+        2260,
         1480
       ]
     },
@@ -314,7 +325,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2200,
+        2420,
         1260
       ]
     },
@@ -329,7 +340,7 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        1180,
+        1400,
         1140
       ]
     },
@@ -342,7 +353,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1500,
+        1720,
         680
       ],
       "alwaysOutputData": true
@@ -367,7 +378,7 @@
       "type": "n8n-nodes-base.baserow",
       "typeVersion": 1,
       "position": [
-        1840,
+        2060,
         920
       ],
       "credentials": {
@@ -417,7 +428,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1920,
+        2140,
         1140
       ]
     },
@@ -430,7 +441,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1540,
+        1760,
         960
       ]
     },
@@ -453,7 +464,7 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        1300,
+        1520,
         960
       ]
     },
@@ -464,8 +475,8 @@
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        2360,
-        900
+        2880,
+        860
       ]
     },
     {
@@ -487,7 +498,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2080,
+        2300,
         960
       ]
     },
@@ -510,9 +521,31 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2060,
+        2280,
         780
       ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "databaseId": 139118,
+        "tableId": 356544,
+        "rowId": "={{ $json.id }}"
+      },
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        680
+      ],
+      "id": "7e1292ea-1569-4080-9adc-edca6e64d51e",
+      "name": "Baserow",
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
     }
   ],
   "pinData": {
@@ -575,8 +608,7 @@
     "Execute Workflow Trigger": [
       {
         "json": {
-          "id": "243",
-          "data": "<p>Выбор подарка для яхтсмена может быть непростой задачей. Если вы хотите удивить своего друга или близкого человека, который увлекается яхтингом, то эта статья поможет вам с идеями. Мы собрали 25 интересных и полезных подарков, которые точно порадуют любого любителя моря и приключений.</p><p>Да, многие яхтсмены оценят уникальные подарки, сделанные своими руками, например, альбом с фотографиями путешествий.</p>"
+          "id": "431"
         }
       }
     ]
@@ -600,6 +632,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-11-10T11:13:44.000Z",
-  "versionId": "be061b1c-78fa-49ba-bdf4-17b27fb5ff44"
+  "updatedAt": "2024-12-27T19:21:46.000Z",
+  "versionId": "a2855ac9-2a73-47e7-a6ec-d49fafae5708"
 }

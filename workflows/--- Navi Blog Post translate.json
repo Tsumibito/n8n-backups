@@ -1,0 +1,743 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Baserow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow": {
+      "main": [
+        [
+          {
+            "node": "DeepL Translate keywords EN",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "DeepL translate keywords UA",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "DeepL translate Description UA",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "DeepL Translate Description EN",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "DeepL translate title UA",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "DeepL Translate Title EN",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "DeepL Translate Post name EN",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "DeepL Post Name translate UA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepL Translate Post name EN": {
+      "main": [
+        [
+          {
+            "node": "Baserow add translations",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepL Post Name translate UA": {
+      "main": [
+        [
+          {
+            "node": "Baserow add translations1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepL Translate Title EN": {
+      "main": [
+        [
+          {
+            "node": "Baserow add translations2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepL translate title UA": {
+      "main": [
+        [
+          {
+            "node": "Baserow add translations3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepL Translate Description EN": {
+      "main": [
+        [
+          {
+            "node": "Baserow add translations4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepL translate Description UA": {
+      "main": [
+        [
+          {
+            "node": "Baserow add translations5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepL translate keywords UA": {
+      "main": [
+        [
+          {
+            "node": "Baserow add translations6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepL Translate keywords EN": {
+      "main": [
+        [
+          {
+            "node": "Baserow add translations7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow add translations4": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "Baserow add translations7": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow add translations6": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Baserow add translations5": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Baserow add translations3": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "Baserow add translations2": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 5
+          }
+        ]
+      ]
+    },
+    "Baserow add translations": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 6
+          }
+        ]
+      ]
+    },
+    "Baserow add translations1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 7
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-12-27T16:11:12.743Z",
+  "id": "UERhR9Z3FoxynX4L",
+  "meta": null,
+  "name": "--- Navi Blog Post translate",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -320,
+        20
+      ],
+      "id": "8f3e2568-6373-4668-a218-a5c3ef5753f3",
+      "name": "Execute Workflow Trigger"
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.Name_RU }}",
+        "translateTo": "UK",
+        "additionalFields": {}
+      },
+      "id": "f4d8cd97-c827-443e-98d1-882b0fb2de20",
+      "name": "DeepL Post Name translate UA",
+      "type": "n8n-nodes-base.deepL",
+      "typeVersion": 1,
+      "position": [
+        560,
+        680
+      ],
+      "credentials": {
+        "deepLApi": {
+          "id": "Fa3gRfaikTneP7NW",
+          "name": "DeepL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.Name_RU }}",
+        "translateTo": "EN-US",
+        "additionalFields": {}
+      },
+      "id": "f7c2ae59-1783-4902-a728-1ec38853761c",
+      "name": "DeepL Translate Post name EN",
+      "type": "n8n-nodes-base.deepL",
+      "typeVersion": 1,
+      "position": [
+        560,
+        500
+      ],
+      "credentials": {
+        "deepLApi": {
+          "id": "Fa3gRfaikTneP7NW",
+          "name": "DeepL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ $json['Page Title RU'] }}",
+        "translateTo": "EN-US",
+        "additionalFields": {}
+      },
+      "id": "01e8897c-0c6e-4794-9142-b16e8d27dd76",
+      "name": "DeepL Translate Title EN",
+      "type": "n8n-nodes-base.deepL",
+      "typeVersion": 1,
+      "position": [
+        560,
+        300
+      ],
+      "credentials": {
+        "deepLApi": {
+          "id": "Fa3gRfaikTneP7NW",
+          "name": "DeepL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ $json['Page Title RU'] }}",
+        "translateTo": "UK",
+        "additionalFields": {}
+      },
+      "id": "b0fc4844-2631-47d2-b700-eeb8140163b7",
+      "name": "DeepL translate title UA",
+      "type": "n8n-nodes-base.deepL",
+      "typeVersion": 1,
+      "position": [
+        560,
+        140
+      ],
+      "credentials": {
+        "deepLApi": {
+          "id": "Fa3gRfaikTneP7NW",
+          "name": "DeepL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.Descriptipn_RU }}",
+        "translateTo": "EN-US",
+        "additionalFields": {}
+      },
+      "id": "be731a21-4dc5-4315-9764-8ca899647d81",
+      "name": "DeepL Translate Description EN",
+      "type": "n8n-nodes-base.deepL",
+      "typeVersion": 1,
+      "position": [
+        560,
+        -80
+      ],
+      "credentials": {
+        "deepLApi": {
+          "id": "Fa3gRfaikTneP7NW",
+          "name": "DeepL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.Descriptipn_RU }}",
+        "translateTo": "UK",
+        "additionalFields": {}
+      },
+      "id": "66cb324e-5262-4526-bce9-7d8dc3ebc44a",
+      "name": "DeepL translate Description UA",
+      "type": "n8n-nodes-base.deepL",
+      "typeVersion": 1,
+      "position": [
+        560,
+        -260
+      ],
+      "credentials": {
+        "deepLApi": {
+          "id": "Fa3gRfaikTneP7NW",
+          "name": "DeepL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ $json['keywords we target RU'] }}",
+        "translateTo": "UK",
+        "additionalFields": {}
+      },
+      "id": "b644b3b1-51aa-440a-a952-9a95dc2231b9",
+      "name": "DeepL translate keywords UA",
+      "type": "n8n-nodes-base.deepL",
+      "typeVersion": 1,
+      "position": [
+        560,
+        -480
+      ],
+      "credentials": {
+        "deepLApi": {
+          "id": "Fa3gRfaikTneP7NW",
+          "name": "DeepL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ $json['keywords we target RU'] }}",
+        "translateTo": "EN-US",
+        "additionalFields": {}
+      },
+      "id": "21dcec21-a940-4b99-9035-61a6f09f1713",
+      "name": "DeepL Translate keywords EN",
+      "type": "n8n-nodes-base.deepL",
+      "typeVersion": 1,
+      "position": [
+        560,
+        -660
+      ],
+      "credentials": {
+        "deepLApi": {
+          "id": "Fa3gRfaikTneP7NW",
+          "name": "DeepL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "databaseId": 139118,
+        "tableId": 356544,
+        "rowId": "={{ $json.id }}"
+      },
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        -100,
+        20
+      ],
+      "id": "3edf808a-2f75-4455-8f4f-e47c15eceabf",
+      "name": "Baserow",
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 139118,
+        "tableId": 356544,
+        "rowId": "={{ $('Baserow').item.json.id }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 2660094,
+              "fieldValue": "={{ $json.text }}"
+            }
+          ]
+        }
+      },
+      "id": "af721cd1-35a5-4edd-a1b6-cd538a03485f",
+      "name": "Baserow add translations",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        820,
+        500
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 139118,
+        "tableId": 356544,
+        "rowId": "={{ $('Baserow').item.json.id }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 2660093,
+              "fieldValue": "={{ $json.text }}"
+            }
+          ]
+        }
+      },
+      "id": "628a5cb5-9aeb-42cb-838d-b5ac03e1ddb8",
+      "name": "Baserow add translations1",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        820,
+        680
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 139118,
+        "tableId": 356544,
+        "rowId": "={{ $('Baserow').item.json.id }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 2664719,
+              "fieldValue": "={{ $json.text }}"
+            }
+          ]
+        }
+      },
+      "id": "891850bd-0433-47fb-8d9e-5be67bd3fb21",
+      "name": "Baserow add translations2",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        820,
+        300
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 139118,
+        "tableId": 356544,
+        "rowId": "={{ $('Baserow').item.json.id }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 2664718,
+              "fieldValue": "={{ $json.text }}"
+            }
+          ]
+        }
+      },
+      "id": "e3e214e3-9832-42e2-9a48-652579b76231",
+      "name": "Baserow add translations3",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        820,
+        140
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 139118,
+        "tableId": 356544,
+        "rowId": "={{ $('Baserow').item.json.id }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 2664606,
+              "fieldValue": "={{ $json.text }}"
+            }
+          ]
+        }
+      },
+      "id": "e9146c7a-1d96-4b8b-8080-cf9828da2139",
+      "name": "Baserow add translations4",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        820,
+        -80
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 139118,
+        "tableId": 356544,
+        "rowId": "={{ $('Baserow').item.json.id }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 2664555,
+              "fieldValue": "={{ $json.text }}"
+            }
+          ]
+        }
+      },
+      "id": "e1847bc3-bcac-41f4-abd8-132fe8b365cb",
+      "name": "Baserow add translations5",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        820,
+        -260
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 139118,
+        "tableId": 356544,
+        "rowId": "={{ $('Baserow').item.json.id }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 2933061,
+              "fieldValue": "={{ $json.text }}"
+            }
+          ]
+        }
+      },
+      "id": "2a73aa33-9c5c-4daa-bde7-252eae1374e1",
+      "name": "Baserow add translations6",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        820,
+        -480
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 139118,
+        "tableId": 356544,
+        "rowId": "={{ $('Baserow').item.json.id }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 2933062,
+              "fieldValue": "={{ $json.text }}"
+            }
+          ]
+        }
+      },
+      "id": "2a096d65-6459-4897-a5af-baa577756465",
+      "name": "Baserow add translations7",
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        820,
+        -660
+      ],
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "numberInputs": 8
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        1400,
+        -40
+      ],
+      "id": "232cdd29-e0d6-42f8-9340-11f0ff87bbe2",
+      "name": "Merge"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1720,
+        60
+      ],
+      "id": "e85a0927-43fd-4f09-a614-4246db252bff",
+      "name": "No Operation, do nothing"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2024-11-10T11:13:00.957Z",
+      "updatedAt": "2024-11-10T11:13:00.957Z",
+      "id": "UCWLA0c2FsmSKRso",
+      "name": "sub"
+    },
+    {
+      "createdAt": "2024-11-10T11:12:42.068Z",
+      "updatedAt": "2024-11-10T11:12:42.068Z",
+      "id": "vgr897z7Ao8rJnZh",
+      "name": "navi"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2024-12-27T19:16:36.000Z",
+  "versionId": "872642af-2d03-4bc9-9911-5899831cf642"
+}

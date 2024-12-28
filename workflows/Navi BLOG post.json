@@ -381,6 +381,10 @@
             {
               "fieldId": 3176723,
               "fieldValue": "={{ $json.data }}"
+            },
+            {
+              "fieldId": 2660081,
+              "fieldValue": "alex-burlakov"
             }
           ]
         }
@@ -844,6 +848,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-12-27T19:18:24.000Z",
-  "versionId": "e4510736-eb7e-4dbf-9b56-93ed80e14f1c"
+  "updatedAt": "2024-12-28T17:49:32.000Z",
+  "versionId": "fcd8fa2a-9fdf-457d-afca-2ca5871eacf2"
 }

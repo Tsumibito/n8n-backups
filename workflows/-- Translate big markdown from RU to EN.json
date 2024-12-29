@@ -1,0 +1,193 @@
+{
+  "active": false,
+  "connections": {
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Finish",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-11-08T10:03:49.607Z",
+  "id": "mxjz49LdU7xLPaBS",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "-- Translate big markdown from RU to EN",
+  "nodes": [
+    {
+      "parameters": {
+        "jsCode": "// Получаем входные данные\nlet items = $input.all();\n\n// Устанавливаем максимальный размер для каждой части (измените при необходимости)\nconst MAX_SIZE = 5000;\n\n// Инициализируем массив для хранения контента\nlet Data_Array = [];\n\n// Проходим по каждому элементу и извлекаем контент из поля `data`\nfor (let item of items) {\n    if (item.json && typeof item.json.data === 'string') {\n        Data_Array.push(item.json.data);\n    } else {\n        // Логируем ошибку и добавляем пустую строку, чтобы не прерывать процесс\n        console.error('Элемент не содержит ожидаемого поля data или оно не является строкой.');\n        Data_Array.push('');\n    }\n}\n\n// Проверяем, что Data_Array является массивом\nif (!Array.isArray(Data_Array)) {\n    throw new Error('Data_Array должен быть массивом.');\n}\n\n// Объединяем все элементы массива в одну строку с двумя переносами строк между ними\nlet Data = Data_Array.join('\\n\\n');\n\n/**\n * Функция для корректного разделения Markdown на фрагменты заданного размера\n * @param {string} markdown - Объединённый Markdown контент\n * @param {number} maxSize - Максимальный размер фрагмента\n * @returns {Array} - Массив фрагментов\n */\nfunction splitMarkdown(markdown, maxSize) {\n    const fragments = [];\n    let currentFragment = '';\n\n    // Разбиваем весь текст на строки для поэтапной обработки\n    const lines = markdown.split('\\n');\n\n    for (let line of lines) {\n        // Если добавление текущей строки превысит максимальный размер\n        if ((currentFragment + '\\n' + line).length > maxSize) {\n            if (currentFragment.length > 0) {\n                fragments.push(currentFragment.trim());\n                currentFragment = '';\n            }\n        }\n\n        // Добавляем текущую строку к фрагменту\n        if (currentFragment.length > 0) {\n            currentFragment += '\\n' + line;\n        } else {\n            currentFragment = line;\n        }\n    }\n\n    // Добавляем последний фрагмент, если он не пуст\n    if (currentFragment.length > 0) {\n        fragments.push(currentFragment.trim());\n    }\n\n    return fragments;\n}\n\n// Разделяем объединённый Markdown на фрагменты\nlet fragments = splitMarkdown(Data, MAX_SIZE);\n\n// Фильтруем пустые части, если есть\nfragments = fragments.filter(part => part.length > 0);\n\n// Если после всех операций нет фрагментов, но cleanData не пуст, возвращаем весь текст\nif (fragments.length === 0 && Data.length > 0) {\n    fragments.push(Data);\n}\n\n// Преобразуем фрагменты в массив объектов для n8n\nlet output = fragments.map(part => {\n    return { json: { data: part } };\n});\n\n// Возвращаем массив объектов\nreturn output;"
+      },
+      "id": "6e2b6e3c-672d-4b9e-abc0-92a9420f42ed",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        700,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": "=1",
+        "options": {
+          "reset": false
+        }
+      },
+      "id": "cf17f369-7784-43e4-9f3e-65e5898f4c76",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1060,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Получаем входные данные\nlet items = $input.all();\n\n// Инициализируем массив для хранения контента\nlet Data_Array = [];\n\n// Проходим по каждому элементу и извлекаем контент из поля `message.content`\nfor (let item of items) {\n    if (item.json && item.json.message && typeof item.json.message.content === 'string') {\n        Data_Array.push(item.json.message.content);\n    } else {\n        // Логируем ошибку и добавляем пустую строку, чтобы не прерывать процесс\n        console.error('Элемент не содержит ожидаемого поля message.content или оно не является строкой.');\n        Data_Array.push('');\n    }\n}\n\n// Проверяем, что Data_Array является массивом\nif (!Array.isArray(Data_Array)) {\n    throw new Error('Data_Array должен быть массивом.');\n}\n\n// Объединяем все элементы массива в одну строку с переносами строк между ними\n// Используем '\\n\\n' для обеспечения разделения абзацев\nlet Data = Data_Array.join('\\n\\n');\n\n/**\n * Функция для очистки Markdown от излишеств и исправления форматирования\n * @param {string} data - Объединённый Markdown контент\n * @returns {string} - Очищенный Markdown\n */\nfunction cleanMarkdown(data) {\n    let cleaned = data;\n\n    // 1. Удаляем начальный маркер ```markdown (если присутствует)\n    cleaned = cleaned.replace(/^```markdown\\s*/i, '');\n\n    // 2. Удаляем конечный маркер ```\n    cleaned = cleaned.replace(/```$/i, '');\n\n    // 3. Обрабатываем текст построчно для корректного форматирования\n    let lines = cleaned.split('\\n');\n    let result = [];\n\n    for (let line of lines) {\n        // Проверяем, является ли строка заголовком или изображением\n        if (/^(#{1,6})\\s/.test(line) || /^!\\[/.test(line)) {\n            // Если предыдущая строка не пустая, добавляем пустую строку для разделения\n            if (result.length > 0 && result[result.length - 1].trim() !== '') {\n                result.push('');\n            }\n        }\n        result.push(line);\n    }\n\n    cleaned = result.join('\\n');\n\n    // 4. Удаляем строки, содержащие только символы # (пустые заголовки)\n    cleaned = cleaned.replace(/^#{1,6}\\s*$/gm, '');\n\n    // 5. Удаляем лишние переносы строк, заменяя три и более переносов на два\n    cleaned = cleaned.replace(/\\n{3,}/g, '\\n\\n');\n\n    // 6. Удаляем начальные и конечные пробелы\n    cleaned = cleaned.trim();\n\n    return cleaned;\n}\n\n// Применяем функцию очистки к объединённым данным\nlet cleanData = cleanMarkdown(Data);\n\n// Логирование для отладки (опционально)\nconsole.log(`Total Length: ${cleanData.length}`);\nconsole.log(`Cleaned Data:\\n${cleanData}`);\n\n// Проверяем, что очищенные данные не пусты\nif (!cleanData) {\n    // Возвращаем пустой массив, чтобы избежать ошибки \"No output data returned\"\n    return [];\n}\n\n// Возвращаем очищенные данные\nreturn [{ json: { Data: cleanData } }];"
+      },
+      "id": "11b2de8f-4bdd-4c57-b156-c0765d84c77f",
+      "name": "Code1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1380,
+        100
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "eaff6a1a-21e5-4968-904d-07772498d0c6",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        420,
+        420
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "4f6234f4-202a-4e15-a430-e76328cb09bc",
+      "name": "Finish",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1660,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=translate the obtained markdown code fragment from Russian to English, but do not change structure, add or correct any new markdown tags. Consider the yachting focus of the text and the importance of correct translation Return only html that you get, without your comments and aditional tegs. \n\n{{ $json.data }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3e42bdb5-c63d-44cd-9ea6-82fcdb85c390",
+      "name": "OpenAI",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.4,
+      "position": [
+        1300,
+        380
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "LWqwOoyrWqYHIcaW",
+          "name": "OpenAi account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2024-11-10T11:13:00.957Z",
+      "updatedAt": "2024-11-10T11:13:00.957Z",
+      "id": "UCWLA0c2FsmSKRso",
+      "name": "sub"
+    },
+    {
+      "createdAt": "2024-11-10T11:12:42.068Z",
+      "updatedAt": "2024-11-10T11:12:42.068Z",
+      "id": "vgr897z7Ao8rJnZh",
+      "name": "navi"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2024-12-29T17:08:44.000Z",
+  "versionId": "354ad4cd-d865-40a7-a016-77762ed221cd"
+}

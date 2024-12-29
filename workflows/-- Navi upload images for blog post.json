@@ -23,7 +23,7 @@
         ],
         [
           {
-            "node": "Finish",
+            "node": "Return ID",
             "type": "main",
             "index": 0
           }
@@ -92,7 +92,7 @@
       "main": [
         [
           {
-            "node": "Finish",
+            "node": "Return ID",
             "type": "main",
             "index": 0
           }
@@ -155,6 +155,17 @@
         [
           {
             "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Return ID": {
+      "main": [
+        [
+          {
+            "node": "Finish",
             "type": "main",
             "index": 0
           }
@@ -243,7 +254,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1840,
+        2060,
         1160
       ],
       "alwaysOutputData": false,
@@ -305,7 +316,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        2120,
+        2340,
         1140
       ]
     },
@@ -316,7 +327,7 @@
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        2740,
+        2960,
         840
       ]
     },
@@ -366,7 +377,7 @@
       "type": "n8n-nodes-base.baserow",
       "typeVersion": 1,
       "position": [
-        1560,
+        1780,
         1160
       ],
       "id": "d90fb055-d2e0-488f-92cb-03d1c0964c61",
@@ -386,7 +397,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2380,
+        2600,
         1260
       ],
       "id": "65deb876-5b39-4952-be0e-461989277dbb",
@@ -399,7 +410,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2380,
+        2600,
         1060
       ],
       "id": "2be93428-51cb-4eb9-b2ec-e3aaa4042891",
@@ -423,7 +434,7 @@
       "type": "n8n-nodes-base.baserow",
       "typeVersion": 1,
       "position": [
-        2800,
+        3020,
         1280
       ],
       "id": "a95bb891-98f7-48a7-be45-2305b1bf0d7d",
@@ -458,7 +469,7 @@
       "type": "n8n-nodes-base.baserow",
       "typeVersion": 1,
       "position": [
-        3220,
+        3440,
         1300
       ],
       "id": "d85ebb46-9ec7-456f-8e59-67ed4c543f7a",
@@ -470,13 +481,38 @@
           "name": "Baserow account"
         }
       }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ea7210f1-fd98-44c0-a8b6-b5c5b53d125c",
+              "name": "id",
+              "value": "={{ $('Baserow GET Article').item.json.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2540,
+        840
+      ],
+      "id": "43a22709-b8dd-46b7-9726-196efd758de6",
+      "name": "Return ID",
+      "alwaysOutputData": false,
+      "executeOnce": true
     }
   ],
   "pinData": {
     "Execute Workflow Trigger": [
       {
         "json": {
-          "id": "431"
+          "id": "434"
         }
       }
     ]
@@ -500,6 +536,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-12-28T17:49:14.000Z",
-  "versionId": "44bd82c6-7ad4-4e70-aac0-8436c1d5a0d7"
+  "updatedAt": "2024-12-29T11:49:26.000Z",
+  "versionId": "a7a8dcba-60ea-4c15-b7a7-2b5c9d6480e0"
 }

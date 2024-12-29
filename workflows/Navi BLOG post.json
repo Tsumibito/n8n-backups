@@ -168,18 +168,7 @@
       "main": [
         [
           {
-            "node": "Edit Fields2",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Edit Fields2": {
-      "main": [
-        [
-          {
-            "node": "Navi link builder",
+            "node": "Code1",
             "type": "main",
             "index": 0
           }
@@ -193,7 +182,13 @@
     },
     "Upload Post Images": {
       "main": [
-        []
+        [
+          {
+            "node": "Baserow",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Get ID": {
@@ -213,6 +208,11 @@
             "node": "Upload Post Images",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -222,6 +222,82 @@
         [
           {
             "node": "Generate slug",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow": {
+      "main": [
+        [
+          {
+            "node": "Get_post_ru",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get_post_ru": {
+      "main": [
+        [
+          {
+            "node": "Translate post to UA",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Translate post to EN",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get ID 2": {
+      "main": [
+        [
+          {
+            "node": "Navi link builder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Baserow1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow1": {
+      "main": [
+        [
+          {
+            "node": "Get ID 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Navi link builder": {
+      "main": [
+        [
+          {
+            "node": "Baserow2",
             "type": "main",
             "index": 0
           }
@@ -318,8 +394,8 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1.1,
       "position": [
-        1860,
-        1020
+        860,
+        620
       ]
     },
     {
@@ -328,7 +404,7 @@
           "__rl": true,
           "value": "mxjz49LdU7xLPaBS",
           "mode": "list",
-          "cachedResultName": "-- Translate big html from RU to EN"
+          "cachedResultName": "-- Translate big markdown from RU to EN"
         },
         "options": {
           "waitForSubWorkflow": true
@@ -339,8 +415,8 @@
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1.1,
       "position": [
-        1860,
-        1200
+        860,
+        860
       ]
     },
     {
@@ -415,8 +491,8 @@
       "type": "n8n-nodes-base.deepL",
       "typeVersion": 1,
       "position": [
-        2140,
-        1460
+        1240,
+        1160
       ],
       "credentials": {
         "deepLApi": {
@@ -436,8 +512,8 @@
       "type": "n8n-nodes-base.deepL",
       "typeVersion": 1,
       "position": [
-        2140,
-        1700
+        1260,
+        1380
       ],
       "credentials": {
         "deepLApi": {
@@ -451,19 +527,15 @@
         "operation": "update",
         "databaseId": 139118,
         "tableId": 356544,
-        "rowId": "={{ $node[\"Merge1\"].json.id }}",
+        "rowId": "={{ $node[\"Get ID\"].json.id }}",
         "fieldsUi": {
           "fieldValues": [
             {
-              "fieldId": 2660075,
-              "fieldValue": "={{ $node[\"Get ID\"].json.data }}"
-            },
-            {
-              "fieldId": 2660175,
+              "fieldId": 3176724,
               "fieldValue": "={{ $node[\"Translate post to UA\"].json.Data }}"
             },
             {
-              "fieldId": 2660174,
+              "fieldId": 3176725,
               "fieldValue": "={{ $node[\"Translate post to EN\"].json.Data }}"
             },
             {
@@ -486,8 +558,8 @@
       "type": "n8n-nodes-base.baserow",
       "typeVersion": 1,
       "position": [
-        2640,
-        1060
+        1780,
+        620
       ],
       "credentials": {
         "baserowApi": {
@@ -540,8 +612,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        2380,
-        1020
+        1520,
+        560
       ]
     },
     {
@@ -566,8 +638,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.5,
       "position": [
-        1680,
-        1460
+        840,
+        1120
       ],
       "credentials": {
         "openAiApi": {
@@ -675,36 +747,15 @@
     },
     {
       "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "1e21c144-a81c-48af-b3d6-a77f60f7881f",
-              "name": "id",
-              "value": "={{ $json.id }}",
-              "type": "number"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "340d38c5-b400-486d-bb0a-62e73a2788c5",
-      "name": "Edit Fields2",
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        2860,
-        1060
-      ]
-    },
-    {
-      "parameters": {
         "workflowId": {
           "__rl": true,
           "value": "UERhR9Z3FoxynX4L",
           "mode": "list",
           "cachedResultName": "--- Navi Blog Post translate"
         },
-        "options": {}
+        "options": {
+          "waitForSubWorkflow": true
+        }
       },
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1.1,
@@ -744,15 +795,17 @@
           "mode": "list",
           "cachedResultName": "--Navi link builder"
         },
-        "options": {}
+        "options": {
+          "waitForSubWorkflow": true
+        }
       },
       "id": "a60396f8-0c30-4de0-87a9-fff0a208ea74",
       "name": "Navi link builder",
       "type": "n8n-nodes-base.executeWorkflow",
       "typeVersion": 1.1,
       "position": [
-        3080,
-        1060
+        3180,
+        620
       ]
     },
     {
@@ -824,13 +877,158 @@
       ],
       "id": "6a224c07-99d4-491b-9797-65e55606fff7",
       "name": "Data Input"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "databaseId": 139118,
+        "tableId": 356544,
+        "rowId": "={{ $('Get ID').item.json.id }}"
+      },
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        240,
+        680
+      ],
+      "id": "f7699d7a-a81f-44d4-a879-ee790309192f",
+      "name": "Baserow",
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d0413257-767f-4369-bbca-f9fc3cc1bde8",
+              "name": "data",
+              "value": "={{ $json.Post_Body_RU_m }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        460,
+        680
+      ],
+      "id": "57202159-af16-4043-aa76-f91af543296b",
+      "name": "Get_post_ru"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1e21c144-a81c-48af-b3d6-a77f60f7881f",
+              "name": "id",
+              "value": "={{ $json.id }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "340d38c5-b400-486d-bb0a-62e73a2788c5",
+      "name": "Get ID 2",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2880,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Получаем все входные данные\nconst items = $input.all();\n\n// Инициализируем массив для хранения выходных данных\nconst output = [];\n\n/**\n * Функция для преобразования Markdown в чистый текст.\n * Удаляет изображения, ссылки, код, и преобразует заголовки, списки и цитаты.\n * @param {string} markdown - Исходный текст в формате Markdown\n * @returns {string} - Преобразованный чистый текст\n */\nfunction markdownToPlainText(markdown) {\n    let text = markdown;\n\n    // 1. Удаляем блоки кода (```код```)\n    text = text.replace(/```[\\s\\S]*?```/g, '');\n\n    // 2. Удаляем встроенный код (`код`)\n    text = text.replace(/`([^`]+)`/g, '$1');\n\n    // 3. Удаляем изображения (![alt](url))\n    text = text.replace(/!$begin:math:display$.*?$end:math:display$$begin:math:text$.*?$end:math:text$/g, '');\n\n    // 4. Заменяем ссылки [текст](url) на только текст\n    text = text.replace(/$begin:math:display$([^$end:math:display$]+)\\]$begin:math:text$[^$end:math:text$]+\\)/g, '$1');\n\n    // 5. Преобразуем заголовки (## Заголовок) в текст с переносом строки\n    text = text.replace(/^#{1,6}\\s+(.*)$/gm, '$1\\n');\n\n    // 6. Преобразуем ненумерованные списки (- элемент) в текст с тире\n    text = text.replace(/^[-*+]\\s+(.*)$/gm, '- $1');\n\n    // 7. Преобразуем нумерованные списки (1. элемент) в текст с числами\n    text = text.replace(/^\\d+\\.\\s+(.*)$/gm, '1. $1');\n\n    // 8. Преобразуем цитаты (> цитата) в текст\n    text = text.replace(/^>\\s+(.*)$/gm, '$1');\n\n    // 9. Удаляем жирный и курсивный текст (**жирный**, *курсив*)\n    text = text.replace(/\\*\\*(.*?)\\*\\*/g, '$1'); // жирный\n    text = text.replace(/\\*(.*?)\\*/g, '$1'); // курсив\n    text = text.replace(/__(.*?)__/g, '$1'); // жирный\n    text = text.replace(/_(.*?)_/g, '$1'); // курсив\n    text = text.replace(/~~(.*?)~~/g, '$1'); // зачеркивание\n\n    // 10. Удаляем оставшиеся символы Markdown (например, >, #, etc.)\n    text = text.replace(/([*_~`#>])/g, '');\n\n    // 11. Нормализуем множественные переносы строк до двух\n    text = text.replace(/\\n{3,}/g, '\\n\\n');\n\n    // 12. Удаляем начальные и конечные пробелы\n    text = text.trim();\n\n    return text;\n}\n\n/**\n * Функция для подсчета количества слов в тексте\n * @param {string} text - Чистый текст\n * @returns {number} - Количество слов\n */\nfunction countWords(text) {\n    if (!text) return 0;\n    // Разбиваем текст по пробелам и переносам строк, фильтруем пустые строки\n    return text.split(/\\s+/).filter(word => word.length > 0).length;\n}\n\n// Проходим по каждому входному элементу\nfor (const item of items) {\n    // Проверяем наличие поля 'Post_Body_RU_m'\n    if (item.json && item.json.Post_Body_RU_m) {\n        const markdown = item.json.Post_Body_RU_m;\n\n        // 1. Преобразуем Markdown в чистый текст\n        const clean_text = markdownToPlainText(markdown);\n\n        // 2. Считаем количество слов в чистом тексте\n        const word_count = countWords(clean_text);\n\n        // 3. Вычисляем время чтения (130 слов в минуту), округляем вниз\n        let minutes = Math.floor(word_count / 130);\n        if (minutes < 1) minutes = 1; // Минимум 1 минута\n\n        const time_to_read = `${minutes} min to read`;\n\n        // 4. Создаем новый объект с только двумя полями\n        const newItem = {\n            json: {\n                time_to_read: time_to_read,\n                clean_text: clean_text\n            }\n        };\n\n        output.push(newItem);\n    } else {\n        // Если поле отсутствует, добавляем объект с пустыми значениями или сообщением об ошибке\n        const newItem = {\n            json: {\n                time_to_read: \"0 min to read\",\n                clean_text: \"\"\n            }\n        };\n        output.push(newItem);\n        // Или, если хотите выбросить ошибку, раскомментируйте строку ниже\n        // throw new Error('Элемент не содержит поля Post_Body_RU_m.');\n    }\n}\n\n// Возвращаем обработанные данные\nreturn output;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2000,
+        620
+      ],
+      "id": "a3822289-2f78-4d7f-bbe8-328373f087db",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 139118,
+        "tableId": 356544,
+        "rowId": "={{ $('Baserow add Post translations and summary').item.json.id }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 2660085,
+              "fieldValue": "={{ $json.time_to_read }}"
+            },
+            {
+              "fieldId": 2987678,
+              "fieldValue": "={{ $json.clean_text }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        2220,
+        620
+      ],
+      "id": "da371343-489c-47da-8c44-c605ec6dcd3d",
+      "name": "Baserow1",
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 139118,
+        "tableId": 356544,
+        "rowId": "={{ $('Get ID 2').item.json.id }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 3176727,
+              "fieldValue": "true"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        3400,
+        620
+      ],
+      "id": "49942e1c-bc03-47bf-9c03-621029773365",
+      "name": "Baserow2",
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
     }
   ],
   "pinData": {
     "Get ID": [
       {
         "json": {
-          "id": "431"
+          "id": "436"
         }
       }
     ]
@@ -848,6 +1046,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2024-12-28T17:49:32.000Z",
-  "versionId": "fcd8fa2a-9fdf-457d-afca-2ca5871eacf2"
+  "updatedAt": "2024-12-29T18:13:18.000Z",
+  "versionId": "6b34903b-2bc6-41e6-a343-8db6f933d534"
 }

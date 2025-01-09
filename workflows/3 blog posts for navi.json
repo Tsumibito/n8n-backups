@@ -105,7 +105,7 @@
     },
     {
       "parameters": {
-        "url": "https://api.baserow.io/api/database/rows/table/356544/?include=field_2660067,field_2660068,field_2660074,field_2660078,field_2660081,field_2660085&field_2660081__join=field_2659839",
+        "url": "https://api.baserow.io/api/database/rows/table/356544/?include=field_2660067,field_2660068,field_2660078,field_2660081,field_2660085&field_2660081__join=field_2659839",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "options": {}
@@ -127,7 +127,7 @@
     },
     {
       "parameters": {
-        "url": "https://api.baserow.io/api/database/rows/table/356544/?include=field_2660093,field_2660068,field_2660074,field_2660078,field_2660081,field_2660085&field_2660081__join=field_2659860",
+        "url": "https://api.baserow.io/api/database/rows/table/356544/?include=field_2660093,field_2660068,field_2660078,field_2660081,field_2660085&field_2660081__join=field_2659860",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "options": {}
@@ -162,7 +162,7 @@
     },
     {
       "parameters": {
-        "url": "https://api.baserow.io/api/database/rows/table/356544/?include=field_2660094,field_2660068,field_2660074,field_2660078,field_2660081,field_2660085&field_2660081__join=field_2659861",
+        "url": "https://api.baserow.io/api/database/rows/table/356544/?include=field_2660094,field_2660068,field_2660078,field_2660081,field_2660085&field_2660081__join=field_2659861",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "options": {}
@@ -207,7 +207,8 @@
                 "options": {
                   "caseSensitive": true,
                   "leftValue": "",
-                  "typeValidation": "strict"
+                  "typeValidation": "strict",
+                  "version": 1
                 },
                 "conditions": [
                   {
@@ -227,7 +228,8 @@
                 "options": {
                   "caseSensitive": true,
                   "leftValue": "",
-                  "typeValidation": "strict"
+                  "typeValidation": "strict",
+                  "version": 1
                 },
                 "conditions": [
                   {
@@ -249,7 +251,8 @@
                 "options": {
                   "caseSensitive": true,
                   "leftValue": "",
-                  "typeValidation": "strict"
+                  "typeValidation": "strict",
+                  "version": 1
                 },
                 "conditions": [
                   {
@@ -294,6 +297,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-11-10T11:16:05.000Z",
-  "versionId": "c4e67fce-3e4e-4568-8ff3-78467b400dbb"
+  "updatedAt": "2025-01-09T15:47:11.000Z",
+  "versionId": "ea775751-4a18-4310-bff5-9dee9e42e7cd"
 }

@@ -1,0 +1,125 @@
+{
+  "active": false,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        []
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Airtable1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Airtable1": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-18T18:54:35.598Z",
+  "id": "1MSNn6fKUbiPMNiR",
+  "meta": null,
+  "name": "Navi create post",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -440,
+        0
+      ],
+      "id": "b828e096-da41-470a-a8b3-3449291a9678",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 8,
+              "triggerAtMinute": 30
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -440,
+        -200
+      ],
+      "id": "d604f072-d6e4-4618-a7a0-0eed3ab81114",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "apphRx00KIiKq39lw",
+          "mode": "list",
+          "cachedResultName": "Navi",
+          "cachedResultUrl": "https://airtable.com/apphRx00KIiKq39lw"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblC6FbFUH5cHGdDE",
+          "mode": "list",
+          "cachedResultName": "content plan",
+          "cachedResultUrl": "https://airtable.com/apphRx00KIiKq39lw/tblC6FbFUH5cHGdDE"
+        },
+        "filterByFormula": "{Status} = \"To Do\"",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        -120,
+        -100
+      ],
+      "id": "3b2362c6-3712-4115-be00-eacd24d4fa5e",
+      "name": "Airtable1",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "7FWjnAJPooZb3uih",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        100,
+        -100
+      ],
+      "id": "f330fba1-7d96-4cd2-be17-c17bb2725589",
+      "name": "Limit"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-01-18T19:22:13.000Z",
+  "versionId": "4e53fa49-231c-47f9-b24f-5a136533c47b"
+}

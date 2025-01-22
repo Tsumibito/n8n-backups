@@ -27,6 +27,28 @@
           }
         ]
       ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-01-18T18:54:35.598Z",
@@ -111,6 +133,38 @@
       ],
       "id": "f330fba1-7d96-4cd2-be17-c17bb2725589",
       "name": "Limit"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        320,
+        -100
+      ],
+      "id": "4f4ceceb-ff29-4688-8f5f-d6afeefd4355",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.1,
+      "position": [
+        360,
+        120
+      ],
+      "id": "f5d60b3c-8efc-470c-868a-f06329f1e34f",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "sYujAl1dP381SE4y",
+          "name": "OpenRouter"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -120,6 +174,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-01-18T19:22:13.000Z",
-  "versionId": "4e53fa49-231c-47f9-b24f-5a136533c47b"
+  "updatedAt": "2025-01-22T11:06:58.000Z",
+  "versionId": "f75d753a-746a-4137-bee4-55d2ec4161f0"
 }

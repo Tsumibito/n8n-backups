@@ -32,7 +32,7 @@
       "main": [
         [
           {
-            "node": "AI Agent",
+            "node": "Edit Fields",
             "type": "main",
             "index": 0
           }
@@ -45,6 +45,17 @@
           {
             "node": "AI Agent",
             "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
             "index": 0
           }
         ]
@@ -136,12 +147,17 @@
     },
     {
       "parameters": {
-        "options": {}
+        "agent": "conversationalAgent",
+        "promptType": "define",
+        "text": "={{ $json.promot }}",
+        "options": {
+          "systemMessage": "Assistant is a large language model.\n\nAssistant is designed to be able to assist with a wide range of tasks, from answering simple questions to providing in-depth explanations and discussions on a wide range of topics. As a language model, Assistant is able to generate human-like text based on the input it receives, allowing it to engage in natural-sounding conversations and provide responses that are coherent and relevant to the topic at hand.\n\nAssistant is constantly learning and improving, and its capabilities are constantly evolving. It is able to process and understand large amounts of text, and can use this knowledge to provide accurate and informative responses to a wide range of questions. Additionally, Assistant is able to generate its own text based on the input it receives, allowing it to engage in discussions and provide explanations and descriptions on a wide range of topics.\n\nOverall, Assistant is a powerful system that can help with a wide range of tasks and provide valuable insights and information on a wide range of topics. Whether you need help with a specific question or just want to have a conversation about a particular topic, Assistant is here to assist."
+        }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.7,
       "position": [
-        320,
+        540,
         -100
       ],
       "id": "4f4ceceb-ff29-4688-8f5f-d6afeefd4355",
@@ -149,13 +165,14 @@
     },
     {
       "parameters": {
+        "model": "=deepseek/deepseek-r1-distill-llama-70b",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.1,
       "position": [
-        360,
-        120
+        440,
+        160
       ],
       "id": "f5d60b3c-8efc-470c-868a-f06329f1e34f",
       "name": "OpenAI Chat Model",
@@ -165,6 +182,29 @@
           "name": "OpenRouter"
         }
       }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2b1513f3-d150-494b-9780-29b079f3f1b9",
+              "name": "promot",
+              "value": "имеешь ли ты доступ к поиску в интеренете?  какого содержимое страницы https://navi.training/ru/yahting-dlya-vseh",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        320,
+        -100
+      ],
+      "id": "bee6d2f1-0b11-4cf5-bad9-dc805908245b",
+      "name": "Edit Fields"
     }
   ],
   "pinData": {},
@@ -174,6 +214,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-01-22T11:06:58.000Z",
-  "versionId": "f75d753a-746a-4137-bee4-55d2ec4161f0"
+  "updatedAt": "2025-01-25T14:34:24.000Z",
+  "versionId": "a8a43a88-5300-4ff6-b6d1-60981dc81d02"
 }

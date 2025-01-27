@@ -1,0 +1,343 @@
+{
+  "active": false,
+  "connections": {
+    "Embeddings Cohere": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Qdrant Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Qdrant Vector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download File1": {
+      "main": [
+        [
+          {
+            "node": "Extract Document Text1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "File Created1": {
+      "main": [
+        [
+          {
+            "node": "Set File ID1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "File Updated1": {
+      "main": [
+        [
+          {
+            "node": "Set File ID1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete Old Doc Rows1": {
+      "main": [
+        [
+          {
+            "node": "Download File1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set File ID1": {
+      "main": [
+        [
+          {
+            "node": "Delete Old Doc Rows1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-27T10:09:46.171Z",
+  "id": "llcop6jrIkzGNUo1",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "quant  vector",
+  "nodes": [
+    {
+      "parameters": {
+        "mode": "insert",
+        "qdrantCollection": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        -440
+      ],
+      "id": "a6ca2a0f-b72c-42df-bc5b-4db2d573d4a9",
+      "name": "Qdrant Vector Store",
+      "credentials": {
+        "qdrantApi": {
+          "id": "EXUX7NGdwjvUdlaD",
+          "name": "QdrantApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "embed-multilingual-v3.0"
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsCohere",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        -160
+      ],
+      "id": "29f6f172-a2d9-4cfa-9260-b11300e89c32",
+      "name": "Embeddings Cohere",
+      "credentials": {
+        "cohereApi": {
+          "id": "LzBTcxShYoEEfXiG",
+          "name": "CohereApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1,
+      "position": [
+        1260,
+        -220
+      ],
+      "id": "3d8fcbaa-47f6-47ff-8c2e-0ed985a418e1",
+      "name": "Default Data Loader"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        1240,
+        -20
+      ],
+      "id": "33710079-ec59-4402-b386-5a77bd3c49bb",
+      "name": "Recursive Character Text Splitter"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $('Set File ID1').item.json.file_id }}",
+          "mode": "id"
+        },
+        "options": {
+          "googleFileConversion": {
+            "conversion": {
+              "docsToFormat": "text/plain"
+            }
+          }
+        }
+      },
+      "id": "7393e511-0867-4708-9fea-7ab5bf344439",
+      "name": "Download File1",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        480,
+        -380
+      ],
+      "executeOnce": true,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "MrzwNyc3BtRFvjYP",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "triggerOn": "specificFolder",
+        "folderToWatch": {
+          "__rl": true,
+          "value": "1IHhJcb7zFIwQ4eZQgnKNLbIVnXoFms1K",
+          "mode": "list",
+          "cachedResultName": "RAG_sailing_knowlage_base",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1IHhJcb7zFIwQ4eZQgnKNLbIVnXoFms1K"
+        },
+        "event": "fileCreated",
+        "options": {}
+      },
+      "id": "fa6db2bf-d855-44a4-9a35-e667286be90c",
+      "name": "File Created1",
+      "type": "n8n-nodes-base.googleDriveTrigger",
+      "typeVersion": 1,
+      "position": [
+        -560,
+        -480
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "MrzwNyc3BtRFvjYP",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "triggerOn": "specificFolder",
+        "folderToWatch": {
+          "__rl": true,
+          "value": "1IHhJcb7zFIwQ4eZQgnKNLbIVnXoFms1K",
+          "mode": "list",
+          "cachedResultName": "RAG_sailing_knowlage_base",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1IHhJcb7zFIwQ4eZQgnKNLbIVnXoFms1K"
+        },
+        "event": "fileUpdated",
+        "options": {}
+      },
+      "id": "91372f37-c573-4f33-8637-59077d6b9bf9",
+      "name": "File Updated1",
+      "type": "n8n-nodes-base.googleDriveTrigger",
+      "typeVersion": 1,
+      "position": [
+        -520,
+        -220
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "MrzwNyc3BtRFvjYP",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "text",
+        "options": {}
+      },
+      "id": "afe34329-1774-4291-87c2-52a21dae820e",
+      "name": "Extract Document Text1",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        740,
+        -380
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "tableId": "documents",
+        "filterType": "string",
+        "filterString": "=metadata->>file_id=like.*{{ $json.file_id }}*"
+      },
+      "id": "03fe7550-76a2-457b-848e-14b7dec0383f",
+      "name": "Delete Old Doc Rows1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        180,
+        -380
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "fC2J7vc05ZsndWP1",
+          "name": "Supabase account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "10646eae-ae46-4327-a4dc-9987c2d76173",
+              "name": "file_id",
+              "value": "={{ $json.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8fc2f77a-f07d-44c3-9207-ce6e2935b28b",
+      "name": "Set File ID1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -140,
+        -380
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-01-27T11:01:05.000Z",
+  "versionId": "fad0c1f4-34c6-468c-bd50-c9a94e7863b1"
+}

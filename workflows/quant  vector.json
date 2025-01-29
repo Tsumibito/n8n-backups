@@ -102,8 +102,8 @@
         "mode": "insert",
         "qdrantCollection": {
           "__rl": true,
-          "mode": "list",
-          "value": ""
+          "value": "=96ffd687-5fb9-4e56-afc7-dfe3574f01c6",
+          "mode": "id"
         },
         "options": {}
       },
@@ -338,6 +338,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-01-27T11:01:05.000Z",
-  "versionId": "fad0c1f4-34c6-468c-bd50-c9a94e7863b1"
+  "updatedAt": "2025-01-29T16:55:49.000Z",
+  "versionId": "579fe470-32f1-48e5-b0da-7a0b151441ba"
 }

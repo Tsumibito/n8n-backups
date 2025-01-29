@@ -1024,15 +1024,7 @@
       }
     }
   ],
-  "pinData": {
-    "Get ID": [
-      {
-        "json": {
-          "id": "436"
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "settings": {
     "executionOrder": "v1"
   },
@@ -1046,6 +1038,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-01-18T12:22:48.000Z",
-  "versionId": "2785dfc4-b406-46f6-bbc7-282a6e87fe64"
+  "updatedAt": "2025-01-29T17:46:14.000Z",
+  "versionId": "dc81039d-0cae-44c4-a2bc-138bae8c8798"
 }

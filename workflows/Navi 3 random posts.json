@@ -1,0 +1,439 @@
+{
+  "active": true,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get fetured": {
+      "main": [
+        [
+          {
+            "node": "Fetured_Id_list",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GET_FBP": {
+      "main": [
+        [
+          {
+            "node": "FBP_ID_list",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetured_Id_list": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Get fetured",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "GET_FBP",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "FBP_ID_list": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Baserow1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Baserow1": {
+      "main": [
+        [
+          {
+            "node": "Baserow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-05T17:18:48.257Z",
+  "id": "WDIRmz75RqFQKYw2",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Navi 3 random posts",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -280,
+        0
+      ],
+      "id": "27d8e6f0-b1d8-49ce-84d6-8d94fb631456",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -280,
+        -240
+      ],
+      "id": "ecf628b1-030b-4f88-9c7b-9461d3efdaec",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Функция для выборки k случайных элементов из массива (алгоритм Reservoir Sampling)\nfunction getRandomElements(arr, k) {\n  const n = arr.length;\n  if (k >= n) return arr.slice();\n  const reservoir = arr.slice(0, k);\n  for (let i = k; i < n; i++) {\n    const j = Math.floor(Math.random() * (i + 1));\n    if (j < k) {\n      reservoir[j] = arr[i];\n    }\n  }\n  return reservoir;\n}\n\n// ================================\n// 1. Получаем основной список из входящего потока (например, до 10 000 элементов)\n// ================================\nconst mainItems = $input.all();\nconst mainIds = new Array(mainItems.length);\nfor (let i = 0; i < mainItems.length; i++) {\n  mainIds[i] = mainItems[i].json.id;\n}\n\n// ================================\n// 2. Получаем список из FBP_ID_list (уже включённые посты)\n// ================================\nconst fbpItems = $items(\"FBP_ID_list\");\nconst fbpIds = new Array(fbpItems.length);\nfor (let i = 0; i < fbpItems.length; i++) {\n  fbpIds[i] = fbpItems[i].json.id;\n}\n\n// ================================\n// 3. Фильтруем основной список: оставляем только те id, которых нет в fbpIds\n// ================================\nconst filteredMainIds = mainIds.filter(id => fbpIds.indexOf(id) === -1);\n\n// Задаём число необходимых новых записей (например, 3)\nconst k = 3;\n\n// Если после фильтрации осталось больше, чем k записей, выбираем k случайных, иначе – используем все\nconst selectedNewIds = filteredMainIds.length <= k ? filteredMainIds : getRandomElements(filteredMainIds, k);\n\n// ================================\n// 4. Формируем итоговый массив объектов\n// Для каждой новой записи (которую нужно включить) назначаем запись для отключения (из fbpIds)\n// Если количество новых записей меньше, чем записей для отключения, используем циклическое повторение\n// ================================\nconst output = new Array(selectedNewIds.length);\nfor (let i = 0; i < selectedNewIds.length; i++) {\n  output[i] = {\n    json: {\n      id: selectedNewIds[i],\n      off: fbpIds[i % fbpIds.length]\n    }\n  };\n}\n\nreturn output;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1060,
+        -140
+      ],
+      "id": "a94c5edb-3342-4582-819e-8cd355392353",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "databaseId": 139118,
+        "tableId": 356544,
+        "returnAll": true,
+        "additionalOptions": {
+          "filters": {
+            "fields": [
+              {
+                "field": 2660079,
+                "value": "True"
+              },
+              {
+                "field": 3176727,
+                "value": "True"
+              }
+            ]
+          },
+          "filterType": "AND",
+          "order": {
+            "fields": [
+              {
+                "field": 2660071
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        340,
+        0
+      ],
+      "id": "ad0f4b9d-772f-40be-8529-d0ae5c291b25",
+      "name": "Get fetured",
+      "executeOnce": true,
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "databaseId": 139118,
+        "tableId": 356544,
+        "returnAll": true,
+        "additionalOptions": {
+          "filters": {
+            "fields": [
+              {
+                "field": 3423750,
+                "value": "True"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        340,
+        -240
+      ],
+      "id": "568ca630-47ad-45ad-a04e-f2900f2b7408",
+      "name": "GET_FBP",
+      "executeOnce": true,
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e3b14dfb-d01c-4f6b-9bc6-8c3a028c0c32",
+              "name": "id",
+              "value": "={{ $json.id }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        560,
+        -240
+      ],
+      "id": "2506dce5-bfbe-41aa-a838-c4e395424597",
+      "name": "FBP_ID_list"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6e82e921-285a-484a-ab84-391c030903db",
+              "name": "id",
+              "value": "={{ $json.id }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        560,
+        0
+      ],
+      "id": "e82d4370-2f2a-4016-ae48-15f368144fea",
+      "name": "Fetured_Id_list"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3bcfe8b1-11ad-48c7-b3d7-07a35c2bf1d0",
+              "name": "start",
+              "value": "1",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        20,
+        -120
+      ],
+      "id": "ecc62c08-a6b3-493e-9a66-a9b8a9ecb443",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch",
+        "useDataOfInput": 2
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        820,
+        -140
+      ],
+      "id": "9314616b-80f8-4eb9-8d72-2910c3642858",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1280,
+        -140
+      ],
+      "id": "2857e1c5-01ae-4314-a6f1-3c1466cd0406",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 139118,
+        "tableId": 356544,
+        "rowId": "={{ $('Loop Over Items').item.json.id }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 3423750,
+              "fieldValue": "True"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        1900,
+        -120
+      ],
+      "id": "a0920a8a-d17f-4536-b1df-ef3bfe475e48",
+      "name": "Baserow",
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "databaseId": 139118,
+        "tableId": 356544,
+        "rowId": "={{ $json.off }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": 3423750,
+              "fieldValue": "False"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.baserow",
+      "typeVersion": 1,
+      "position": [
+        1560,
+        -120
+      ],
+      "id": "b6c3512e-f8d5-4920-a3eb-410ff9fec764",
+      "name": "Baserow1",
+      "credentials": {
+        "baserowApi": {
+          "id": "iKQh0Jcxz7wezRWR",
+          "name": "Baserow account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-02-05T19:27:29.000Z",
+  "versionId": "f6e1a450-de01-4e4a-bb18-393ba0777231"
+}

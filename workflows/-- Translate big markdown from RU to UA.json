@@ -73,7 +73,7 @@
   "nodes": [
     {
       "parameters": {
-        "jsCode": "// Получаем входные данные\nlet items = $input.all();\n\n// Устанавливаем максимальный размер для каждой части (измените при необходимости)\nconst MAX_SIZE = 5000;\n\n// Инициализируем массив для хранения контента\nlet Data_Array = [];\n\n// Проходим по каждому элементу и извлекаем контент из поля `data`\nfor (let item of items) {\n    if (item.json && typeof item.json.data === 'string') {\n        Data_Array.push(item.json.data);\n    } else {\n        // Логируем ошибку и добавляем пустую строку, чтобы не прерывать процесс\n        console.error('Элемент не содержит ожидаемого поля data или оно не является строкой.');\n        Data_Array.push('');\n    }\n}\n\n// Проверяем, что Data_Array является массивом\nif (!Array.isArray(Data_Array)) {\n    throw new Error('Data_Array должен быть массивом.');\n}\n\n// Объединяем все элементы массива в одну строку с двумя переносами строк между ними\nlet Data = Data_Array.join('\\n\\n');\n\n/**\n * Функция для корректного разделения Markdown на фрагменты заданного размера\n * @param {string} markdown - Объединённый Markdown контент\n * @param {number} maxSize - Максимальный размер фрагмента\n * @returns {Array} - Массив фрагментов\n */\nfunction splitMarkdown(markdown, maxSize) {\n    const fragments = [];\n    let currentFragment = '';\n\n    // Разбиваем весь текст на строки для поэтапной обработки\n    const lines = markdown.split('\\n');\n\n    for (let line of lines) {\n        // Если добавление текущей строки превысит максимальный размер\n        if ((currentFragment + '\\n' + line).length > maxSize) {\n            if (currentFragment.length > 0) {\n                fragments.push(currentFragment.trim());\n                currentFragment = '';\n            }\n        }\n\n        // Добавляем текущую строку к фрагменту\n        if (currentFragment.length > 0) {\n            currentFragment += '\\n' + line;\n        } else {\n            currentFragment = line;\n        }\n    }\n\n    // Добавляем последний фрагмент, если он не пуст\n    if (currentFragment.length > 0) {\n        fragments.push(currentFragment.trim());\n    }\n\n    return fragments;\n}\n\n// Разделяем объединённый Markdown на фрагменты\nlet fragments = splitMarkdown(Data, MAX_SIZE);\n\n// Фильтруем пустые части, если есть\nfragments = fragments.filter(part => part.length > 0);\n\n// Если после всех операций нет фрагментов, но cleanData не пуст, возвращаем весь текст\nif (fragments.length === 0 && Data.length > 0) {\n    fragments.push(Data);\n}\n\n// Преобразуем фрагменты в массив объектов для n8n\nlet output = fragments.map(part => {\n    return { json: { data: part } };\n});\n\n// Возвращаем массив объектов\nreturn output;"
+        "jsCode": "// Получаем входные данные\nlet items = $input.all();\n\n// Устанавливаем максимальный размер для каждой части (измените при необходимости)\nconst MAX_SIZE = 50000;\n\n// Инициализируем массив для хранения контента\nlet Data_Array = [];\n\n// Проходим по каждому элементу и извлекаем контент из поля `data`\nfor (let item of items) {\n    if (item.json && typeof item.json.data === 'string') {\n        Data_Array.push(item.json.data);\n    } else {\n        // Логируем ошибку и добавляем пустую строку, чтобы не прерывать процесс\n        console.error('Элемент не содержит ожидаемого поля data или оно не является строкой.');\n        Data_Array.push('');\n    }\n}\n\n// Проверяем, что Data_Array является массивом\nif (!Array.isArray(Data_Array)) {\n    throw new Error('Data_Array должен быть массивом.');\n}\n\n// Объединяем все элементы массива в одну строку с двумя переносами строк между ними\nlet Data = Data_Array.join('\\n\\n');\n\n/**\n * Функция для корректного разделения Markdown на фрагменты заданного размера\n * @param {string} markdown - Объединённый Markdown контент\n * @param {number} maxSize - Максимальный размер фрагмента\n * @returns {Array} - Массив фрагментов\n */\nfunction splitMarkdown(markdown, maxSize) {\n    const fragments = [];\n    let currentFragment = '';\n\n    // Разбиваем весь текст на строки для поэтапной обработки\n    const lines = markdown.split('\\n');\n\n    for (let line of lines) {\n        // Если добавление текущей строки превысит максимальный размер\n        if ((currentFragment + '\\n' + line).length > maxSize) {\n            if (currentFragment.length > 0) {\n                fragments.push(currentFragment.trim());\n                currentFragment = '';\n            }\n        }\n\n        // Добавляем текущую строку к фрагменту\n        if (currentFragment.length > 0) {\n            currentFragment += '\\n' + line;\n        } else {\n            currentFragment = line;\n        }\n    }\n\n    // Добавляем последний фрагмент, если он не пуст\n    if (currentFragment.length > 0) {\n        fragments.push(currentFragment.trim());\n    }\n\n    return fragments;\n}\n\n// Разделяем объединённый Markdown на фрагменты\nlet fragments = splitMarkdown(Data, MAX_SIZE);\n\n// Фильтруем пустые части, если есть\nfragments = fragments.filter(part => part.length > 0);\n\n// Если после всех операций нет фрагментов, но cleanData не пуст, возвращаем весь текст\nif (fragments.length === 0 && Data.length > 0) {\n    fragments.push(Data);\n}\n\n// Преобразуем фрагменты в массив объектов для n8n\nlet output = fragments.map(part => {\n    return { json: { data: part } };\n});\n\n// Возвращаем массив объектов\nreturn output;"
       },
       "id": "ae3a51b4-1f02-4565-aacf-a85d60e8461b",
       "name": "Code",
@@ -139,14 +139,14 @@
       "parameters": {
         "modelId": {
           "__rl": true,
-          "value": "gpt-4o-mini",
+          "value": "o1-mini",
           "mode": "list",
-          "cachedResultName": "GPT-4O-MINI"
+          "cachedResultName": "O1-MINI"
         },
         "messages": {
           "values": [
             {
-              "content": "=translate the obtained markdown code fragment from Russian to Ukrainian, but do not change strucuture, add or correct any aditional markdown tags. Consider the yachting focus of the text and the importance of correct translation Return only html that you get, without your comments and aditional tegs. \n\n{{ $json.data }}"
+              "content": "=translate the obtained markdown code fragment from Russian to Ukrainian, but do not change strucuture, add or correct any aditional markdown tags. Consider the yachting focus of the text and the importance of correct translation Return only translated markdown that you get, without your comments and aditional tegs. \n\n{{ $json.data }}"
             }
           ]
         },
@@ -188,6 +188,6 @@
     }
   ],
   "triggerCount": 0,
-  "updatedAt": "2024-12-29T17:08:31.000Z",
-  "versionId": "969e9d33-c6c8-4091-9c21-8a48c7859d0d"
+  "updatedAt": "2025-02-07T18:14:58.000Z",
+  "versionId": "ed934d5f-9957-461f-9f9a-a26d497f4573"
 }

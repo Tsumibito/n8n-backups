@@ -620,9 +620,9 @@
       "parameters": {
         "modelId": {
           "__rl": true,
-          "value": "gpt-4o-mini",
+          "value": "o1-mini",
           "mode": "list",
-          "cachedResultName": "GPT-4O-MINI"
+          "cachedResultName": "O1-MINI"
         },
         "messages": {
           "values": [
@@ -1038,6 +1038,6 @@
     }
   ],
   "triggerCount": 2,
-  "updatedAt": "2025-01-29T17:46:14.000Z",
-  "versionId": "dc81039d-0cae-44c4-a2bc-138bae8c8798"
+  "updatedAt": "2025-02-07T17:09:54.000Z",
+  "versionId": "ae6ee214-ed33-4e95-8210-ccbbe7da2a14"
 }
